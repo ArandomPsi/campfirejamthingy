@@ -7,11 +7,14 @@ var shotcooldown : float = 0
 
 var shottype : int = 0
 var shotcooldowns : Array = [15,40,5]
-var stats : Array = [1,1,1,1,1,1]
+var stats : Array[float] = [1,1,1,1,1,1]
+var prev_def_stat : int = 1
+var prev_inv_stat : int = 1
 #attack, defense, firerate, speed, amount of bullets, iframes
 
-var hp : int = 10
-var maxhp : int = 10
+var base_hp : int = 10
+var hp : int = base_hp
+var maxhp : int = base_hp
 
 var iframes : int = 60
 var maxiframes : int = 50
@@ -21,13 +24,21 @@ var t : float
 func _process(delta):
 	global.playerpos = position
 	iframes -= 1
-	shotcooldown -= 1 * (60/Engine.get_frames_per_second())
+	shotcooldown -= stats[2] * (60/Engine.get_frames_per_second())
 	controls()
 	updateposition(delta)
 	$sprite.rotation_degrees += 300 * delta
 	hp = clampi(hp,0,maxhp)
 	t += delta
-	
+	if stats[1] > prev_def_stat:
+		hp = clampi(hp * stats[1],0,maxhp)
+		maxhp = base_hp * stats[1]
+		prev_def_stat = stats[1]
+		print(hp)
+		print(maxhp)
+	if stats[5] > prev_inv_stat:
+		maxiframes *= stats[5]
+		prev_inv_stat = stats[5]
 
 func controls():
 	movedir = Input.get_vector("left","right","up","down").normalized()
@@ -38,8 +49,7 @@ func controls():
 		movedir = Vector2.ZERO
 
 func updateposition(delta):
-	
-	velocity += movedir * speed * delta * 180
+	velocity += movedir * speed * delta * 180 * stats[3]
 	velocity *= friction
 	
 	$arrow.look_at(get_global_mouse_position())
@@ -66,29 +76,31 @@ func shoot():
 	global.shake += 2
 	match shottype:
 		0:
-			var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
-			b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
-			b.look_at(get_global_mouse_position())
-			b.damage = 4
-			get_tree().root.add_child(b)
+			for i in range(int(1 * stats[4])):
+				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
+				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
+				b.look_at(get_global_mouse_position())
+				b.damage = 5 * stats[0]
+				get_tree().root.add_child(b)
 		1:
-			for i in range(8):
+			for i in range(int(8 * stats[4])):
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
 				b.maxdistance = randi_range(30,40)
-				b.damage = 3
+				b.damage = 3 * stats[0]
 				b.accuracy = 20
 				b.speed *= randf_range(0.9,0.6) * 2
 				get_tree().root.add_child(b)
 		2:
-			var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
-			b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
-			b.maxdistance = 80
-			b.accuracy = 10
-			b.damage = 1
-			b.look_at(get_global_mouse_position())
-			get_tree().root.add_child(b)
+			for i in range(int(1 * stats[4])):
+				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
+				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
+				b.maxdistance = 80
+				b.accuracy = 10
+				b.damage = 1 * stats[0]
+				b.look_at(get_global_mouse_position())
+				get_tree().root.add_child(b)
 	
 
 
