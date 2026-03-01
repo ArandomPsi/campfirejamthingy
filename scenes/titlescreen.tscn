@@ -231,7 +231,7 @@ offset_right = 1030.0
 offset_bottom = 405.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_sgmsf")
 
-[node name="Label" type="Label" parent="Panel"]
+[node name="thefiles" type="Label" parent="Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -245,7 +245,8 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_tpwu3")
 theme_override_font_sizes/font_size = 30
-text = "EPSTEIN "
+text = "BOOTING... "
+autowrap_mode = 3
 
 [node name="crt" type="ColorRect" parent="Panel"]
 z_index = 10
@@ -281,11 +282,13 @@ texture = SubResource("GradientTexture2D_lalis")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(826, 257)
+zoom = Vector2(1.15, 1.15)
 limit_left = 0
 limit_top = 0
 limit_right = 1152
 limit_bottom = 648
 limit_smoothed = true
+position_smoothing_enabled = true
 
 [connection signal="pressed" from="Ps5/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Ps5/up" to="." method="_on_up_pressed"]

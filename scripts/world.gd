@@ -56,6 +56,7 @@ func openportal():
 
 func _on_area_2d_body_entered(body):
 	$player.transition()
+	$player.hp = $player.maxhp
 	var timer = get_tree().create_timer(0.3)
 	$upgradeportal.visible = false
 	$player.position = Vector2(1344/2,806/2)

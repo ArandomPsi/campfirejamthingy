@@ -12,14 +12,18 @@ var prev_def_stat : int = 1
 var prev_inv_stat : int = 1
 #attack, defense, firerate, speed, amount of bullets, iframes
 
-var base_hp : int = 10
+var base_hp : float = 10
 var hp : float = base_hp
-var maxhp : int = base_hp
+var maxhp : float = base_hp
 
 var iframes : int = 60
 var maxiframes : int = 50
 
 var t : float
+
+func _ready():
+	shottype = global.playerweapon
+	transitionin()
 
 func _physics_process(delta):
 	global.playerpos = position
@@ -31,15 +35,15 @@ func _physics_process(delta):
 	hp = clampi(hp,0,maxhp)
 	t += delta
 	
+	print(str(hp))
+	print(str(maxhp))
 
 func statsstuff():
 	shotcooldown -= (1 + stats[2]) * (60/Engine.get_frames_per_second())
 	if stats[1] > prev_def_stat:
-		hp = clampi(hp * stats[1],0,maxhp)
 		maxhp = base_hp + stats[1]*2
 		prev_def_stat = stats[1]
-		print(hp)
-		print(maxhp)
+		
 	
 	maxiframes = 50 + stats[5] * 8
 	

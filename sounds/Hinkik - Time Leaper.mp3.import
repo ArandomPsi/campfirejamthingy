@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/Hinkik - Time Leaper.mp3-292c03a15c5fd41715ab
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

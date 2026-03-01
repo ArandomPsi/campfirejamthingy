@@ -4,6 +4,7 @@ var playerpos : Vector2
 var flash : float = 0
 var room : int = 1
 var shake : int = 0
+var playerweapon : int = 0
 
 func _process(delta):
 	shake -= 1

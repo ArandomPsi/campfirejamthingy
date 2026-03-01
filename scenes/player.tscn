@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cbha305rydvd2"]
+[gd_scene load_steps=28 format=3 uid="uid://cbha305rydvd2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1b47p"]
 [ext_resource type="Texture2D" uid="uid://bbn8umujge3ki" path="res://assets/baseplayer.svg" id="1_o0pgg"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://scripts/upgrade.gd" id="10_cyrk5"]
 [ext_resource type="Shader" path="res://shaders/crt.gdshader" id="11_t6j4c"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="13_0vbpy"]
+[ext_resource type="AudioStream" uid="uid://3dkd6802moiq" path="res://sounds/Hinkik - Time Leaper.mp3" id="14_1008y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4tyv"]
 radius = 21.0
@@ -89,6 +90,16 @@ shader_parameter/clip_warp = false
 shader_parameter/vignette_intensity = 0.4
 shader_parameter/vignette_opacity = 0.5
 
+[sub_resource type="Gradient" id="Gradient_gcpgy"]
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mvge8"]
+gradient = SubResource("Gradient_gcpgy")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eovha"]
 shader = ExtResource("5_l0h6p")
 shader_parameter/dir = Vector2(0, 0)
@@ -97,11 +108,12 @@ shader_parameter/quality = 10
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2exaf"]
 shader = ExtResource("13_0vbpy")
 shader_parameter/_CirclePosition = Vector2(0.5, 0.5)
-shader_parameter/progress = 0.0
+shader_parameter/progress = 1.0
 shader_parameter/_Smoothness = 0.05
 shader_parameter/_Background = null
 
 [node name="player" type="CharacterBody2D"]
+position = Vector2(-1, 0)
 collision_layer = 2
 script = ExtResource("1_1b47p")
 
@@ -155,10 +167,10 @@ script = ExtResource("4_1jcgd")
 
 [node name="table" type="Panel" parent="hud"]
 visible = false
-modulate = Color(0.411765, 0.411765, 0.411765, 1)
+modulate = Color(0.670588, 0.670588, 0.670588, 1)
 offset_left = -8.0
 offset_top = 419.0
-offset_right = 1150.0
+offset_right = 1167.0
 offset_bottom = 680.0
 pivot_offset = Vector2(540, -220)
 theme_override_styles/panel = SubResource("StyleBoxFlat_iheuj")
@@ -171,6 +183,7 @@ offset_left = -56.0
 offset_top = -440.0
 offset_right = 1207.0
 offset_bottom = 40.0
+color = Color(0.466667, 0.466667, 0.466667, 1)
 
 [node name="Label" type="Label" parent="hud/table/ColorRect"]
 layout_mode = 0
@@ -268,6 +281,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="PointLight2D" type="Sprite2D" parent="hud/table"]
+modulate = Color(0, 0, 0, 0.792157)
+position = Vector2(556, -91)
+scale = Vector2(21.7188, 13.375)
+texture = SubResource("GradientTexture2D_mvge8")
+
 [node name="transition" type="ColorRect" parent="hud"]
 material = SubResource("ShaderMaterial_eovha")
 anchors_preset = 15
@@ -285,6 +304,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="sounds" type="Node" parent="."]
+
+[node name="song" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("14_1008y")
+autoplay = true
 
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
