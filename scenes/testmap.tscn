@@ -100,7 +100,7 @@ glow_blend_mode = 0
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_2d2qg"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dux8w"]
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_aerwy"]
 seamless = true
 noise = SubResource("FastNoiseLite_2d2qg")
 
@@ -109,7 +109,7 @@ shader = ExtResource("4_ao6g4")
 shader_parameter/smoke_color = Color(0.8, 0.8, 0.8, 1)
 shader_parameter/distortion_speed = 0.2
 shader_parameter/density = 0.076
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_dux8w")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_aerwy")
 
 [sub_resource type="Gradient" id="Gradient_vxe6l"]
 offsets = PackedFloat32Array(0, 0.165953, 0.62848, 0.997859)
@@ -225,12 +225,29 @@ position = Vector2(-1, 8)
 scale = Vector2(9.65625, 4.84375)
 texture = SubResource("GradientTexture2D_0ob0o")
 
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="portal1"]
+position = Vector2(0, 805)
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_k4ghp")
+fixed_fps = 60
+
+[node name="PointLight2D2" type="Sprite2D" parent="portal1"]
+modulate = Color(0, 0.517647, 1, 1)
+position = Vector2(-1, 813)
+scale = Vector2(9.65625, 4.84375)
+texture = SubResource("GradientTexture2D_0ob0o")
+
 [node name="Area2D" type="Area2D" parent="portal1"]
 collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="portal1/Area2D"]
 position = Vector2(-1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iw71g")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="portal1/Area2D"]
+position = Vector2(-1, 808)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_iw71g")
 
@@ -245,9 +262,9 @@ shape = SubResource("RectangleShape2D_smjvi")
 
 [node name="Label" type="Label" parent="."]
 offset_left = 394.0
-offset_top = 92.0
+offset_top = 171.0
 offset_right = 940.0
-offset_bottom = 251.0
+offset_bottom = 330.0
 theme_override_colors/font_color = Color(0, 0.662745, 1, 1)
 theme_override_fonts/font = ExtResource("7_syahy")
 theme_override_font_sizes/font_size = 50

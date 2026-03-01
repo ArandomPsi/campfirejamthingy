@@ -9,7 +9,9 @@ var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounde
 var pressed : bool = false
 
 func _ready():
+	global.trueroom = 0
 	updateepsteinfiles()
+	$Camera2D.zoom = Vector2(20,20)
 
 func _process(delta):
 	$monitor/PointLight2D.energy = randf_range(0.45,0.5)
@@ -29,7 +31,7 @@ func _process(delta):
 	
 	if not pressed:
 		$Camera2D.position = get_global_mouse_position()
-	
+		$Camera2D.zoom = lerp($Camera2D.zoom,Vector2(1.15,1.15),0.1)
 	
 
 func _on_button_pressed():

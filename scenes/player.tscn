@@ -1,10 +1,11 @@
-[gd_scene load_steps=28 format=3 uid="uid://cbha305rydvd2"]
+[gd_scene load_steps=35 format=3 uid="uid://cbha305rydvd2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1b47p"]
 [ext_resource type="Texture2D" uid="uid://bbn8umujge3ki" path="res://assets/baseplayer.svg" id="1_o0pgg"]
 [ext_resource type="Texture2D" uid="uid://bi5mes7qa2r3e" path="res://assets/arrow-2.svg" id="3_pc355"]
 [ext_resource type="Script" path="res://scripts/vfx/flash.gd" id="4_1jcgd"]
 [ext_resource type="FontFile" uid="uid://buftca15lxprx" path="res://assets/HelloKetta-d99oX.ttf" id="5_c645l"]
+[ext_resource type="Shader" path="res://shaders/fog.gdshader" id="5_dbeld"]
 [ext_resource type="Shader" path="res://shaders/blur.gdshader" id="5_l0h6p"]
 [ext_resource type="Shader" path="res://shaders/perspective.gdshader" id="6_qc81r"]
 [ext_resource type="Texture2D" uid="uid://bb58quqfhacg8" path="res://assets/thepc.svg" id="6_s66kg"]
@@ -14,6 +15,8 @@
 [ext_resource type="Shader" path="res://shaders/crt.gdshader" id="11_t6j4c"]
 [ext_resource type="Shader" path="res://shaders/circle.gdshader" id="13_0vbpy"]
 [ext_resource type="AudioStream" uid="uid://3dkd6802moiq" path="res://sounds/Hinkik - Time Leaper.mp3" id="14_1008y"]
+[ext_resource type="Shader" path="res://shaders/glitch.gdshader" id="14_nnfyx"]
+[ext_resource type="AudioStream" uid="uid://dgxkppc7oa7iq" path="res://sounds/Glitch Sound Effect (Speaker).mp3" id="17_bgffu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4tyv"]
 radius = 21.0
@@ -28,6 +31,21 @@ border_color = Color(0, 0.662745, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arbkn"]
 bg_color = Color(0, 0.662745, 1, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_7h34q"]
+noise_type = 2
+frequency = 0.0163
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_214pi"]
+seamless = true
+noise = SubResource("FastNoiseLite_7h34q")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gqaq"]
+shader = ExtResource("5_dbeld")
+shader_parameter/smoke_color = Color(1, 0.380392, 0.505882, 1)
+shader_parameter/distortion_speed = 0.2
+shader_parameter/density = 0.165
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_214pi")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iheuj"]
 bg_color = Color(0.6, 0.337255, 0.121569, 1)
@@ -105,6 +123,14 @@ shader = ExtResource("5_l0h6p")
 shader_parameter/dir = Vector2(0, 0)
 shader_parameter/quality = 10
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_slb6n"]
+shader = ExtResource("14_nnfyx")
+shader_parameter/range = 0.05
+shader_parameter/noiseQuality = 300.0
+shader_parameter/noiseIntensity = 0.0088
+shader_parameter/offsetIntensity = 0.03
+shader_parameter/colorOffsetIntensity = 1.3
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2exaf"]
 shader = ExtResource("13_0vbpy")
 shader_parameter/_CirclePosition = Vector2(0.5, 0.5)
@@ -150,6 +176,40 @@ offset_bottom = 28.0
 theme_override_styles/background = SubResource("StyleBoxFlat_srj8l")
 theme_override_styles/fill = SubResource("StyleBoxFlat_arbkn")
 show_percentage = false
+
+[node name="gameover" type="ColorRect" parent="glowhud"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="Label" type="Label" parent="glowhud/gameover"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -348.0
+offset_top = -84.0
+offset_right = 348.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0, 0.239216, 1)
+theme_override_fonts/font = ExtResource("9_xp4tx")
+theme_override_font_sizes/font_size = 70
+text = "Antivirus Terminated"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect" type="ColorRect" parent="glowhud/gameover"]
+material = SubResource("ShaderMaterial_7gqaq")
+offset_right = 1345.0
+offset_bottom = 809.0
 
 [node name="hud" type="CanvasLayer" parent="."]
 layer = 5
@@ -312,6 +372,15 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="glitches" type="ColorRect" parent="hud"]
+visible = false
+material = SubResource("ShaderMaterial_slb6n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="hudtransition" type="ColorRect" parent="hud"]
 visible = false
 material = SubResource("ShaderMaterial_2exaf")
@@ -326,20 +395,24 @@ mouse_filter = 2
 
 [node name="song" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("14_1008y")
+volume_db = -10.0
 autoplay = true
 
+[node name="glitch" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("17_bgffu")
+
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]

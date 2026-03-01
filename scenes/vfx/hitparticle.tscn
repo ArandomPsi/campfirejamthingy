@@ -1,6 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://cre6axvqgsq7c"]
+[gd_scene load_steps=9 format=3 uid="uid://cre6axvqgsq7c"]
 
 [ext_resource type="Script" path="res://scripts/vfx/hitparticle.gd" id="1_h5xin"]
+[ext_resource type="AudioStream" uid="uid://dkd4tf06pfdbv" path="res://sounds/hit.wav" id="2_p1i25"]
+[ext_resource type="Script" path="res://scripts/randomsounds.gd" id="3_sod2m"]
 
 [sub_resource type="Gradient" id="Gradient_pgvbd"]
 offsets = PackedFloat32Array(0.25, 1)
@@ -41,3 +43,8 @@ fixed_fps = 60
 local_coords = true
 trail_enabled = true
 script = ExtResource("1_h5xin")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_p1i25")
+volume_db = 10.0
+script = ExtResource("3_sod2m")

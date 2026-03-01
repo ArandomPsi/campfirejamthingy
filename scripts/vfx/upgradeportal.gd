@@ -4,6 +4,7 @@ func _process(delta):
 	$GPUParticles2D.global_rotation = 0
 	$GPUParticles2D.emitting = visible
 	$portalchecker/CollisionShape2D.disabled = not visible
+	
 
 func appear():
 	visible = true
