@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-var speed : int = 270
+var speed : int = 270 + global.room * 2
 var attackchargeup : int = 120
 var shaking : int = 0
-var hp : int = 18
+var hp : int = 64 + global.room * 2
 var spawnedin : bool = false
 
 
@@ -45,7 +45,7 @@ func charge():
 	velocity *= 0.7
 
 func rush():
-	velocity = transform.x * randi_range(800,1000)
+	velocity = transform.x * randi_range(2000,2400)
 
 func damage(amount):
 	hp -= amount

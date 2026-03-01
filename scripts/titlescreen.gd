@@ -3,7 +3,8 @@ var t : float
 var currentweaponthingy : int = 0
 var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounder os",
 ">Point Blank OS \n --Kamakazi go brrr",
-">Rayul OS \n --BRRRRRRRRRRRRRR",]
+">Rayul OS \n --BRRRRRRRRRRRRRR",
+">Thorfinn OS \n Gifted by the fathers",]
 
 var pressed : bool = false
 
@@ -13,12 +14,12 @@ func _ready():
 func _process(delta):
 	$monitor/PointLight2D.energy = randf_range(0.45,0.5)
 	$Lamp/PointLight2D.energy = randf_range(0.1,0.14)
-	currentweaponthingy = clampi(currentweaponthingy,0,2)
+	currentweaponthingy = clampi(currentweaponthingy,0,3)
 	$Ps5/down/PointLight2D3.visible = true
 	$Ps5/up/PointLight2D2.visible = true
 	if currentweaponthingy == 0:
 		$Ps5/down/PointLight2D3.visible = false
-	if currentweaponthingy == 2:
+	if currentweaponthingy == 3:
 		$Ps5/up/PointLight2D2.visible = false
 	t += delta
 	if not $Ps5/Button.is_hovered():
