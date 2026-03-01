@@ -57,7 +57,7 @@ func openportal():
 func _on_area_2d_body_entered(body):
 	$player.transition()
 	var timer = get_tree().create_timer(0.3)
-	$portal1.visible = false
+	$upgradeportal.visible = false
 	$player.position = Vector2(1344/2,806/2)
 	global.room = clampi(global.room,0,5)
 	await timer.timeout

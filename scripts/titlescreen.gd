@@ -1,6 +1,8 @@
 extends Control
 var t : float
 var currentweaponthingy : int = 0
+var currentweaponthingytext : Array = ["Pea Shooter: "]
+
 
 func _process(delta):
 	$monitor/PointLight2D.energy = randf_range(0.45,0.5)
@@ -23,3 +25,5 @@ func _on_up_pressed():
 
 func _on_down_pressed():
 	currentweaponthingy -= 1
+
+
