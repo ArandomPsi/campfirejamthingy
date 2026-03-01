@@ -275,7 +275,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 368.0
 offset_top = -341.0
-offset_right = -466.0
+offset_right = -483.0
 offset_bottom = -360.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -286,6 +286,22 @@ modulate = Color(0, 0, 0, 0.792157)
 position = Vector2(556, -91)
 scale = Vector2(21.7188, 13.375)
 texture = SubResource("GradientTexture2D_mvge8")
+
+[node name="title" type="Label" parent="hud"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -213.0
+offset_top = 10.0
+offset_right = 213.0
+offset_bottom = 91.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(1, 0, 0.427451, 1)
+theme_override_fonts/font = ExtResource("9_xp4tx")
+theme_override_font_sizes/font_size = 50
+text = "ROOM - 1"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="transition" type="ColorRect" parent="hud"]
 material = SubResource("ShaderMaterial_eovha")
@@ -313,17 +329,17 @@ stream = ExtResource("14_1008y")
 autoplay = true
 
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]

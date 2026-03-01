@@ -74,7 +74,8 @@ func _on_area_2d_body_entered(body):
 		b.position.y = randi_range(20,648)
 		add_child(b)
 		
-		
+	
+	global.room += 1
 	global.room += randi_range(0,1.5) #5- percent chance of scaling up
 
 func upgradething(trick): #for signal

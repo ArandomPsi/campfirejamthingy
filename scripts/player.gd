@@ -21,6 +21,8 @@ var maxiframes : int = 50
 
 var t : float
 
+var roomalpha : float = 0
+
 func _ready():
 	shottype = global.playerweapon
 	$hud/hudtransition.visible = true
@@ -70,7 +72,8 @@ func updateposition(delta):
 	$glowhud/hp.max_value = maxhp
 	$glowhud/hp.value = lerpf($glowhud/hp.value,hp,0.2)
 	
-	
+	$hud/title.modulate.a = roomalpha
+	roomalpha = lerpf(roomalpha,0.0,0.05)
 	
 	
 	if iframes > 1:
@@ -135,6 +138,8 @@ func transition():
 	tween.parallel().tween_property($Camera2D,"zoom",Vector2(10,10),0.2)
 	tween.tween_method(transitionmat,2.0,0.0,0.2).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property($Camera2D,"zoom",Vector2(1,1),0.2)
+	$hud/title.text = "ROOM - " + str(global.trueroom)
+	roomalpha = 5
 
 func transitionmat(value : float):
 	$hud/transition.material.set_shader_parameter("dir",Vector2(0,value))
