@@ -297,6 +297,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="hudtransition" type="ColorRect" parent="hud"]
+visible = false
 material = SubResource("ShaderMaterial_2exaf")
 anchors_preset = 15
 anchor_right = 1.0
@@ -312,17 +313,17 @@ stream = ExtResource("14_1008y")
 autoplay = true
 
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]

@@ -23,6 +23,7 @@ var t : float
 
 func _ready():
 	shottype = global.playerweapon
+	$hud/hudtransition.visible = true
 	transitionin()
 
 func _physics_process(delta):
