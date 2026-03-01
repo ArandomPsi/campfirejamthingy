@@ -1,0 +1,84 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjo4u26r44f27"]
+
+[ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="1_a2uic"]
+[ext_resource type="Texture2D" uid="uid://hsn02fpm2pvc" path="res://assets/ps5.svg" id="2_4rnkh"]
+[ext_resource type="FontFile" uid="uid://c80u6qswig48x" path="res://assets/TrenchThin-16R0.otf" id="3_wgnm3"]
+
+[sub_resource type="Gradient" id="Gradient_whvdv"]
+offsets = PackedFloat32Array(0, 0.995327)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_oed7t"]
+gradient = SubResource("Gradient_whvdv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Environment" id="Environment_83cf6"]
+background_mode = 3
+glow_enabled = true
+glow_bloom = 0.59
+glow_blend_mode = 0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgmsf"]
+
+[node name="titlescreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0.929412, 0.701961, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(816, 309)
+scale = Vector2(2.83838, 2.83838)
+texture = ExtResource("1_a2uic")
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+modulate = Color(0.4, 1, 0.431373, 0.294118)
+position = Vector2(0, -18.1265)
+scale = Vector2(6.12144, 3.91453)
+energy = 0.32
+texture = SubResource("GradientTexture2D_oed7t")
+
+[node name="Ps5" type="Sprite2D" parent="."]
+position = Vector2(421, 552)
+scale = Vector2(3.57143, 3.57143)
+texture = ExtResource("2_4rnkh")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_83cf6")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 86.0
+offset_right = 1030.0
+offset_bottom = 405.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_sgmsf")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_wgnm3")
+theme_override_font_sizes/font_size = 50
+text = "EPSTEIN "

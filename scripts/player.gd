@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed : int = 100
+var speed : int = 80
 var friction : float = 0.8
 var movedir : Vector2
 var shotcooldown : float = 0
@@ -21,24 +21,29 @@ var maxiframes : int = 50
 
 var t : float
 
-func _process(delta):
+func _physics_process(delta):
 	global.playerpos = position
 	iframes -= 1
-	shotcooldown -= stats[2] * (60/Engine.get_frames_per_second())
+	statsstuff()
 	controls()
 	updateposition(delta)
 	$sprite.rotation_degrees += 300 * delta
 	hp = clampi(hp,0,maxhp)
 	t += delta
+	
+
+func statsstuff():
+	shotcooldown -= (1 + stats[2]) * (60/Engine.get_frames_per_second())
 	if stats[1] > prev_def_stat:
 		hp = clampi(hp * stats[1],0,maxhp)
-		maxhp = base_hp * stats[1]
+		maxhp = base_hp + stats[1]*2
 		prev_def_stat = stats[1]
 		print(hp)
 		print(maxhp)
-	if stats[5] > prev_inv_stat:
-		maxiframes *= stats[5]
-		prev_inv_stat = stats[5]
+	
+	maxiframes = 50 + stats[5] * 8
+	
+
 
 func controls():
 	movedir = Input.get_vector("left","right","up","down").normalized()
