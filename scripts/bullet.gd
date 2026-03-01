@@ -3,17 +3,28 @@ extends Node2D
 @export var speed : int = 800
 @export var accuracy : int = 5
 @export var damage : int = 2
+@export var dagger : bool = false
+var back : bool = false
+
 
 func _ready():
 	rotation_degrees += randf_range(-accuracy,accuracy)
+	if dagger:
+		$Sprite2D.texture = preload("res://assets/Dagger.svg")
+		$Sprite2D.scale = Vector2(1, 1)
 
 func _process(delta):
-	position += transform.x * delta * speed
-	maxdistance -= 1
-	if maxdistance < 0:
+	if dagger:
+		speed *= 0.98
+		position += transform.x * speed * delta
+		$Sprite2D.rotation += PI / 10
+	else:
+		position += transform.x * delta * speed
+		maxdistance -= 1
+		if maxdistance < 0:
+			
+			queue_free()
 		
-		queue_free()
-	
 
 
 func _on_area_2d_body_entered(body):

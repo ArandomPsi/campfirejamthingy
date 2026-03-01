@@ -5,14 +5,14 @@ var friction : float = 0.8
 var movedir : Vector2
 var shotcooldown : float = 0
 
-var shottype : int = 0
-var shotcooldowns : Array = [15,40,5]
+var shottype : int = 3
+var shotcooldowns : Array = [15,40,5,100]
 var stats : Array[float] = [1,1,1,1,1,1]
 var prev_def_stat : int = 1
 var prev_inv_stat : int = 1
 #attack, defense, firerate, speed, amount of bullets, iframes
 
-var base_hp : float = 5
+var base_hp : float = 3
 var hp : float = base_hp
 var maxhp : float = base_hp
 
@@ -50,7 +50,7 @@ func statsstuff():
 
 func controls():
 	movedir = Input.get_vector("left","right","up","down").normalized()
-	if Input.is_action_pressed("shoot") and shotcooldown < 1:
+	if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
 		shoot()
 		shotcooldown = shotcooldowns[shottype]
 	if $hud/table.visible:
@@ -88,7 +88,7 @@ func shoot():
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
-				b.damage = 5 * stats[0]
+				b.damage = 3 + stats[0] * 2
 				get_tree().root.add_child(b)
 		1:
 			for i in range(int(8 * stats[4])):
@@ -96,7 +96,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
 				b.maxdistance = randi_range(30,40)
-				b.damage = 3 * stats[0]
+				b.damage = 2 + stats[0] * 2
 				b.accuracy = 20
 				b.speed *= randf_range(0.9,0.6) * 2
 				get_tree().root.add_child(b)
@@ -106,10 +106,19 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.maxdistance = 80
 				b.accuracy = 10
-				b.damage = 1 * stats[0]
+				b.damage = 1 + stats[0] * 2
 				b.look_at(get_global_mouse_position())
 				get_tree().root.add_child(b)
-	
+		3:
+			for i in range(int(2 * stats[4])):
+				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
+				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
+				b.speed = 2000
+				b.dagger = true
+				b.accuracy = 15
+				b.damage = 10 + stats[0] * 2
+				b.look_at(get_global_mouse_position())
+				get_tree().root.add_child(b)
 
 
 func damage(amount):

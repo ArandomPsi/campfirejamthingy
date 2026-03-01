@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed : int = 150
 var attackchargeup : int = 120
 var shaking : int = 0
-var hp : int = 18
+var hp : int = 54 + global.room * 2
 var spawnedin : bool = false
 
 var t : float = 0
@@ -83,7 +83,7 @@ func chaindash():
 		rotation = lerp_angle(rotation,v,0.15)
 		await get_tree().process_frame
 	
-	velocity = transform.x * 1500
+	velocity = transform.x * (1500 + (global.room * 25))
 
 
 func _on_area_2d_2_body_entered(body):
