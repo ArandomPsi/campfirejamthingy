@@ -32,7 +32,7 @@ func _physics_process(delta):
 	global.playerpos = position
 	iframes -= 1
 	statsstuff()
-	if hp > 1 and $hud/table.visible == false:
+	if hp >= 1 and $hud/table.visible == false:
 		controls()
 	updateposition(delta)
 	$sprite.rotation_degrees += 300 * delta

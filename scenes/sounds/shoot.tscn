@@ -6,7 +6,7 @@
 [node name="shoot" type="AudioStreamPlayer2D"]
 position = Vector2(-1, -1)
 stream = ExtResource("1_hise3")
-volume_db = 24.0
+volume_db = 15.0
 script = ExtResource("2_tpram")
 min = 0.8
 max = 1.2
