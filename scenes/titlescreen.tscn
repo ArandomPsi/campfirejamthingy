@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://cvo1d4ep37ry0"]
+[gd_scene load_steps=24 format=3 uid="uid://cjo4u26r44f27"]
 
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="1_a2uic"]
 [ext_resource type="Script" path="res://scripts/titlescreen.gd" id="1_n16rf"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://dy7ktjuoebn6y" path="res://assets/changecdbutton.svg" id="5_og43h"]
 [ext_resource type="Texture2D" uid="uid://vo8xi258oen0" path="res://assets/lamp.svg" id="7_3y7uu"]
 [ext_resource type="Texture2D" uid="uid://dbvsnqd2qbmct" path="res://assets/lightthing.svg" id="8_3d8u6"]
+[ext_resource type="AudioStream" uid="uid://dswse4taphj4t" path="res://sounds/titleambient.mp3" id="10_gq3v6"]
+[ext_resource type="FontFile" uid="uid://jnx17qh117ex" path="res://assets/CaviarDreamsBold-a5og.ttf" id="11_2f5so"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmp6c"]
 bg_color = Color(0.6, 0.423529, 0.270588, 1)
@@ -289,6 +291,26 @@ limit_right = 1152
 limit_bottom = 648
 limit_smoothed = true
 position_smoothing_enabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_gq3v6")
+autoplay = true
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 646.0
+offset_top = 34.0
+offset_right = 961.0
+offset_bottom = 66.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.466667)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("11_2f5so")
+theme_override_font_sizes/font_size = 30
+text = "Breached OS"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="pressed" from="Ps5/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Ps5/up" to="." method="_on_up_pressed"]

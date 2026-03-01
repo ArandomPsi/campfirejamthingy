@@ -21,6 +21,8 @@ var maxiframes : int = 50
 
 var t : float
 
+var roomalpha : float = 0
+
 func _ready():
 	shottype = global.playerweapon
 	$hud/hudtransition.visible = true
@@ -30,7 +32,8 @@ func _physics_process(delta):
 	global.playerpos = position
 	iframes -= 1
 	statsstuff()
-	controls()
+	if hp >= 1 and $hud/table.visible == false:
+		controls()
 	updateposition(delta)
 	$sprite.rotation_degrees += 300 * delta
 	hp = clampi(hp,0,maxhp)
@@ -70,7 +73,8 @@ func updateposition(delta):
 	$glowhud/hp.max_value = maxhp
 	$glowhud/hp.value = lerpf($glowhud/hp.value,hp,0.2)
 	
-	
+	$hud/title.modulate.a = roomalpha
+	roomalpha = lerpf(roomalpha,0.0,0.05)
 	
 	
 	if iframes > 1:
@@ -81,10 +85,11 @@ func updateposition(delta):
 	
 
 func shoot():
-	global.shake += 2
+	
 	match shottype:
 		0:
 			for i in range(int(1 * stats[4])):
+				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
@@ -92,6 +97,7 @@ func shoot():
 				get_tree().root.add_child(b)
 		1:
 			for i in range(int(8 * stats[4])):
+				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
@@ -102,6 +108,7 @@ func shoot():
 				get_tree().root.add_child(b)
 		2:
 			for i in range(int(1 * stats[4])):
+				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.maxdistance = 80
@@ -111,6 +118,7 @@ func shoot():
 				get_tree().root.add_child(b)
 		3:
 			for i in range(int(2 * stats[4])):
+				global.shake += 4
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.speed = 2000
@@ -127,6 +135,14 @@ func damage(amount):
 		global.flash = 0.5
 		global.shake += 10
 		iframes = maxiframes
+		var b = preload("res://scenes/vfx/hitparticle.tscn").instantiate()
+		get_tree().root.add_child(b)
+		b.modulate = $sprite.modulate
+		b.position = global_position
+		b.scale *= 2
+		if hp < 1:
+			iframes = 300000
+			die()
 
 func transition():
 	global.flash = 1
@@ -135,6 +151,8 @@ func transition():
 	tween.parallel().tween_property($Camera2D,"zoom",Vector2(10,10),0.2)
 	tween.tween_method(transitionmat,2.0,0.0,0.2).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property($Camera2D,"zoom",Vector2(1,1),0.2)
+	$hud/title.text = "ROOM - " + str(global.trueroom)
+	roomalpha = 5
 
 func transitionmat(value : float):
 	$hud/transition.material.set_shader_parameter("dir",Vector2(0,value))
@@ -187,3 +205,22 @@ func transitionout():
 func circtrans(value:float):
 	$hud/hudtransition.material.set_shader_parameter("progress",value)
 
+func die():
+	$sounds/glitch.play(1)
+	$glowhud/gameover.visible = true
+	$hud/glitches.visible = true
+	$glowhud/gameover.modulate.a = 0
+	var tween = create_tween()
+	$sounds/song.stop()
+	tween.tween_property($glowhud/gameover,"modulate",Color(1,1,1,1),0.5).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_method(glitchesproperty,0.067,-0.004,0.5)
+	tween.tween_interval(3)
+	await tween.finished
+	transitionout()
+	var timer = get_tree().create_timer(1.5)
+	await timer.timeout
+	get_tree().change_scene_to_file("res://scenes/titlescreen.tscn")
+
+
+func glitchesproperty(value:float):
+	$hud/glitches.material.set_shader_parameter("noiseIntensity",value)

@@ -8,6 +8,9 @@ var back : bool = false
 
 
 func _ready():
+	var b = preload("res://scenes/sounds/shoot.tscn").instantiate()
+	get_tree().root.add_child(b)
+	b.position = position
 	rotation_degrees += randf_range(-accuracy,accuracy)
 	if dagger:
 		$Sprite2D.texture = preload("res://assets/Dagger.svg")
@@ -15,7 +18,7 @@ func _ready():
 
 func _process(delta):
 	if dagger:
-		speed *= 0.98
+		speed -= 5
 		position += transform.x * speed * delta
 		$Sprite2D.rotation += PI / 10
 	else:

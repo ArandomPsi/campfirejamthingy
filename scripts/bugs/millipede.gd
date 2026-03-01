@@ -81,13 +81,12 @@ func damage(amount):
 	if hp < 0:
 		var joints : Array = [self,$joint1,$joint2,$joint3,$joint4,$joint5,$joint6,$joint7,$joint8]
 		for i in range(9):
-			
 			var b = preload("res://scenes/vfx/hitparticle.tscn").instantiate()
 			get_tree().root.add_child(b)
 			b.modulate = $sprite.modulate
 			b.position = joints[i].global_position
 			b.scale *= 2
-			queue_free()
+		queue_free()
 
 func bounce():
 	rotation_degrees += randi_range(-15,15)

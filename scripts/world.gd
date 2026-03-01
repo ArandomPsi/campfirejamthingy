@@ -44,6 +44,7 @@ func _process(delta):
 		
 	
 	$portal1/Area2D/CollisionShape2D.disabled = not portalopened
+	$portal1/Area2D/CollisionShape2D2.disabled = $portal1/Area2D/CollisionShape2D.disabled
 	
 	if Input.is_action_just_released("shoot"):
 		getsit = true
@@ -74,7 +75,8 @@ func _on_area_2d_body_entered(body):
 		b.position.y = randi_range(20,648)
 		add_child(b)
 		
-		
+	
+	global.trueroom += 1
 	global.room += randi_range(0,1.5) #5- percent chance of scaling up
 
 func upgradething(trick): #for signal

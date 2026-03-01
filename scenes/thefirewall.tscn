@@ -1,0 +1,104 @@
+[gd_scene load_steps=12 format=3 uid="uid://bo024to26b6s2"]
+
+[ext_resource type="Texture2D" uid="uid://c5rrkg2w5ppnv" path="res://assets/Flame.png" id="1_2hgn4"]
+[ext_resource type="Script" path="res://scripts/thefirewall.gd" id="1_uxnqx"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xcr55"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_u228j"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ovwct"]
+gradient = SubResource("Gradient_u228j")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_hu348"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(700, 1, 1)
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+spread = 28.065
+initial_velocity_min = 819.89
+initial_velocity_max = 1000.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 2.0
+scale_max = 2.0
+color = Color(1, 0, 0.584314, 1)
+color_ramp = SubResource("GradientTexture1D_ovwct")
+
+[sub_resource type="Gradient" id="Gradient_oye0v"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5u14k"]
+gradient = SubResource("Gradient_oye0v")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_crdfx"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2.08165e-12, 1, 1)
+direction = Vector3(2.08165e-12, -1, 2.08165e-12)
+spread = 28.065
+initial_velocity_min = 819.89
+initial_velocity_max = 1000.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+color = Color(1, 0.521569, 0.729412, 1)
+color_ramp = SubResource("GradientTexture1D_5u14k")
+
+[sub_resource type="Animation" id="Animation_l7lsk"]
+resource_name = "spawners"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4s3ac"]
+_data = {
+"spawners": SubResource("Animation_l7lsk")
+}
+
+[node name="thefirewall" type="Node2D"]
+position = Vector2(1, -2)
+script = ExtResource("1_uxnqx")
+
+[node name="thefire" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xcr55")
+position = Vector2(717, 677)
+amount = 60
+process_material = SubResource("ParticleProcessMaterial_hu348")
+texture = ExtResource("1_2hgn4")
+lifetime = 0.4
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+
+[node name="eye1" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xcr55")
+position = Vector2(472, 477)
+rotation = -2.06607
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_crdfx")
+texture = ExtResource("1_2hgn4")
+lifetime = 0.4
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+local_coords = true
+
+[node name="eye2" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_xcr55")
+position = Vector2(991, 477)
+rotation = 2.06647
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_crdfx")
+texture = ExtResource("1_2hgn4")
+lifetime = 0.4
+visibility_rect = Rect2(-1000, -1000, 2000, 2000)
+local_coords = true
+
+[node name="attackplayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4s3ac")
+}
