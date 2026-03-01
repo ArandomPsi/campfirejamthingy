@@ -260,7 +260,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Lamp" type="Sprite2D" parent="."]
-position = Vector2(215, 282)
+position = Vector2(220, 257)
 scale = Vector2(1.78221, 1.78221)
 texture = ExtResource("7_3y7uu")
 

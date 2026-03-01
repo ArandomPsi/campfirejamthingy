@@ -60,16 +60,16 @@ func _on_area_2d_body_entered(body):
 	var timer = get_tree().create_timer(0.3)
 	$upgradeportal.visible = false
 	$player.position = Vector2(1344/2,806/2)
-	global.room = clampi(global.room,0,5)
+	global.room = clampi(global.room,1,10)
 	await timer.timeout
-	for i in range(randi_range(1,2) + global.room):
+	for i in range(randi_range(1,3) * global.room):
 		var b = bugs.pick_random().instantiate()
 		b.position.x = randi_range(100,1320)
 		b.position.y = randi_range(20,648)
 		add_child(b)
 		
 		
-	global.room += randi_range(0,1.2) #20 percent chance of scaling up
+	global.room += randi_range(0,1.5) #5- percent chance of scaling up
 
 func upgradething(trick): #for signal
 	$player.showupgrades()
