@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://3dkd6802moiq"
+path="res://.godot/imported/Hinkik - Time Leaper.mp3-292c03a15c5fd41715abea33462e85b2.mp3str"
+
+[deps]
+
+source_file="res://sounds/Hinkik - Time Leaper.mp3"
+dest_files=["res://.godot/imported/Hinkik - Time Leaper.mp3-292c03a15c5fd41715abea33462e85b2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

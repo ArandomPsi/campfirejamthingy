@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://b5cnk3y4msutr"]
+
+[ext_resource type="Texture2D" uid="uid://cr7op0rlj2b6g" path="res://assets/themap.png" id="1_b6o8v"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ea0vp"]
+texture = ExtResource("1_b6o8v")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -6.4, -6.4, -6.4, -6.4, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -6.4, -8, -6.4)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, 6.4, 8, 6.4, -6.4, -8, -6.4)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -6.4, -8, -6.4, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.4, -8, 8, -8, 8, 8, 6.4, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -6.4, -8, -6.4, 6.4, 8, 6.4, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 6.4, 8, 6.4, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.4, 6.4, 6.4, -8, 8, -8, 8, 8, -8, 8, -8, 6.4)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_mnetp"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_ea0vp")
+
+[node name="room" type="TileMap"]
+texture_filter = 1
+position = Vector2(2.38419e-07, 3.57628e-07)
+scale = Vector2(5.6, 5.6)
+tile_set = SubResource("TileSet_mnetp")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0, 4, 65537, 0, 5, 65537, 0, 6, 65537, 0, 393216, 1, 1, 327680, 1, 1, 131072, 1, 1, 65536, 1, 1, 458752, 1, 2, 458753, 65537, 2, 458754, 65537, 2, 458755, 65537, 2, 458756, 65537, 2, 458757, 65537, 2, 458758, 65537, 2, 458759, 65537, 2, 458760, 65537, 2, 458761, 65537, 2, 458762, 65537, 2, 458763, 65537, 2, 458764, 65537, 2, 458765, 131073, 2, 393229, 131073, 1, 327693, 131073, 1, 262157, 131073, 1, 196621, 131073, 1, 131085, 131073, 1, 65549, 131073, 1, 13, 131073, 0, 12, 65537, 0, 11, 65537, 0, 10, 65537, 0, 9, 65537, 0, 8, 65537, 0, 7, 65537, 0, 262144, 1, 1, 196608, 1, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 104.107
+offset_top = -8.75
+offset_right = 122.107
+offset_bottom = 9.25
+color = Color(0, 0, 0, 1)

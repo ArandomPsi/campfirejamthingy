@@ -1,0 +1,303 @@
+[gd_scene load_steps=25 format=3 uid="uid://cbha305rydvd2"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_1b47p"]
+[ext_resource type="Texture2D" uid="uid://bbn8umujge3ki" path="res://assets/baseplayer.svg" id="1_o0pgg"]
+[ext_resource type="Texture2D" uid="uid://bi5mes7qa2r3e" path="res://assets/arrow-2.svg" id="3_pc355"]
+[ext_resource type="Script" path="res://scripts/vfx/flash.gd" id="4_1jcgd"]
+[ext_resource type="FontFile" uid="uid://buftca15lxprx" path="res://assets/HelloKetta-d99oX.ttf" id="5_c645l"]
+[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="5_l0h6p"]
+[ext_resource type="Shader" path="res://shaders/perspective.gdshader" id="6_qc81r"]
+[ext_resource type="Texture2D" uid="uid://bb58quqfhacg8" path="res://assets/thepc.svg" id="6_s66kg"]
+[ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="7_qyt88"]
+[ext_resource type="FontFile" uid="uid://jnx17qh117ex" path="res://assets/CaviarDreamsBold-a5og.ttf" id="9_xp4tx"]
+[ext_resource type="Script" path="res://scripts/upgrade.gd" id="10_cyrk5"]
+[ext_resource type="Shader" path="res://shaders/crt.gdshader" id="11_t6j4c"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="13_0vbpy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m4tyv"]
+radius = 21.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srj8l"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0.662745, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arbkn"]
+bg_color = Color(0, 0.662745, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iheuj"]
+bg_color = Color(0.6, 0.337255, 0.121569, 1)
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
+border_color = Color(0.419608, 0.25098, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1cxgb"]
+bg_color = Color(1, 0.94902, 0.239216, 1)
+shadow_size = 4
+shadow_offset = Vector2(-2, 5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nlrtj"]
+shader = ExtResource("6_qc81r")
+shader_parameter/fov = 84.067
+shader_parameter/cull_back = true
+shader_parameter/y_rot = 0.0
+shader_parameter/x_rot = 24.0
+shader_parameter/inset = 0.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ug3o"]
+bg_color = Color(0, 0, 0, 0.611765)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 1, 0.34902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk2u5"]
+bg_color = Color(0, 0, 0, 0.611765)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0.329412, 1, 0.564706, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sc5bw"]
+shader = ExtResource("11_t6j4c")
+shader_parameter/overlay = true
+shader_parameter/scanlines_opacity = 0.478
+shader_parameter/scanlines_width = 0.115
+shader_parameter/grille_opacity = 0.391
+shader_parameter/resolution = Vector2(1152, 648)
+shader_parameter/pixelate = false
+shader_parameter/roll = true
+shader_parameter/roll_speed = 10.0
+shader_parameter/roll_size = 28.319
+shader_parameter/roll_variation = 1.8
+shader_parameter/distort_intensity = 0.05
+shader_parameter/noise_opacity = 0.338
+shader_parameter/noise_speed = 5.0
+shader_parameter/static_noise_intensity = 0.06
+shader_parameter/aberration = 0.03
+shader_parameter/brightness = 1.4
+shader_parameter/discolor = false
+shader_parameter/warp_amount = 1.0
+shader_parameter/clip_warp = false
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/vignette_opacity = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_eovha"]
+shader = ExtResource("5_l0h6p")
+shader_parameter/dir = Vector2(0, 0)
+shader_parameter/quality = 10
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2exaf"]
+shader = ExtResource("13_0vbpy")
+shader_parameter/_CirclePosition = Vector2(0.5, 0.5)
+shader_parameter/progress = 0.0
+shader_parameter/_Smoothness = 0.05
+shader_parameter/_Background = null
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_1b47p")
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(0, 0.65098, 1, 1)
+scale = Vector2(0.844828, 0.844828)
+texture = ExtResource("1_o0pgg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m4tyv")
+
+[node name="arrow" type="Sprite2D" parent="."]
+modulate = Color(0, 0.517647, 1, 1)
+texture = ExtResource("3_pc355")
+offset = Vector2(50, 2.08165e-12)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 1344
+limit_bottom = 806
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+
+[node name="glowhud" type="CanvasLayer" parent="."]
+layer = 0
+
+[node name="hp" type="ProgressBar" parent="glowhud"]
+offset_left = 11.0
+offset_top = 8.0
+offset_right = 274.0
+offset_bottom = 28.0
+theme_override_styles/background = SubResource("StyleBoxFlat_srj8l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_arbkn")
+show_percentage = false
+
+[node name="hud" type="CanvasLayer" parent="."]
+layer = 5
+
+[node name="flash" type="ColorRect" parent="hud"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.490196, 0.760784, 1, 1)
+script = ExtResource("4_1jcgd")
+
+[node name="table" type="Panel" parent="hud"]
+visible = false
+modulate = Color(0.411765, 0.411765, 0.411765, 1)
+offset_left = -8.0
+offset_top = 419.0
+offset_right = 1150.0
+offset_bottom = 680.0
+pivot_offset = Vector2(540, -220)
+theme_override_styles/panel = SubResource("StyleBoxFlat_iheuj")
+
+[node name="ColorRect" type="ColorRect" parent="hud/table"]
+modulate = Color(0.890196, 0.890196, 0.890196, 1)
+show_behind_parent = true
+layout_mode = 0
+offset_left = -56.0
+offset_top = -440.0
+offset_right = 1207.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="hud/table/ColorRect"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 122.0
+offset_right = 287.0
+offset_bottom = 285.0
+rotation = -0.203679
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_c645l")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_1cxgb")
+text = "Objectives:
+-Fix the console
+-Upgrade the antivirus
+-Get rid of the virus"
+
+[node name="Sprite2D" type="Sprite2D" parent="hud/table"]
+material = SubResource("ShaderMaterial_nlrtj")
+position = Vector2(544, 104)
+texture = ExtResource("6_s66kg")
+
+[node name="Sprite2D2" type="Sprite2D" parent="hud/table"]
+show_behind_parent = true
+position = Vector2(530, -172)
+scale = Vector2(2.14141, 2.14141)
+texture = ExtResource("7_qyt88")
+
+[node name="upgrade1" type="Button" parent="hud/table"]
+layout_mode = 0
+offset_left = 397.0
+offset_top = -330.0
+offset_right = 674.0
+offset_bottom = -280.0
+pivot_offset = Vector2(138, 25)
+theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
+theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
+theme_override_fonts/font = ExtResource("9_xp4tx")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ug3o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hk2u5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1ug3o")
+text = "+atk"
+script = ExtResource("10_cyrk5")
+
+[node name="upgrade2" type="Button" parent="hud/table"]
+layout_mode = 0
+offset_left = 397.0
+offset_top = -248.0
+offset_right = 674.0
+offset_bottom = -198.0
+pivot_offset = Vector2(138, 25)
+theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
+theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
+theme_override_fonts/font = ExtResource("9_xp4tx")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ug3o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hk2u5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1ug3o")
+text = "+firerate"
+script = ExtResource("10_cyrk5")
+
+[node name="upgrade3" type="Button" parent="hud/table"]
+layout_mode = 0
+offset_left = 397.0
+offset_top = -169.0
+offset_right = 674.0
+offset_bottom = -119.0
+pivot_offset = Vector2(138, 25)
+theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
+theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
+theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
+theme_override_fonts/font = ExtResource("9_xp4tx")
+theme_override_font_sizes/font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ug3o")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hk2u5")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1ug3o")
+text = "+hp"
+script = ExtResource("10_cyrk5")
+
+[node name="crt" type="ColorRect" parent="hud/table"]
+z_index = 10
+material = SubResource("ShaderMaterial_sc5bw")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 368.0
+offset_top = -341.0
+offset_right = -466.0
+offset_bottom = -360.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="transition" type="ColorRect" parent="hud"]
+material = SubResource("ShaderMaterial_eovha")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="hudtransition" type="ColorRect" parent="hud"]
+material = SubResource("ShaderMaterial_2exaf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]

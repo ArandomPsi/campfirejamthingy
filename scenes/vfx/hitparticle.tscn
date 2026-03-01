@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://cre6axvqgsq7c"]
+
+[ext_resource type="Script" path="res://scripts/vfx/hitparticle.gd" id="1_h5xin"]
+
+[sub_resource type="Gradient" id="Gradient_pgvbd"]
+offsets = PackedFloat32Array(0.25, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3ctge"]
+gradient = SubResource("Gradient_pgvbd")
+
+[sub_resource type="Curve" id="Curve_mt1gk"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.44898, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_7ehit"]
+curve = SubResource("Curve_mt1gk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_5501i"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+spread = 180.0
+initial_velocity_min = 400.0
+initial_velocity_max = 700.0
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 7.0
+scale_max = 8.0
+scale_curve = SubResource("CurveTexture_7ehit")
+color_ramp = SubResource("GradientTexture1D_3ctge")
+
+[node name="hitparticle" type="GPUParticles2D"]
+modulate = Color(0.4, 0.709804, 1, 1)
+emitting = false
+process_material = SubResource("ParticleProcessMaterial_5501i")
+lifetime = 0.3
+one_shot = true
+preprocess = 0.15
+explosiveness = 1.0
+fixed_fps = 60
+local_coords = true
+trail_enabled = true
+script = ExtResource("1_h5xin")

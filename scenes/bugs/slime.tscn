@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://i7o6e8q3pphf"]
+
+[ext_resource type="Texture2D" uid="uid://dp60qvwfg3djy" path="res://assets/bullet2.svg" id="1_klyri"]
+[ext_resource type="Script" path="res://scripts/bugs/slime.gd" id="1_ksaa4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_obdm0"]
+radius = 61.0328
+
+[node name="slime" type="Node2D"]
+script = ExtResource("1_ksaa4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.478431, 0.678431, 1)
+scale = Vector2(11.4667, 5.2)
+texture = ExtResource("1_klyri")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_obdm0")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

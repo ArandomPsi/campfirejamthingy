@@ -1,0 +1,79 @@
+[gd_scene load_steps=8 format=3 uid="uid://drtifd5tp4vr7"]
+
+[ext_resource type="Script" path="res://scripts/bugs/basicbug.gd" id="1_70yj2"]
+[ext_resource type="Texture2D" uid="uid://sqdwtoo7bon1" path="res://shaders/enemies/bugenemy1.svg" id="1_412fq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ra0ba"]
+size = Vector2(59, 36)
+
+[sub_resource type="Animation" id="Animation_53sfo"]
+resource_name = "diddle"
+length = 1.25
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"charge"
+}, {
+"args": [],
+"method": &"rush"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gv75p"]
+_data = {
+"diddle": SubResource("Animation_53sfo")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_peqgm"]
+radius = 20.025
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i17bi"]
+size = Vector2(82, 44)
+
+[node name="basicbug" type="CharacterBody2D"]
+position = Vector2(124, 68)
+collision_layer = 4
+script = ExtResource("1_70yj2")
+
+[node name="sprite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.478431, 0.678431, 1)
+rotation = 1.5734
+texture = ExtResource("1_412fq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 0)
+shape = SubResource("RectangleShape2D_ra0ba")
+
+[node name="attackplayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gv75p")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(27, 0)
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_peqgm")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("RectangleShape2D_i17bi")
+
+[node name="bouncelook" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]

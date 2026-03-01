@@ -1,0 +1,264 @@
+[gd_scene load_steps=28 format=3 uid="uid://p4rsmsmiqgtq"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_gchwr"]
+[ext_resource type="Texture2D" uid="uid://cr7op0rlj2b6g" path="res://assets/themap.png" id="1_v5oeh"]
+[ext_resource type="PackedScene" uid="uid://cbha305rydvd2" path="res://scenes/player.tscn" id="2_j0t77"]
+[ext_resource type="Script" path="res://scripts/vfx/upgradeportal.gd" id="3_rbupo"]
+[ext_resource type="Shader" path="res://shaders/fog.gdshader" id="4_ao6g4"]
+[ext_resource type="Texture2D" uid="uid://bs1vfkdliq6an" path="res://assets/computer chip_chest (1).svg" id="6_hbqqa"]
+[ext_resource type="FontFile" uid="uid://c80u6qswig48x" path="res://assets/TrenchThin-16R0.otf" id="7_syahy"]
+
+[sub_resource type="Gradient" id="Gradient_c5fsc"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7w3xy"]
+gradient = SubResource("Gradient_c5fsc")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vtyy4"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 158.22
+initial_velocity_max = 170.88
+angular_velocity_min = 255.19
+angular_velocity_max = 428.35
+orbit_velocity_min = 0.405
+orbit_velocity_max = 0.405
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 8.0
+scale_max = 10.0
+color_ramp = SubResource("GradientTexture1D_7w3xy")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tadsx"]
+radius = 39.0128
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ea0vp"]
+texture = ExtResource("1_v5oeh")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -6.4, -6.4, -6.4, -6.4, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, -6.4, -8, -6.4)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, 6.4, 8, 6.4, -6.4, -8, -6.4)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -6.4, -8, -6.4, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.4, -8, 8, -8, 8, 8, 6.4, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, -6.4, -8, -6.4, 6.4, 8, 6.4, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 6.4, 8, 6.4, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(6.4, 6.4, 6.4, -8, 8, -8, 8, 8, -8, 8, -8, 6.4)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+
+[sub_resource type="TileSet" id="TileSet_d48o6"]
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_ea0vp")
+
+[sub_resource type="Gradient" id="Gradient_nwqoa"]
+offsets = PackedFloat32Array(0.625954, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_a13kp"]
+gradient = SubResource("Gradient_nwqoa")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="Environment" id="Environment_7yksg"]
+background_mode = 3
+background_canvas_max_layer = 1
+glow_enabled = true
+glow_levels/1 = 3.91
+glow_levels/7 = 0.56
+glow_intensity = 1.19
+glow_bloom = 0.17
+glow_blend_mode = 0
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_2d2qg"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_dux8w"]
+seamless = true
+noise = SubResource("FastNoiseLite_2d2qg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0kvdb"]
+shader = ExtResource("4_ao6g4")
+shader_parameter/smoke_color = Color(0.8, 0.8, 0.8, 1)
+shader_parameter/distortion_speed = 0.2
+shader_parameter/density = 0.076
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_dux8w")
+
+[sub_resource type="Gradient" id="Gradient_vxe6l"]
+offsets = PackedFloat32Array(0, 0.165953, 0.62848, 0.997859)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aa32j"]
+gradient = SubResource("Gradient_vxe6l")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k4ghp"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 200.0
+emission_ring_inner_radius = 200.0
+angle_min = -720.0
+angle_max = 720.0
+radial_velocity_min = -203.46
+radial_velocity_max = -134.36
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 8.0
+scale_max = 10.0
+color = Color(0, 0.929412, 1, 1)
+color_ramp = SubResource("GradientTexture1D_aa32j")
+
+[sub_resource type="Gradient" id="Gradient_p8o48"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0ob0o"]
+gradient = SubResource("Gradient_p8o48")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.8, 0.2)
+metadata/_snap_enabled = true
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_iw71g"]
+radius = 76.0
+height = 364.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_smjvi"]
+size = Vector2(1399, 828)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iufsh"]
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_gchwr")
+metadata/_edit_horizontal_guides_ = [18.0]
+
+[node name="bg" type="ColorRect" parent="."]
+offset_right = 1359.0
+offset_bottom = 866.0
+color = Color(0, 0, 0, 1)
+
+[node name="upgradeportal" type="Sprite2D" parent="."]
+visible = false
+modulate = Color(0, 1, 0.435294, 1)
+position = Vector2(661, 422)
+texture = ExtResource("6_hbqqa")
+script = ExtResource("3_rbupo")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="upgradeportal"]
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_vtyy4")
+fixed_fps = 60
+
+[node name="portalchecker" type="Area2D" parent="upgradeportal"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="upgradeportal/portalchecker"]
+shape = SubResource("CircleShape2D_tadsx")
+
+[node name="TileMap" type="TileMap" parent="."]
+modulate = Color(0, 0.662745, 1, 1)
+texture_filter = 1
+position = Vector2(2.38419e-07, 3.57628e-07)
+scale = Vector2(5.6, 5.6)
+tile_set = SubResource("TileSet_d48o6")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 1, 65537, 0, 2, 65537, 0, 3, 65537, 0, 4, 65537, 0, 5, 65537, 0, 6, 65537, 0, 7, 65537, 0, 8, 65537, 0, 9, 65537, 0, 458752, 1, 1, 393216, 1, 1, 327680, 1, 1, 262144, 1, 1, 196608, 1, 1, 131072, 1, 1, 65536, 1, 1, 524288, 1, 2, 524289, 65537, 2, 524290, 65537, 2, 524291, 65537, 2, 524292, 65537, 2, 524293, 65537, 2, 524294, 65537, 2, 524295, 65537, 2, 524296, 65537, 2, 524297, 65537, 2, 524298, 65537, 2, 524299, 65537, 2, 524302, 131073, 2, 524300, 65537, 2, 524301, 65537, 2, 458766, 131073, 1, 393230, 131073, 1, 327694, 131073, 1, 262158, 131073, 1, 196622, 131073, 1, 131086, 131073, 1, 65550, 131073, 1, 14, 131073, 0, 13, 65537, 0, 12, 65537, 0, 11, 65537, 0, 10, 65537, 0)
+
+[node name="PointLight2D2" type="Sprite2D" parent="TileMap"]
+modulate = Color(1, 1, 1, 0.14902)
+texture_filter = 2
+position = Vector2(116.964, 75.8929)
+scale = Vector2(5.80357, 3.61607)
+texture = SubResource("GradientTexture2D_a13kp")
+
+[node name="player" parent="." instance=ExtResource("2_j0t77")]
+position = Vector2(663, 531)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_7yksg")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_0kvdb")
+offset_right = 1345.0
+offset_bottom = 809.0
+
+[node name="portal1" type="Node2D" parent="."]
+position = Vector2(656, 0)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="portal1"]
+amount = 30
+process_material = SubResource("ParticleProcessMaterial_k4ghp")
+fixed_fps = 60
+
+[node name="PointLight2D" type="Sprite2D" parent="portal1"]
+modulate = Color(0, 0.517647, 1, 1)
+position = Vector2(-1, 8)
+scale = Vector2(9.65625, 4.84375)
+texture = SubResource("GradientTexture2D_0ob0o")
+
+[node name="Area2D" type="Area2D" parent="portal1"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="portal1/Area2D"]
+position = Vector2(-1, 0)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_iw71g")
+
+[node name="enemychecker" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="enemychecker"]
+visible = false
+position = Vector2(689.5, 404)
+shape = SubResource("RectangleShape2D_smjvi")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 394.0
+offset_top = 92.0
+offset_right = 940.0
+offset_bottom = 251.0
+theme_override_colors/font_color = Color(0, 0.662745, 1, 1)
+theme_override_fonts/font = ExtResource("7_syahy")
+theme_override_font_sizes/font_size = 50
+text = "WASD to move
+Click/Hold to shoot"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="buffer" type="CharacterBody2D" parent="."]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="buffer"]
+position = Vector2(73, 61)
+shape = SubResource("CircleShape2D_iufsh")
+
+[connection signal="body_entered" from="upgradeportal/portalchecker" to="." method="upgradething"]
+[connection signal="body_entered" from="upgradeportal/portalchecker" to="upgradeportal" method="_on_portalchecker_body_entered"]
+[connection signal="body_entered" from="portal1/Area2D" to="." method="_on_area_2d_body_entered"]
