@@ -12,7 +12,7 @@ var prev_def_stat : int = 1
 var prev_inv_stat : int = 1
 #attack, defense, firerate, speed, amount of bullets, iframes
 
-var base_hp : float = 10
+var base_hp : float = 5
 var hp : float = base_hp
 var maxhp : float = base_hp
 
@@ -34,14 +34,12 @@ func _physics_process(delta):
 	$sprite.rotation_degrees += 300 * delta
 	hp = clampi(hp,0,maxhp)
 	t += delta
-	
-	print(str(hp))
-	print(str(maxhp))
+
 
 func statsstuff():
 	shotcooldown -= (1 + stats[2]) * (60/Engine.get_frames_per_second())
 	if stats[1] > prev_def_stat:
-		maxhp = base_hp + stats[1]*2
+		maxhp = base_hp + stats[1]
 		prev_def_stat = stats[1]
 		
 	
