@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cvo1d4ep37ry0"]
+[gd_scene load_steps=25 format=3 uid="uid://cvo1d4ep37ry0"]
 
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="1_a2uic"]
 [ext_resource type="Script" path="res://scripts/titlescreen.gd" id="1_n16rf"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://vo8xi258oen0" path="res://assets/lamp.svg" id="7_3y7uu"]
 [ext_resource type="Texture2D" uid="uid://dbvsnqd2qbmct" path="res://assets/lightthing.svg" id="8_3d8u6"]
 [ext_resource type="AudioStream" uid="uid://dswse4taphj4t" path="res://sounds/titleambient.mp3" id="10_gq3v6"]
+[ext_resource type="Texture2D" uid="uid://d0l0vr21fquv2" path="res://assets/IMPROVED LAMPv2.svg" id="10_w8vkl"]
 [ext_resource type="FontFile" uid="uid://jnx17qh117ex" path="res://assets/CaviarDreamsBold-a5og.ttf" id="11_2f5so"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmp6c"]
@@ -262,6 +263,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Lamp" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(220, 257)
 scale = Vector2(1.78221, 1.78221)
 texture = ExtResource("7_3y7uu")
@@ -278,6 +280,27 @@ texture = ExtResource("8_3d8u6")
 position = Vector2(35.9105, -42.6437)
 rotation = 0.558033
 scale = Vector2(1.37607, 1.37607)
+color = Color(1, 1, 0.478431, 1)
+energy = 3.12
+texture = SubResource("GradientTexture2D_lalis")
+
+[node name="Lamp2" type="Sprite2D" parent="."]
+position = Vector2(220, 240)
+scale = Vector2(1.78221, 1.78221)
+texture = ExtResource("10_w8vkl")
+
+[node name="PointLight2D" type="PointLight2D" parent="Lamp2"]
+position = Vector2(115.639, 157.501)
+rotation = 1.25363
+scale = Vector2(3.48245, 2.99648)
+color = Color(1, 1, 0.478431, 1)
+energy = 0.14
+texture = ExtResource("8_3d8u6")
+
+[node name="PointLight2D2" type="PointLight2D" parent="Lamp2"]
+position = Vector2(40.3993, -41.5215)
+rotation = 0.558033
+scale = Vector2(2.14925, 2.37816)
 color = Color(1, 1, 0.478431, 1)
 energy = 3.12
 texture = SubResource("GradientTexture2D_lalis")

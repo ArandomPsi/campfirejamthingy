@@ -12,7 +12,7 @@ var prev_def_stat : int = 1
 var prev_inv_stat : int = 1
 #attack, defense, firerate, speed, amount of bullets, iframes
 
-var base_hp : float = 3
+var base_hp : float = 5
 var hp : float = base_hp
 var maxhp : float = base_hp
 
