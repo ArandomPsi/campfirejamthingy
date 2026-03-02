@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://cjo4u26r44f27"]
+[gd_scene load_steps=24 format=3 uid="uid://cvo1d4ep37ry0"]
 
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="1_a2uic"]
 [ext_resource type="Script" path="res://scripts/titlescreen.gd" id="1_n16rf"]
@@ -308,7 +308,7 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("11_2f5so")
 theme_override_font_sizes/font_size = 30
-text = "Breached OS"
+text = "Breached CRT"
 horizontal_alignment = 1
 vertical_alignment = 1
 

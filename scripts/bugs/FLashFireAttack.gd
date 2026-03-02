@@ -16,3 +16,10 @@ func _ready():
 	queue_free()
 
 
+
+
+
+
+
+func _on_hitbox_body_entered(body):
+	body.damage(2)

@@ -2,9 +2,9 @@ extends Control
 var t : float
 var currentweaponthingy : int = 0
 var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounder os",
-">Point Blank OS \n --Kamakazi go brrr",
-">Rayul OS \n --BRRRRRRRRRRRRRR",
-">Thorfinn OS \n Gifted by the fathers",]
+">Point Blank OS \n --Low Range, High Damage",
+">Rayul OS \n --spray 'n' pray",
+">Thorfinn OS \n --Gifted by the fathers",]
 
 var pressed : bool = false
 
@@ -33,6 +33,15 @@ func _process(delta):
 		$Camera2D.position = get_global_mouse_position()
 		$Camera2D.zoom = lerp($Camera2D.zoom,Vector2(1.15,1.15),0.1)
 	
+	if not $Ps5/up.is_hovered():
+		$Ps5/up/PointLight2D2.energy = 0.93
+	else:
+		$Ps5/up/PointLight2D2.energy = 2.65
+	
+	if not $Ps5/down.is_hovered():
+		$Ps5/down/PointLight2D3.energy = 0.93
+	else:
+		$Ps5/down/PointLight2D3.energy = 2.65
 
 func _on_button_pressed():
 	global.playerweapon = currentweaponthingy

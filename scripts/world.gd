@@ -67,13 +67,17 @@ func _on_area_2d_body_entered(body):
 	global.room = clampi(global.room,1,10)
 	await timer.timeout
 	cur_size = max_size
-	while cur_size > 0:
-		var r = randi_range(0, len(bugs) - 1)
-		var b = bugs[r].instantiate()
-		cur_size -= r + 1
-		b.position.x = randi_range(100,1320)
-		b.position.y = randi_range(20,648)
+	if global.room == 10:
+		var b = preload("res://scenes/thefirewall.tscn").instantiate()
 		add_child(b)
+	else:
+		while cur_size > 0:
+			var r = randi_range(0, len(bugs) - 1)
+			var b = bugs[r].instantiate()
+			cur_size -= r + 1
+			b.position.x = randi_range(100,1320)
+			b.position.y = randi_range(20,648)
+			add_child(b)
 		
 	
 	global.trueroom += 1

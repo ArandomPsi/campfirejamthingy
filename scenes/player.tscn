@@ -208,6 +208,7 @@ vertical_alignment = 1
 
 [node name="ColorRect" type="ColorRect" parent="glowhud/gameover"]
 material = SubResource("ShaderMaterial_7gqaq")
+layout_mode = 0
 offset_right = 1345.0
 offset_bottom = 809.0
 
