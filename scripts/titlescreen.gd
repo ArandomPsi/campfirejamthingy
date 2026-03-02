@@ -2,9 +2,9 @@ extends Control
 var t : float
 var currentweaponthingy : int = 0
 var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounder os",
-">Point Blank OS \n --Low Range, High Damage",
+">NOOB OS \n --Low Range, High Damage; 'Caesoh' -The average gen alpha kid",
 ">Rayul OS \n --spray 'n' pray",
-">Thorfinn OS \n --Gifted by the fathers",]
+">Thorfinn OS \n --Gifted by the bannana man",]
 
 var pressed : bool = false
 

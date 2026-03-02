@@ -5,9 +5,10 @@ var friction : float = 0.8
 var movedir : Vector2
 var shotcooldown : float = 0
 
-var shottype : int = 3
-var shotcooldowns : Array = [15,40,5,100]
+var shottype : int = 4
+var shotcooldowns : Array = [15,40,5,50,0]
 var stats : Array[float] = [1,1,1,1,1,1]
+var specialshotcharge : float = 0
 var prev_def_stat : int = 1
 var prev_inv_stat : int = 1
 #attack, defense, firerate, speed, amount of bullets, iframes
@@ -19,13 +20,16 @@ var maxhp : float = base_hp
 var iframes : int = 60
 var maxiframes : int = 50
 
+
 var t : float
 
 var roomalpha : float = 0
 
 func _ready():
+	global.trueroom = 0
 	shottype = global.playerweapon
 	$hud/hudtransition.visible = true
+	global.playerdead = false
 	transitionin()
 
 func _physics_process(delta):
@@ -33,7 +37,7 @@ func _physics_process(delta):
 	iframes -= 1
 	statsstuff()
 	if hp >= 1 and $hud/table.visible == false:
-		controls()
+		controls(delta)
 	updateposition(delta)
 	$sprite.rotation_degrees += 300 * delta
 	hp = clampi(hp,0,maxhp)
@@ -51,11 +55,18 @@ func statsstuff():
 	
 
 
-func controls():
+func controls(delta):
 	movedir = Input.get_vector("left","right","up","down").normalized()
-	if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
-		shoot()
-		shotcooldown = shotcooldowns[shottype]
+	if shottype == 4:
+		if Input.is_action_pressed("shoot") and iframes < 1:
+			specialshotcharge += delta * 20
+		if Input.is_action_just_released("shoot"):
+			shoot()
+			specialshotcharge = 0
+	else:
+		if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
+			shoot()
+			shotcooldown = shotcooldowns[shottype]
 	if $hud/table.visible:
 		movedir = Vector2.ZERO
 
@@ -113,7 +124,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.maxdistance = 80
 				b.accuracy = 10
-				b.damage = 1 + stats[0] * 2
+				b.damage = 2 + stats[0] * 2
 				b.look_at(get_global_mouse_position())
 				get_tree().root.add_child(b)
 		3:
@@ -121,12 +132,22 @@ func shoot():
 				global.shake += 4
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
-				b.speed = 2000
+				b.speed = 1800
 				b.dagger = true
 				b.accuracy = 15
-				b.damage = 10 + stats[0] * 2
+				b.damage = 20 + stats[0] * 2
 				b.look_at(get_global_mouse_position())
 				get_tree().root.add_child(b)
+		4:
+			for i in range(int(1 * (stats[4] * 2))):
+				global.shake += 10
+				var b = preload("res://scenes/bullets/lasershot.tscn").instantiate()
+				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
+				b.rotation_degrees += randi_range(-5,5)
+				b.damage = specialshotcharge + stats[0] * 4
+				b.look_at(get_global_mouse_position())
+				get_tree().root.add_child(b)
+				print(str(b.damage))
 
 
 func damage(amount):
@@ -143,6 +164,7 @@ func damage(amount):
 		if hp < 1:
 			iframes = 300000
 			die()
+			global.playerdead = true
 
 func transition():
 	global.flash = 1

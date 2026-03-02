@@ -50,6 +50,9 @@ func _physics_process(delta):
 	if shaking > 1:
 		$sprite.offset += Vector2(randi_range(-5,5),randi_range(-5,5))
 	
+	if global.playerdead:
+		queue_free()
+	
 	
 	move_and_slide()
 	

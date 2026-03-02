@@ -12,6 +12,8 @@ func _process(delta):
 	print(hp)
 	if not $attackplayer.is_playing():
 		$attackplayer.play(attacks.pick_random())
+	if global.playerdead:
+		queue_free()
 
 func spawnflashfire():
 	var b = preload("res://scenes/bugs/f_lash_fire_attack.tscn").instantiate()
