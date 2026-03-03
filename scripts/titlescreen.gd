@@ -11,15 +11,23 @@ var pressed : bool = false
 
 func _ready():
 	global.trueroom = 0
-	updateepsteinfiles()
 	$Camera2D.zoom = Vector2(20,20)
+	var timer = get_tree().create_timer(2)
+	await timer.timeout
+	updateepsteinfiles()
+	
 
 func _process(delta):
+	
+	#constant changes
 	$monitor/PointLight2D.energy = randf_range(0.45,0.5)
-	$Lamp/PointLight2D.energy = randf_range(0.1,0.14)
+	$Lamp2/PointLight2D.energy = randf_range(0.1,0.14)
+	$Lamp2/PointLight2D2.energy = randf_range(3,3.2)
 	currentweaponthingy = clampi(currentweaponthingy,0,4)
 	$Ps5/down/PointLight2D3.visible = true
 	$Ps5/up/PointLight2D2.visible = true
+	
+	#if statments
 	if currentweaponthingy == 0:
 		$Ps5/down/PointLight2D3.visible = false
 	if currentweaponthingy == 4:
@@ -72,3 +80,8 @@ func updateepsteinfiles():
 	var tween2 = create_tween()
 	tween2.tween_property($Panel/thefiles,"visible_ratio",1.0,0.8)
 	
+
+
+func _on_offswitch_pressed():
+	$Lamp2/PointLight2D.visible = not $Lamp2/PointLight2D.visible
+	$Lamp2/PointLight2D2.visible =  $Lamp2/PointLight2D.visible

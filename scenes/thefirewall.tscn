@@ -116,7 +116,7 @@ script = ExtResource("1_uxnqx")
 
 [node name="thefire" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_xcr55")
-position = Vector2(717, 677)
+position = Vector2(717, 752)
 amount = 60
 process_material = SubResource("ParticleProcessMaterial_hu348")
 texture = ExtResource("1_2hgn4")
@@ -125,7 +125,7 @@ visibility_rect = Rect2(-1000, -1000, 2000, 2000)
 
 [node name="eye1" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_xcr55")
-position = Vector2(472, 477)
+position = Vector2(472, 556)
 rotation = -2.06607
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_crdfx")
@@ -136,7 +136,7 @@ local_coords = true
 
 [node name="eye2" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_xcr55")
-position = Vector2(991, 477)
+position = Vector2(991, 556)
 rotation = 2.06647
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_crdfx")
@@ -151,7 +151,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(852, 525)
+position = Vector2(852, 577)
 shape = SubResource("RectangleShape2D_gbdeb")
 
 [node name="Marker2D" type="Marker2D" parent="."]

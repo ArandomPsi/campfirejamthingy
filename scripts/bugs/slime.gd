@@ -5,7 +5,7 @@ var frames : int = 40
 func _process(delta):
 	position += transform.x * speed * delta
 	$Sprite2D.scale *= 0.97
-	frames -= 1
+	frames -= 120/Engine.get_frames_per_second()
 	if frames < 0:
 		queue_free()
 	

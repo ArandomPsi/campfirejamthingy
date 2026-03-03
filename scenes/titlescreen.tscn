@@ -7,7 +7,6 @@
 [ext_resource type="FontFile" uid="uid://boml265nvfxv0" path="res://assets/SourceCodePro-4alW.ttf" id="3_tpwu3"]
 [ext_resource type="Shader" path="res://shaders/crt.gdshader" id="4_mdnjm"]
 [ext_resource type="Texture2D" uid="uid://dy7ktjuoebn6y" path="res://assets/changecdbutton.svg" id="5_og43h"]
-[ext_resource type="Texture2D" uid="uid://vo8xi258oen0" path="res://assets/lamp.svg" id="7_3y7uu"]
 [ext_resource type="Texture2D" uid="uid://dbvsnqd2qbmct" path="res://assets/lightthing.svg" id="8_3d8u6"]
 [ext_resource type="AudioStream" uid="uid://dswse4taphj4t" path="res://sounds/titleambient.mp3" id="10_gq3v6"]
 [ext_resource type="Texture2D" uid="uid://d0l0vr21fquv2" path="res://assets/IMPROVED LAMPv2.svg" id="10_w8vkl"]
@@ -99,6 +98,8 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(1, 0.5)
 metadata/_snap_enabled = true
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_u0nnp"]
 
 [node name="titlescreen" type="Control"]
 layout_mode = 3
@@ -248,7 +249,10 @@ grow_vertical = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_tpwu3")
 theme_override_font_sizes/font_size = 30
-text = "BOOTING... "
+text = ">look with mouse
+>
+>BOOTING...
+"
 autowrap_mode = 3
 
 [node name="crt" type="ColorRect" parent="Panel"]
@@ -261,28 +265,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="Lamp" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(220, 257)
-scale = Vector2(1.78221, 1.78221)
-texture = ExtResource("7_3y7uu")
-
-[node name="PointLight2D" type="PointLight2D" parent="Lamp"]
-position = Vector2(136.043, 129.368)
-rotation = 1.1116
-scale = Vector2(3.76208, 3.01324)
-color = Color(1, 1, 0.478431, 1)
-energy = 0.14
-texture = ExtResource("8_3d8u6")
-
-[node name="PointLight2D2" type="PointLight2D" parent="Lamp"]
-position = Vector2(35.9105, -42.6437)
-rotation = 0.558033
-scale = Vector2(1.37607, 1.37607)
-color = Color(1, 1, 0.478431, 1)
-energy = 3.12
-texture = SubResource("GradientTexture2D_lalis")
 
 [node name="Lamp2" type="Sprite2D" parent="."]
 position = Vector2(220, 240)
@@ -305,6 +287,17 @@ color = Color(1, 1, 0.478431, 1)
 energy = 3.12
 texture = SubResource("GradientTexture2D_lalis")
 
+[node name="offswitch" type="Button" parent="Lamp2"]
+offset_left = -68.0
+offset_top = -130.0
+offset_right = 105.0
+offset_bottom = 29.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_u0nnp")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_u0nnp")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_u0nnp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_u0nnp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u0nnp")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(826, 257)
 zoom = Vector2(1.15, 1.15)
@@ -318,6 +311,8 @@ position_smoothing_enabled = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_gq3v6")
 autoplay = true
+mix_target = 2
+bus = &"reverb"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
@@ -338,3 +333,4 @@ vertical_alignment = 1
 [connection signal="pressed" from="Ps5/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Ps5/up" to="." method="_on_up_pressed"]
 [connection signal="pressed" from="Ps5/down" to="." method="_on_down_pressed"]
+[connection signal="pressed" from="Lamp2/offswitch" to="." method="_on_offswitch_pressed"]

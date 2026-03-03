@@ -23,3 +23,7 @@ func _ready():
 
 func _on_hitbox_body_entered(body):
 	body.damage(2)
+
+
+func _on_gpu_particles_2d_finished():
+	queue_free()

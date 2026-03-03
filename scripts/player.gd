@@ -36,13 +36,15 @@ func _physics_process(delta):
 	global.playerpos = position
 	iframes -= 1
 	statsstuff()
-	if hp >= 1 and $hud/table.visible == false:
+	if hp >= 1 and $hud/table.visible == false and not $upgradeportalchecker.has_overlapping_areas():
 		controls(delta)
+	else:
+		movedir = Vector2.ZERO
 	updateposition(delta)
 	$sprite.rotation_degrees += 300 * delta
 	hp = clampi(hp,0,maxhp)
 	t += delta
-
+	$crosshair.global_position = get_global_mouse_position()
 
 func statsstuff():
 	shotcooldown -= (1 + stats[2]) * (60/Engine.get_frames_per_second())
@@ -56,7 +58,11 @@ func statsstuff():
 
 
 func controls(delta):
+	
+	#basic movement
 	movedir = Input.get_vector("left","right","up","down").normalized()
+	
+	#shots and stuff
 	if shottype == 4:
 		if Input.is_action_pressed("shoot") and iframes < 1:
 			specialshotcharge += delta * 10 * stats[2]
@@ -69,8 +75,13 @@ func controls(delta):
 		if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
 			shoot()
 			shotcooldown = shotcooldowns[shottype]
+	
+	#no moving while the upgrade
 	if $hud/table.visible:
 		movedir = Vector2.ZERO
+	
+	
+	
 
 func updateposition(delta):
 	velocity += movedir * speed * delta * 180 * (1+(stats[3]-1)*0.2)
@@ -148,12 +159,12 @@ func shoot():
 				b.speed = 1800
 				b.dagger = true
 				b.accuracy = 15
-				b.damage = 20 + stats[0] * 2
+				b.damage = 15 + stats[0] * 2
 				b.look_at(get_global_mouse_position())
 				get_tree().root.add_child(b)
 		4:
 			for i in range(int(1 * (stats[4] * 2))):
-				global.shake += 35
+				global.shake += specialshotcharge
 				global.shake = clamp(global.shake, 0, 35)
 				var b = preload("res://scenes/bullets/lasershot.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x

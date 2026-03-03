@@ -40,10 +40,10 @@ script = ExtResource("1_8j08h")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_vxbgi")
-amount = 150
+amount = 10
 process_material = SubResource("ParticleProcessMaterial_xomyg")
 texture = ExtResource("2_p12d3")
-lifetime = 2.0
+lifetime = 0.5
 speed_scale = 3.0
 fixed_fps = 60
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)

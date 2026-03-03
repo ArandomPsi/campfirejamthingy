@@ -1,0 +1,41 @@
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://b16x68wq46jcp"]
+
+[sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_wq08x"]
+resource_name = "Amplify"
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_1jr1n"]
+resource_name = "Reverb"
+room_size = 0.67
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_450gw"]
+resource_name = "Reverb"
+room_size = 0.34
+dry = 0.81
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_esmrs"]
+resource_name = "Distortion"
+mode = 3
+pre_gain = 27.87
+drive = 0.14
+
+[resource]
+bus/0/effect/0/effect = SubResource("AudioEffectAmplify_wq08x")
+bus/0/effect/0/enabled = false
+bus/0/effect/1/effect = SubResource("AudioEffectReverb_1jr1n")
+bus/0/effect/1/enabled = false
+bus/1/name = &"reverb"
+bus/1/solo = false
+bus/1/mute = false
+bus/1/bypass_fx = false
+bus/1/volume_db = 0.0
+bus/1/send = &"Master"
+bus/1/effect/0/effect = SubResource("AudioEffectReverb_450gw")
+bus/1/effect/0/enabled = true
+bus/2/name = &"music"
+bus/2/solo = false
+bus/2/mute = false
+bus/2/bypass_fx = false
+bus/2/volume_db = 0.0
+bus/2/send = &"Master"
+bus/2/effect/0/effect = SubResource("AudioEffectDistortion_esmrs")
+bus/2/effect/0/enabled = true
