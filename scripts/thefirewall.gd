@@ -9,7 +9,6 @@ func _ready():
 
 
 func _process(delta):
-	print(hp)
 	if not $attackplayer.is_playing():
 		$attackplayer.play(attacks.pick_random())
 	if global.playerdead:

@@ -44,27 +44,9 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 color = Color(1, 0.521569, 0.729412, 1)
 color_ramp = SubResource("GradientTexture1D_5u14k")
 
-[sub_resource type="Animation" id="Animation_l7lsk"]
-resource_name = "flashfire"
-length = 4.5
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"spawnflashfire"
-}]
-}
-
 [sub_resource type="Animation" id="Animation_xkddc"]
 resource_name = "enemy"
-length = 3.0
+length = 2.0
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -82,7 +64,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_j7ue0"]
 resource_name = "fireball"
-length = 2.5
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -95,6 +76,24 @@ tracks/0/keys = {
 "values": [{
 "args": [],
 "method": &"spawnfireball"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_l7lsk"]
+resource_name = "flashfire"
+length = 3.0
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"spawnflashfire"
 }]
 }
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cbha305rydvd2"]
+[gd_scene load_steps=41 format=3 uid="uid://cbha305rydvd2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1b47p"]
 [ext_resource type="Texture2D" uid="uid://bbn8umujge3ki" path="res://assets/baseplayer.svg" id="1_o0pgg"]
@@ -17,10 +17,48 @@
 [ext_resource type="AudioStream" uid="uid://3dkd6802moiq" path="res://sounds/Hinkik - Time Leaper.mp3" id="14_1008y"]
 [ext_resource type="Shader" path="res://shaders/glitch.gdshader" id="14_nnfyx"]
 [ext_resource type="AudioStream" uid="uid://dgxkppc7oa7iq" path="res://sounds/Glitch Sound Effect (Speaker).mp3" id="17_bgffu"]
-[ext_resource type="Texture2D" uid="uid://1jmi1viyxayp" path="res://assets/transparticle.svg" id="18_xgio6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4tyv"]
 radius = 21.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yhhq2"]
+blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_x5t61"]
+offsets = PackedFloat32Array(0, 0.165953, 0.62848, 0.997859)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_aa32j"]
+gradient = SubResource("Gradient_x5t61")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ooo6"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 50.0
+emission_ring_inner_radius = 50.0
+angle_min = -720.0
+angle_max = 720.0
+orbit_velocity_min = 0.735
+orbit_velocity_max = 0.735
+radial_velocity_min = -203.46
+radial_velocity_max = -134.36
+gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
+scale_min = 0.2
+scale_max = 0.5
+color = Color(0, 0.890196, 1, 1)
+color_ramp = SubResource("GradientTexture1D_aa32j")
+
+[sub_resource type="Gradient" id="Gradient_la3x0"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rg8wm"]
+gradient = SubResource("Gradient_la3x0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.7, 0.2)
+metadata/_snap_enabled = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_srj8l"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -139,30 +177,6 @@ shader_parameter/progress = 1.0
 shader_parameter/_Smoothness = 0.05
 shader_parameter/_Background = null
 
-[sub_resource type="Gradient" id="Gradient_x5t61"]
-offsets = PackedFloat32Array(0, 0.165953, 0.62848, 0.997859)
-colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aa32j"]
-gradient = SubResource("Gradient_x5t61")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8ooo6"]
-particle_flag_disable_z = true
-emission_shape = 6
-emission_ring_axis = Vector3(0, 0, 1)
-emission_ring_height = 1.0
-emission_ring_radius = 50.0
-emission_ring_inner_radius = 50.0
-angle_min = -720.0
-angle_max = 720.0
-radial_velocity_min = -203.46
-radial_velocity_max = -134.36
-gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
-scale_min = 0.2
-scale_max = 0.5
-color = Color(0, 0.929412, 1, 1)
-color_ramp = SubResource("GradientTexture1D_aa32j")
-
 [node name="player" type="CharacterBody2D"]
 position = Vector2(-1, 0)
 collision_layer = 2
@@ -177,9 +191,20 @@ texture = ExtResource("1_o0pgg")
 shape = SubResource("CircleShape2D_m4tyv")
 
 [node name="arrow" type="Sprite2D" parent="."]
-modulate = Color(0, 0.517647, 1, 1)
+self_modulate = Color(0, 0.517647, 1, 1)
 texture = ExtResource("3_pc355")
 offset = Vector2(50, 2.08165e-12)
+
+[node name="charge" type="GPUParticles2D" parent="arrow"]
+material = SubResource("CanvasItemMaterial_yhhq2")
+position = Vector2(50, 2.08165e-12)
+emitting = false
+amount = 10
+process_material = SubResource("ParticleProcessMaterial_8ooo6")
+texture = SubResource("GradientTexture2D_rg8wm")
+lifetime = 0.25
+fixed_fps = 60
+local_coords = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
@@ -426,15 +451,6 @@ autoplay = true
 
 [node name="glitch" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("17_bgffu")
-
-[node name="ChargeParticles" type="GPUParticles2D" parent="."]
-emitting = false
-amount = 10
-process_material = SubResource("ParticleProcessMaterial_8ooo6")
-texture = ExtResource("18_xgio6")
-lifetime = 0.25
-fixed_fps = 60
-local_coords = true
 
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]

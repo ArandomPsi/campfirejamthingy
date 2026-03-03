@@ -60,9 +60,9 @@ func controls(delta):
 	if shottype == 4:
 		if Input.is_action_pressed("shoot") and iframes < 1:
 			specialshotcharge += delta * 10 * stats[2]
-			$ChargeParticles.emitting = true
+			$arrow/charge.emitting = true
 		if Input.is_action_just_released("shoot"):
-			$ChargeParticles.emitting = false
+			$arrow/charge.emitting = false
 			shoot()
 			specialshotcharge = 0
 	else:
@@ -73,13 +73,16 @@ func controls(delta):
 		movedir = Vector2.ZERO
 
 func updateposition(delta):
-	velocity += movedir * speed * delta * 180 * stats[3]
+	velocity += movedir * speed * delta * 180 * (1+(stats[3]-1)*0.2)
 	velocity *= friction
 	
 	$arrow.look_at(get_global_mouse_position())
 	
 	move_and_slide()
 	
+	
+	
+	#the misc things
 	$Camera2D.position = get_local_mouse_position() / 3
 	var camshakebase = 2
 	$Camera2D.offset = Vector2(randi_range(-camshakebase,camshakebase) * global.shake,randi_range(-camshakebase,camshakebase) * global.shake)
@@ -90,11 +93,19 @@ func updateposition(delta):
 	roomalpha = lerpf(roomalpha,0.0,0.05)
 	
 	
+	if $arrow/charge.emitting:
+		$arrow/charge.position.x = 50
+		$arrow/charge.speed_scale = 1 + specialshotcharge * 0.05
+	
+	
 	if iframes > 1:
 		$sprite.self_modulate.a = 0.5 * sin(t * 48) + 0.5
 	else:
 		
 		$sprite.self_modulate.a = lerpf($sprite.self_modulate.a,1,0.15)
+	
+	
+	
 	
 
 func shoot():
