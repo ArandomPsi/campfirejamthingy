@@ -1,7 +1,7 @@
 extends Node2D
 
 @export var maxdistance : int = 360
-@export var speed : int = 900
+@export var speed : int = 350
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

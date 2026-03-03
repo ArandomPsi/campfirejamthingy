@@ -1,11 +1,11 @@
 extends Node2D
 
 var attacks : Array = ["flashfire", "enemy", "fireball"]
-var hp : int = 1000
+var hp : int = 3000
 
 
 func _ready():
-	pass
+	randomize()
 
 
 func _process(delta):
@@ -30,17 +30,18 @@ func spawnfireball():
 		b.rotation_degrees += randi_range(-64, 64)
 
 func spawnrandomenemy():
-	var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn"),preload("res://scenes/bugs/bee.tscn"),preload("res://scenes/bugs/millipede.tscn")]
-	var b = bugs.pick_random().instantiate()
-	b.position.x = randi_range(100,1320)
-	b.position.y = randi_range(20,648)
-	get_tree().root.add_child(b)
+	for i in range(randi_range(1, 3)):
+		var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn"),preload("res://scenes/bugs/bee.tscn"),preload("res://scenes/bugs/millipede.tscn")]
+		var b = bugs.pick_random().instantiate()
+		b.position.x = randi_range(100,1320)
+		b.position.y = randi_range(20,648)
+		get_tree().root.add_child(b)
 
 func damage(amount):
 	hp -= amount
 	if hp < 0:
 		var b = preload("res://scenes/vfx/hitparticle.tscn").instantiate()
 		get_tree().root.add_child(b)
-		b.modulate = $sprite.modulate
+		b.modulate = Color("#ff0095")
 		b.scale *= 2
 		queue_free()

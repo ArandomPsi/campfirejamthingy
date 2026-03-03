@@ -115,7 +115,7 @@ shader_parameter/noise_texture = SubResource("NoiseTexture2D_aerwy")
 offsets = PackedFloat32Array(0, 0.165953, 0.62848, 0.997859)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_aa32j"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3ab7c"]
 gradient = SubResource("Gradient_vxe6l")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k4ghp"]
@@ -133,7 +133,7 @@ gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 scale_min = 8.0
 scale_max = 10.0
 color = Color(0, 0.929412, 1, 1)
-color_ramp = SubResource("GradientTexture1D_aa32j")
+color_ramp = SubResource("GradientTexture1D_3ab7c")
 
 [sub_resource type="Gradient" id="Gradient_p8o48"]
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)

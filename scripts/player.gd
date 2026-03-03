@@ -59,8 +59,10 @@ func controls(delta):
 	movedir = Input.get_vector("left","right","up","down").normalized()
 	if shottype == 4:
 		if Input.is_action_pressed("shoot") and iframes < 1:
-			specialshotcharge += delta * 20
+			specialshotcharge += delta * 10 * stats[2]
+			$ChargeParticles.emitting = true
 		if Input.is_action_just_released("shoot"):
+			$ChargeParticles.emitting = false
 			shoot()
 			specialshotcharge = 0
 	else:
@@ -140,7 +142,8 @@ func shoot():
 				get_tree().root.add_child(b)
 		4:
 			for i in range(int(1 * (stats[4] * 2))):
-				global.shake += 10
+				global.shake += 35
+				global.shake = clamp(global.shake, 0, 35)
 				var b = preload("res://scenes/bullets/lasershot.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.rotation_degrees += randi_range(-5,5)

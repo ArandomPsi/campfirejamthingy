@@ -67,7 +67,7 @@ func _on_area_2d_body_entered(body):
 	global.room = clampi(global.room,1,10)
 	await timer.timeout
 	cur_size = max_size
-	if global.room == 10:
+	if global.trueroom == 11:
 		var b = preload("res://scenes/thefirewall.tscn").instantiate()
 		add_child(b)
 	else:
