@@ -1,25 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgl65tq65taha"]
+[gd_scene load_steps=10 format=3 uid="uid://dgl65tq65taha"]
 
 [ext_resource type="Script" path="res://scripts/bugs/scorpion.gd" id="1_xs2cj"]
-[ext_resource type="Texture2D" uid="uid://bdxcvjfr6mcdd" path="res://assets/scorpion1.svg" id="2_32rji"]
-[ext_resource type="Texture2D" uid="uid://vpbrglydhfms" path="res://assets/scorpion2.svg" id="3_ni4ak"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_ay57d"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_32rji")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_ni4ak")
-}],
-"loop": true,
-"name": &"default",
-"speed": 0.0
-}]
+[ext_resource type="Texture2D" uid="uid://dgjoc784h5gna" path="res://assets/scorpion1-2.svg" id="2_jqgn0"]
+[ext_resource type="Texture2D" uid="uid://duuyo50xxqqss" path="res://assets/tail.svg" id="3_2j813"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ra0ba"]
-size = Vector2(59, 36)
+size = Vector2(59, 22)
 
 [sub_resource type="Animation" id="Animation_53sfo"]
 resource_name = "diddle"
@@ -45,31 +31,31 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_whvjp"]
 resource_name = "goon"
 length = 0.8
-tracks/0/type = "value"
+tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("sprite:frame")
+tracks/0/path = NodePath(".")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 0]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
+"times": PackedFloat32Array(0.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"bombthing"
 }]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("tail:position")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-19, 0), Vector2(25, 0), Vector2(45, 2.08165e-12), Vector2(46, 2.08165e-12), Vector2(5, 0), Vector2(-19, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gv75p"]
@@ -89,13 +75,18 @@ position = Vector2(124, 68)
 collision_layer = 4
 script = ExtResource("1_xs2cj")
 
-[node name="sprite" type="AnimatedSprite2D" parent="."]
+[node name="sprite" type="Sprite2D" parent="."]
 modulate = Color(1, 0.478431, 0.678431, 1)
 scale = Vector2(0.708661, 0.708661)
-sprite_frames = SubResource("SpriteFrames_ay57d")
+texture = ExtResource("2_jqgn0")
+
+[node name="tail" type="Sprite2D" parent="."]
+modulate = Color(1, 0.478431, 0.678431, 1)
+position = Vector2(-19, 0)
+texture = ExtResource("3_2j813")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-7, 0)
+position = Vector2(3, 0)
 shape = SubResource("RectangleShape2D_ra0ba")
 
 [node name="attackplayer" type="AnimationPlayer" parent="."]
@@ -111,6 +102,7 @@ collision_mask = 3
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(4, 0)
 shape = SubResource("CircleShape2D_peqgm")
+disabled = true
 
 [node name="Area2D2" type="Area2D" parent="."]
 collision_layer = 0
@@ -118,6 +110,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 shape = SubResource("RectangleShape2D_i17bi")
+disabled = true
 
 [node name="bouncelook" type="Node2D" parent="."]
 

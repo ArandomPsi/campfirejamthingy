@@ -1,9 +1,10 @@
-[gd_scene load_steps=43 format=3 uid="uid://cbha305rydvd2"]
+[gd_scene load_steps=44 format=3 uid="uid://cbha305rydvd2"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1b47p"]
 [ext_resource type="Texture2D" uid="uid://bbn8umujge3ki" path="res://assets/baseplayer.svg" id="1_o0pgg"]
 [ext_resource type="Texture2D" uid="uid://bi5mes7qa2r3e" path="res://assets/arrow-2.svg" id="3_pc355"]
 [ext_resource type="Script" path="res://scripts/vfx/flash.gd" id="4_1jcgd"]
+[ext_resource type="Texture2D" uid="uid://8sgyqfqvi4i6" path="res://assets/deltashot.svg" id="4_md74g"]
 [ext_resource type="FontFile" uid="uid://buftca15lxprx" path="res://assets/HelloKetta-d99oX.ttf" id="5_c645l"]
 [ext_resource type="Shader" path="res://shaders/fog.gdshader" id="5_dbeld"]
 [ext_resource type="Shader" path="res://shaders/blur.gdshader" id="5_l0h6p"]
@@ -209,6 +210,13 @@ texture = SubResource("GradientTexture2D_rg8wm")
 lifetime = 0.25
 fixed_fps = 60
 local_coords = true
+
+[node name="deltashot" type="Sprite2D" parent="arrow"]
+modulate = Color(0, 0.686275, 1, 0)
+position = Vector2(49, 0)
+rotation = 2.44065
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("4_md74g")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0

@@ -259,7 +259,7 @@ theme_override_colors/font_color = Color(0, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_tpwu3")
 theme_override_font_sizes/font_size = 30
 text = ">look with mouse
->
+>the red buttons at the bottom do stuff
 >BOOTING...
 "
 autowrap_mode = 3

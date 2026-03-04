@@ -3,16 +3,17 @@ var t : float
 var currentweaponthingy : int = 0
 var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounder os",
 ">Noob OS \n --Low Range, High Damage; 'Caesoh' -The average gen alpha kid",
-">Rayul OS \n --spray 'n' pray",
-">Thorfinn OS \n --Gifted by the bannana man",
+">Rayul OS \n --I NEED MOOER BOULETSS!!! HASTA LA VISTA BABY! Now DATS a biga weapon! BRRRRRRRRRRRRRRRRRRR",
+">Bannana Man OS \n --Gifted by the bannana man",
 ">Ripper OS \n --3,2,1 let it rip! hold for damage"]
 
 var pressed : bool = false
 
 func _ready():
 	global.trueroom = 0
+	global.room = 0
 	$Camera2D.zoom = Vector2(20,20)
-	var timer = get_tree().create_timer(2)
+	var timer = get_tree().create_timer(3)
 	await timer.timeout
 	updateepsteinfiles()
 	

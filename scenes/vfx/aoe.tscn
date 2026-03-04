@@ -10,7 +10,7 @@ radius = 47.0106
 [node name="aoe" type="Node2D"]
 modulate = Color(1, 0.478431, 0.678431, 1)
 position = Vector2(339, 203)
-scale = Vector2(3, 3)
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_bdewn")
 
 [node name="warning" type="Sprite2D" parent="."]

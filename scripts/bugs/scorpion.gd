@@ -20,7 +20,7 @@ func _ready():
 func _physics_process(delta):
 	if not $attackplayer.is_playing() and spawnedin:
 		var v = (global.playerpos + - position).angle()
-		rotation = lerp_angle(rotation,v,0.1)
+		rotation = lerp_angle(rotation,v,0.05)
 		
 		velocity += speed * delta * transform.x * 10
 		
@@ -73,9 +73,13 @@ func _on_area_2d_body_entered(body):
 
 func bombthing():
 	for i in range(10):
-		var b = preload("res://scenes/vfx/aoe.tscn").instantiate()
-		get_tree().root.add_child(b)
-		b.position = position + transform.x * (100 * i)
+		for e in range(3):
+			var b = preload("res://scenes/vfx/aoe.tscn").instantiate()
+			get_tree().root.add_child(b)
+			b.rotation = rotation
+			b.rotation_degrees += -40 + (40 * e)
+			b.position = position + b.transform.x * (75 * i)
+			b.rotation = 0
 		var timer = get_tree().create_timer(0.05)
 		await timer.timeout
 

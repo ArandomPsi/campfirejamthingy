@@ -6,7 +6,7 @@ var movedir : Vector2
 var shotcooldown : float = 0
 
 var shottype : int = 4
-var shotcooldowns : Array = [15,40,5,50,0]
+var shotcooldowns : Array = [15,50,5,50,0]
 var stats : Array[float] = [1,1,1,1,1,1,1]
 var specialshotcharge : float = 0
 var prev_def_stat : float = 1
@@ -82,10 +82,14 @@ func controls(delta):
 			if Input.is_action_pressed("shoot") and iframes < 1:
 				specialshotcharge += delta * 10 * stats[2]
 				$arrow/charge.emitting = true
+				if stats[6] > 1:
+					$arrow/deltashot.modulate.a = specialshotcharge / 20
+					$arrow/deltashot.rotation_degrees += specialshotcharge / 2
 			if Input.is_action_just_released("shoot"):
 				$arrow/charge.emitting = false
 				shoot()
 				specialshotcharge = 0
+				$arrow/deltashot.modulate.a = 0
 		3,2,1,0:
 			if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
 				shoot()
@@ -160,7 +164,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
 				b.maxdistance = randi_range(30,40)
-				b.damage = 2 + stats[0] * 2
+				b.damage = 5 + stats[0] * 2
 				b.accuracy = 20
 				b.speed *= randf_range(0.9,0.6) * 2
 				get_tree().root.add_child(b)

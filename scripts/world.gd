@@ -2,7 +2,7 @@ extends Node2D
 
 var portalopened : bool = false
 
-var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn"),preload("res://scenes/bugs/bee.tscn"),preload("res://scenes/bugs/millipede.tscn")]
+var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn"),preload("res://scenes/bugs/bee.tscn"),preload("res://scenes/bugs/millipede.tscn"), preload("res://scenes/bugs/scorpion.tscn")]
 var max_size : int = 1
 var cur_size : int = max_size
 
