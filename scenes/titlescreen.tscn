@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://cvo1d4ep37ry0"]
+[gd_scene load_steps=26 format=3 uid="uid://cvo1d4ep37ry0"]
 
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="1_a2uic"]
 [ext_resource type="Script" path="res://scripts/titlescreen.gd" id="1_n16rf"]
 [ext_resource type="Texture2D" uid="uid://hsn02fpm2pvc" path="res://assets/ps5.svg" id="2_4rnkh"]
+[ext_resource type="Texture2D" uid="uid://1eidqsrf4tpl" path="res://assets/pddiddy.png" id="2_b5ris"]
 [ext_resource type="Texture2D" uid="uid://diuir48milite" path="res://assets/poweronbase.svg" id="3_awlxf"]
 [ext_resource type="FontFile" uid="uid://boml265nvfxv0" path="res://assets/SourceCodePro-4alW.ttf" id="3_tpwu3"]
 [ext_resource type="Shader" path="res://shaders/crt.gdshader" id="4_mdnjm"]
@@ -118,6 +119,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 0.929412, 0.701961, 1)
+
+[node name="Pddiddy" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1100, 252)
+rotation = -0.736806
+texture = ExtResource("2_b5ris")
+region_enabled = true
+region_rect = Rect2(3.5, 0, 295, 418)
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 0

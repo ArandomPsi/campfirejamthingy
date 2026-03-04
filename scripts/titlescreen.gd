@@ -85,3 +85,4 @@ func updateepsteinfiles():
 func _on_offswitch_pressed():
 	$Lamp2/PointLight2D.visible = not $Lamp2/PointLight2D.visible
 	$Lamp2/PointLight2D2.visible =  $Lamp2/PointLight2D.visible
+	$Pddiddy.visible = not $Lamp2/PointLight2D.visible
