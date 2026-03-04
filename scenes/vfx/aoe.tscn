@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://cvdksj7pwrv2"]
+
+[ext_resource type="Texture2D" uid="uid://d36dhrn5qxcrp" path="res://assets/aoe-2.svg" id="1_1cpy4"]
+[ext_resource type="Script" path="res://scripts/aoe.gd" id="1_bdewn"]
+[ext_resource type="Texture2D" uid="uid://nf7iwwkh4lbl" path="res://assets/aoe2.svg" id="2_7dv3g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fpgsa"]
+radius = 47.0106
+
+[node name="aoe" type="Node2D"]
+modulate = Color(1, 0.478431, 0.678431, 1)
+position = Vector2(339, 203)
+scale = Vector2(3, 3)
+script = ExtResource("1_bdewn")
+
+[node name="warning" type="Sprite2D" parent="."]
+texture = ExtResource("1_1cpy4")
+
+[node name="aoe" type="Sprite2D" parent="."]
+scale = Vector2(0.001, 0.001)
+texture = ExtResource("2_7dv3g")
+
+[node name="Area2D" type="Area2D" parent="aoe"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="aoe/Area2D"]
+shape = SubResource("CircleShape2D_fpgsa")
+
+[connection signal="body_entered" from="aoe/Area2D" to="." method="_on_area_2d_body_entered"]
