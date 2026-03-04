@@ -1,7 +1,7 @@
 extends Node2D
 
 var attacks : Array = ["flashfire", "enemy", "fireball"]
-var hp : int = 3000
+var hp : int = 7500
 
 
 func _ready():

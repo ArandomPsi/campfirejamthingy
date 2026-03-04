@@ -1,6 +1,6 @@
 extends Sprite2D
 func _process(delta):
-	rotation_degrees += delta * 200
+	rotation_degrees -= delta * 200
 	$GPUParticles2D.global_rotation = 0
 	$GPUParticles2D.emitting = visible
 	$portalchecker/CollisionShape2D.disabled = not visible

@@ -328,6 +328,24 @@ text = "Objectives:
 -Upgrade the antivirus
 -Get rid of the virus"
 
+[node name="Label2" type="Label" parent="hud/table/ColorRect"]
+layout_mode = 0
+offset_left = 902.0
+offset_top = 181.0
+offset_right = 1121.0
+offset_bottom = 394.0
+rotation = 0.137881
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_c645l")
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = SubResource("StyleBoxFlat_1cxgb")
+text = "Tips:
+ - Get 2 to 5 Amount upgrades
+ for an extra bullet
+ - Iframes is when you become
+ invincible for a little bit after getting hit
+ "
+
 [node name="Sprite2D" type="Sprite2D" parent="hud/table"]
 material = SubResource("ShaderMaterial_nlrtj")
 position = Vector2(544, 104)
@@ -462,11 +480,9 @@ mouse_filter = 2
 
 [node name="song" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("14_1008y")
-volume_db = -30.0
+volume_db = -15.0
 autoplay = true
-stream_paused = true
 mix_target = 2
-bus = &"music"
 
 [node name="glitch" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("17_bgffu")

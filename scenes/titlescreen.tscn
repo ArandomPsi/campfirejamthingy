@@ -312,7 +312,6 @@ position_smoothing_enabled = true
 stream = ExtResource("10_gq3v6")
 autoplay = true
 mix_target = 2
-bus = &"reverb"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0

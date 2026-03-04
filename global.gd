@@ -10,5 +10,5 @@ var playerdead : bool = false
 
 func _process(delta):
 	shake -= delta * 120
-	shake = clampi(shake,0,9999)
+	shake = clampi(shake,0,50)
 	flash = lerpf(flash,0.0,0.15)

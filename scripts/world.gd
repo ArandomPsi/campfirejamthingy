@@ -7,6 +7,7 @@ var max_size : int = 1
 var cur_size : int = max_size
 
 var getsit : bool = false
+var triggered : bool = false
 
 func _ready():
 	tutorialthing()
@@ -30,10 +31,9 @@ func tutorialthing():
 	$buffer.queue_free()
 
 func _process(delta):
-	if not portalopened and not $enemychecker.has_overlapping_bodies() and getsit:
-		portalopened = true
-		max_size += randi_range(1, 2)
-		openportal()
+	if not portalopened and not $enemychecker.has_overlapping_bodies() and getsit and not triggered:
+		portal_delay()
+		triggered = true
 	
 	if $enemychecker.has_overlapping_bodies():
 		portalopened = false
@@ -50,6 +50,12 @@ func _process(delta):
 		getsit = true
 	
 
+func portal_delay():
+	max_size += randi_range(1, 2)
+	openportal()
+	await get_tree().create_timer(1.5).timeout
+	portalopened = true
+	print("hi")
 
 func openportal():
 	var tween = create_tween()
@@ -59,6 +65,7 @@ func openportal():
 
 
 func _on_area_2d_body_entered(body):
+	triggered = false
 	$player.transition()
 	$player.hp = $player.maxhp
 	var timer = get_tree().create_timer(0.3)

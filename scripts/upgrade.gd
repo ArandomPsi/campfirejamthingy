@@ -1,5 +1,5 @@
 extends Button
-var upgrades : Array = ["+atk","+def","+fra","+spd","+sps","+inv"]
+var upgrades : Array = ["+attack","+defense","+firerate","+speed","+amount","+iframes", "special ability"]
 var upgrade : int = 0
 
 func _ready():

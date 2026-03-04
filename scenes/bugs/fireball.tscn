@@ -13,7 +13,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_2hyxa")
 
 [sub_resource type="Curve" id="Curve_dn5ev"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.593098), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_i4hwk"]
@@ -40,10 +40,10 @@ script = ExtResource("1_8j08h")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 material = SubResource("CanvasItemMaterial_vxbgi")
-amount = 10
+amount = 150
 process_material = SubResource("ParticleProcessMaterial_xomyg")
 texture = ExtResource("2_p12d3")
-lifetime = 0.5
+lifetime = 2.0
 speed_scale = 3.0
 fixed_fps = 60
 visibility_rect = Rect2(-1000, -1000, 2000, 2000)

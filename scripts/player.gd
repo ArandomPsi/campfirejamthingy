@@ -7,11 +7,12 @@ var shotcooldown : float = 0
 
 var shottype : int = 4
 var shotcooldowns : Array = [15,40,5,50,0]
-var stats : Array[float] = [1,1,1,1,1,1]
+var stats : Array[float] = [1,1,1,1,1,1,1]
 var specialshotcharge : float = 0
-var prev_def_stat : int = 1
-var prev_inv_stat : int = 1
-#attack, defense, firerate, speed, amount of bullets, iframes
+var prev_def_stat : float = 1
+var prev_inv_stat : float = 1
+var prev_spec_stat : float = 1
+#attack, defense, firerate, speed, amount of bullets, iframes, special ability
 
 var base_hp : float = 5
 var hp : float = base_hp
@@ -20,6 +21,10 @@ var maxhp : float = base_hp
 var iframes : int = 60
 var maxiframes : int = 50
 
+# special ability variables
+var shot_num : int = 0
+var shot_scale : int = 3
+var shot_req : int = 15
 
 var t : float
 
@@ -52,8 +57,17 @@ func statsstuff():
 		maxhp = base_hp + stats[1]
 		prev_def_stat = stats[1]
 		
+	if stats[6] > prev_spec_stat:
+		match shottype:
+			0:
+				if int(stats[6] * 10) % 10 == 5:
+					shot_req -= 1
+					shot_num = 0
+				else:
+					shot_scale += 0.5
+		prev_spec_stat = stats[6]
 	
-	maxiframes = 50 + stats[5] * 8
+	maxiframes = 50 + stats[5] * 20
 	
 
 
@@ -63,18 +77,19 @@ func controls(delta):
 	movedir = Input.get_vector("left","right","up","down").normalized()
 	
 	#shots and stuff
-	if shottype == 4:
-		if Input.is_action_pressed("shoot") and iframes < 1:
-			specialshotcharge += delta * 10 * stats[2]
-			$arrow/charge.emitting = true
-		if Input.is_action_just_released("shoot"):
-			$arrow/charge.emitting = false
-			shoot()
-			specialshotcharge = 0
-	else:
-		if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
-			shoot()
-			shotcooldown = shotcooldowns[shottype]
+	match shottype:
+		4:
+			if Input.is_action_pressed("shoot") and iframes < 1:
+				specialshotcharge += delta * 10 * stats[2]
+				$arrow/charge.emitting = true
+			if Input.is_action_just_released("shoot"):
+				$arrow/charge.emitting = false
+				shoot()
+				specialshotcharge = 0
+		3,2,1,0:
+			if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
+				shoot()
+				shotcooldown = shotcooldowns[shottype]
 	
 	#no moving while the upgrade
 	if $hud/table.visible:
@@ -126,10 +141,18 @@ func shoot():
 			for i in range(int(1 * stats[4])):
 				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
+				if shot_num == shot_req:
+					b.scale = Vector2(shot_scale, shot_scale)
+					b.speed = 800 - 100 * shot_scale
+					b.damage = 9 * stats[0]
+					shot_num = 0
+				else:
+					b.damage = 3 + stats[0] * 2
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
 				b.damage = 3 + stats[0] * 2
 				get_tree().root.add_child(b)
+			shot_num += 1
 		1:
 			for i in range(int(8 * stats[4])):
 				global.shake += 2
@@ -142,7 +165,7 @@ func shoot():
 				b.speed *= randf_range(0.9,0.6) * 2
 				get_tree().root.add_child(b)
 		2:
-			for i in range(int(1 * stats[4])):
+			for i in range(int(1 + (stats[4] * 0.285714286))):
 				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
@@ -152,7 +175,7 @@ func shoot():
 				b.look_at(get_global_mouse_position())
 				get_tree().root.add_child(b)
 		3:
-			for i in range(int(2 * stats[4])):
+			for i in range(1 + int(1 * stats[4])):
 				global.shake += 4
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x

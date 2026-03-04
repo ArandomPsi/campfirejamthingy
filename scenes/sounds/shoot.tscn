@@ -7,7 +7,6 @@
 position = Vector2(-1, -1)
 stream = ExtResource("1_hise3")
 volume_db = 15.0
-bus = &"reverb"
 script = ExtResource("2_tpram")
 min = 0.8
 max = 1.2
