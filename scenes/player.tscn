@@ -264,7 +264,7 @@ disabled = true
 
 [node name="flamethrower" type="GPUParticles2D" parent="arrow"]
 material = SubResource("CanvasItemMaterial_flae1")
-position = Vector2(49, 0)
+position = Vector2(50, 0)
 emitting = false
 amount = 50
 process_material = SubResource("ParticleProcessMaterial_llhdc")
