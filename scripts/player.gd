@@ -5,9 +5,9 @@ var friction : float = 0.8
 var movedir : Vector2
 var shotcooldown : float = 0
 
-var shottype : int = 4
-var shotcooldowns : Array = [15,50,5,50,0]
-var stats : Array[float] = [1,1,1,1,1,1,1]
+var shottype : int = 5
+var shotcooldowns : Array = [15,50,5,50,0,5]
+var stats : Array[float] = [1,1,1,1,1,1,2]
 var specialshotcharge : float = 0
 var prev_def_stat : float = 1
 var prev_inv_stat : float = 1
@@ -101,8 +101,8 @@ func controls(delta):
 				$arrow/charge.emitting = true
 				if stats[6] > 1:
 					$arrow/deltashot.modulate.a = specialshotcharge / 20
-					$arrow/deltashot.rotation_degrees += specialshotcharge / 2
-					saw_spd -= delta / 30
+					$arrow/deltashot.rotation_degrees += specialshotcharge / 1.5
+					saw_spd -= specialshotcharge / 20
 					saw_spd = clamp(saw_spd, 0.01, 0.5)
 					$arrow/deltashot/hitbox/dscoll.disabled = false
 			if Input.is_action_just_released("shoot"):
@@ -112,10 +112,14 @@ func controls(delta):
 				saw_spd = 0.5
 				$arrow/deltashot.modulate.a = 0
 				$arrow/deltashot/hitbox/dscoll.disabled = true
-		3,2,1,0:
+		_:
 			if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
 				shoot()
 				shotcooldown = shotcooldowns[shottype]
+				if shottype == 5:
+					$arrow/flamethrower.emitting = true
+			else:
+				$arrow/flamethrower.emitting = false
 	
 	#no moving while the upgrade
 	if $hud/table.visible:
@@ -222,6 +226,22 @@ func shoot():
 				b.look_at(get_global_mouse_position())
 				get_tree().root.add_child(b)
 				print(str(b.damage))
+		5:
+			global.shake += 1
+			for i in range(int(1 * (stats[4] * 2))):
+				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
+				b.flame = true
+				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
+				b.maxdistance = 15
+				b.speed *= 1.5
+				b.accuracy = 1
+				b.damage = 1 + stats[0] * 2
+				b.get_child(0).visible = false
+				b.get_child(1).scale *= 2
+				b.look_at(get_global_mouse_position())
+				get_tree().root.add_child(b)
+				
+				
 
 
 func damage(amount):

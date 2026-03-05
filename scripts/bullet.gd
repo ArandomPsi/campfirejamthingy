@@ -5,12 +5,14 @@ extends Node2D
 @export var damage : int = 2
 @export var dagger : bool = false
 var back : bool = false
+@export var flame : bool = false
 
 
 func _ready():
-	var b = preload("res://scenes/sounds/shoot.tscn").instantiate()
-	get_tree().root.add_child(b)
-	b.position = position
+	if not flame:
+		var b = preload("res://scenes/sounds/shoot.tscn").instantiate()
+		get_tree().root.add_child(b)
+		b.position = position
 	rotation_degrees += randf_range(-accuracy,accuracy)
 	if dagger:
 		$Sprite2D.texture = preload("res://assets/Dagger.svg")

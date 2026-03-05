@@ -5,7 +5,8 @@ var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounde
 ">Noob OS \n --Low Range, High Damage; 'Caesoh' -The average gen alpha kid",
 ">Rayul OS \n --I NEED MOOER BOULETSS!!! HASTA LA VISTA BABY! Now DATS a biga weapon! BRRRRRRRRRRRRRRRRRRR",
 ">Bannana Man OS \n --Gifted by the bannana man",
-">Ripper OS \n --3,2,1 let it rip! hold for damage"]
+">Ripper OS \n --3,2,1 let it rip! hold for damage",
+">Arsonist OS \n --I watched the world burn"]
 
 var pressed : bool = false
 
@@ -24,7 +25,7 @@ func _process(delta):
 	$monitor/PointLight2D.energy = randf_range(0.45,0.5)
 	$Lamp2/PointLight2D.energy = randf_range(0.1,0.14)
 	$Lamp2/PointLight2D2.energy = randf_range(3,3.2)
-	currentweaponthingy = clampi(currentweaponthingy,0,4)
+	currentweaponthingy = clampi(currentweaponthingy,0,5)
 	$Ps5/down/PointLight2D3.visible = true
 	$Ps5/up/PointLight2D2.visible = true
 	
