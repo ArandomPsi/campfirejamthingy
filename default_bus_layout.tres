@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://b16x68wq46jcp"]
+[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://b27128gou8ghm"]
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_wq08x"]
 resource_name = "Amplify"

@@ -61,6 +61,15 @@ func damage(amount):
 		b.scale *= 2
 		queue_free()
 
+func burn(amount):
+	for i in range(5):
+		var c = preload("res://scenes/vfx/flaming.tscn").instantiate()
+		add_child(c)
+		c.emitting = true
+		c.global_position = global_position
+		damage(amount)
+		await get_tree().create_timer(1.0).timeout
+
 func bounce():
 	rotation_degrees += randi_range(-15,15)
 	velocity = -transform.x * velocity.length()

@@ -34,7 +34,10 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("damage"):
-		body.damage(damage)
+		if flame:
+			body.burn(damage)
+		else:
+			body.damage(damage)
 	spawnhit()
 	queue_free()
 

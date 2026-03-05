@@ -49,6 +49,15 @@ func charge():
 	shaking = 30
 	velocity *= 0.7
 
+func burn(amount):
+	for i in range(5):
+		var c = preload("res://scenes/vfx/flaming.tscn").instantiate()
+		add_child(c)
+		c.emitting = true
+		c.global_position = global_position
+		damage(amount)
+		await get_tree().create_timer(1.0).timeout
+
 func rush():
 	velocity = transform.x * randi_range(2000,2400)
 
