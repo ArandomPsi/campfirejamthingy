@@ -25,6 +25,10 @@ var maxiframes : int = 50
 var shot_num : int = 0
 var shot_scale : int = 3
 var shot_req : int = 15
+var saw_dmg : int = 1
+var saw_spd : float = 0.5
+var saw_timer : float = 0.0
+var cur_targs : Array = [] 
 
 var t : float
 
@@ -38,6 +42,7 @@ func _ready():
 	transitionin()
 
 func _physics_process(delta):
+	print(saw_timer)
 	global.playerpos = position
 	iframes -= 1
 	statsstuff()
@@ -50,6 +55,16 @@ func _physics_process(delta):
 	hp = clampi(hp,0,maxhp)
 	t += delta
 	$crosshair.global_position = get_global_mouse_position()
+	
+	saw_timer -= delta
+	if iframes > 1:
+		saw_spd = 0.5
+	if saw_timer <= 0.0:
+		if cur_targs.size() > 0:
+			for targ in cur_targs:
+				saw(targ)
+				print("sawing " + str(targ.name))
+			saw_timer = saw_spd
 
 func statsstuff():
 	shotcooldown -= (1 + stats[2]) * (60/Engine.get_frames_per_second())
@@ -65,6 +80,8 @@ func statsstuff():
 					shot_num = 0
 				else:
 					shot_scale += 0.5
+			4:
+				saw_dmg += 1
 		prev_spec_stat = stats[6]
 	
 	maxiframes = 50 + stats[5] * 20
@@ -85,11 +102,16 @@ func controls(delta):
 				if stats[6] > 1:
 					$arrow/deltashot.modulate.a = specialshotcharge / 20
 					$arrow/deltashot.rotation_degrees += specialshotcharge / 2
+					saw_spd -= delta / 30
+					saw_spd = clamp(saw_spd, 0.01, 0.5)
+					$arrow/deltashot/hitbox/dscoll.disabled = false
 			if Input.is_action_just_released("shoot"):
 				$arrow/charge.emitting = false
 				shoot()
 				specialshotcharge = 0
+				saw_spd = 0.5
 				$arrow/deltashot.modulate.a = 0
+				$arrow/deltashot/hitbox/dscoll.disabled = true
 		3,2,1,0:
 			if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
 				shoot()
@@ -145,7 +167,7 @@ func shoot():
 			for i in range(int(1 * stats[4])):
 				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
-				if shot_num == shot_req:
+				if shot_num == shot_req and stats[6] > 1:
 					b.scale = Vector2(shot_scale, shot_scale)
 					b.speed = 800 - 100 * shot_scale
 					b.damage = 9 * stats[0]
@@ -298,3 +320,22 @@ func die():
 
 func glitchesproperty(value:float):
 	$hud/glitches.material.set_shader_parameter("noiseIntensity",value)
+
+
+func _on_hitbox_body_entered(body):
+	if not cur_targs.has(body):
+		cur_targs.append(body)
+	saw_timer = saw_spd
+
+func saw(body):
+	if body.has_method("damage"):
+		body.damage(saw_dmg)
+		spawn_hit_particles(body)
+
+func spawn_hit_particles(body):
+	var b = preload("res://scenes/vfx/hitparticle.tscn").instantiate()
+	b.global_position = body.global_position
+	get_tree().root.add_child(b)
+
+func _on_hitbox_body_exited(body):
+	cur_targs.erase(body)
