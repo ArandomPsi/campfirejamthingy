@@ -86,7 +86,7 @@ curve = SubResource("Curve_fm603")
 particle_flag_disable_z = true
 angle_min = -720.0
 angle_max = 720.0
-spread = 39.474
+spread = 0.0
 initial_velocity_min = 778.62
 initial_velocity_max = 1000.0
 angular_velocity_min = -720.0
@@ -553,17 +553,17 @@ mix_target = 1
 [connection signal="body_entered" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
