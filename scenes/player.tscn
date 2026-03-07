@@ -167,27 +167,20 @@ border_color = Color(0, 1, 0.34902, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sc5bw"]
 shader = ExtResource("11_t6j4c")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.478
-shader_parameter/scanlines_width = 0.115
-shader_parameter/grille_opacity = 0.391
 shader_parameter/resolution = Vector2(1152, 648)
-shader_parameter/pixelate = false
-shader_parameter/roll = true
-shader_parameter/roll_speed = 10.0
-shader_parameter/roll_size = 28.319
-shader_parameter/roll_variation = 1.8
-shader_parameter/distort_intensity = 0.05
-shader_parameter/noise_opacity = 0.338
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06
-shader_parameter/aberration = 0.03
-shader_parameter/brightness = 1.4
-shader_parameter/discolor = false
-shader_parameter/warp_amount = 1.0
-shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 2.052
+shader_parameter/noise_amount = 0.14
+shader_parameter/interference_amount = 1.0
+shader_parameter/grille_amount = 0.997
+shader_parameter/grille_size = 1.238
+shader_parameter/vignette_amount = 2.0
+shader_parameter/vignette_intensity = 1.0
+shader_parameter/aberation_amount = 1.0
+shader_parameter/roll_line_amount = 1.0
+shader_parameter/roll_speed = 3.603
+shader_parameter/scan_line_strength = -4.508
+shader_parameter/pixel_strength = -2.0
 
 [sub_resource type="Gradient" id="Gradient_gcpgy"]
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1)
