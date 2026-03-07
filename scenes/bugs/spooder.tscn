@@ -1,0 +1,125 @@
+[gd_scene load_steps=11 format=3 uid="uid://bhnf0yjyb80v3"]
+
+[ext_resource type="Script" uid="uid://4ioljqmt6lke" path="res://scripts/bugs/scorpion.gd" id="1_rjprr"]
+[ext_resource type="Texture2D" uid="uid://bdxcvjfr6mcdd" path="res://assets/scorpion1.svg" id="2_re8vx"]
+[ext_resource type="Texture2D" uid="uid://vpbrglydhfms" path="res://assets/scorpion2.svg" id="3_blkkq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ay57d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_re8vx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_blkkq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 0.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ra0ba"]
+size = Vector2(59, 36)
+
+[sub_resource type="Animation" id="Animation_53sfo"]
+resource_name = "diddle"
+length = 1.25
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"charge"
+}, {
+"args": [],
+"method": &"rush"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_whvjp"]
+resource_name = "goon"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"bombthing"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gv75p"]
+_data = {
+&"diddle": SubResource("Animation_53sfo"),
+&"goon": SubResource("Animation_whvjp")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_peqgm"]
+radius = 20.025
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i17bi"]
+size = Vector2(82, 44)
+
+[node name="scorpion" type="CharacterBody2D"]
+position = Vector2(124, 68)
+collision_layer = 4
+script = ExtResource("1_rjprr")
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.478431, 0.678431, 1)
+scale = Vector2(0.708661, 0.708661)
+sprite_frames = SubResource("SpriteFrames_ay57d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 0)
+shape = SubResource("RectangleShape2D_ra0ba")
+
+[node name="attackplayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_gv75p")
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(27, 0)
+collision_layer = 0
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(4, 0)
+shape = SubResource("CircleShape2D_peqgm")
+
+[node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+shape = SubResource("RectangleShape2D_i17bi")
+
+[node name="bouncelook" type="Node2D" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="." method="_on_area_2d_2_body_entered"]
