@@ -3,6 +3,7 @@ extends Node2D
 var portalopened : bool = false
 
 var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn"),preload("res://scenes/bugs/bee.tscn"),preload("res://scenes/bugs/millipede.tscn"), preload("res://scenes/bugs/scorpion.tscn")]
+var sizes : Array = [1,2,3,5,6]
 var max_size : int = 1
 var cur_size : int = max_size
 
@@ -81,7 +82,7 @@ func _on_area_2d_body_entered(body):
 		while cur_size > 0:
 			var r = randi_range(0, len(bugs) - 1)
 			var b = bugs[r].instantiate()
-			cur_size -= r + 1
+			cur_size -= sizes[r] + 1
 			b.position.x = randi_range(100,1320)
 			b.position.y = randi_range(20,648)
 			add_child(b)
