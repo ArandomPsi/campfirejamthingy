@@ -61,27 +61,20 @@ metadata/_snap_enabled = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ehs13"]
 shader = ExtResource("4_mdnjm")
-shader_parameter/overlay = true
-shader_parameter/scanlines_opacity = 0.478
-shader_parameter/scanlines_width = 0.115
-shader_parameter/grille_opacity = 0.391
 shader_parameter/resolution = Vector2(1152, 648)
-shader_parameter/pixelate = false
-shader_parameter/roll = true
-shader_parameter/roll_speed = 10.0
-shader_parameter/roll_size = 28.319
-shader_parameter/roll_variation = 1.8
-shader_parameter/distort_intensity = 0.047
-shader_parameter/noise_opacity = 0.338
-shader_parameter/noise_speed = 5.0
-shader_parameter/static_noise_intensity = 0.06
-shader_parameter/aberration = 0.03
-shader_parameter/brightness = 5.0
-shader_parameter/discolor = false
-shader_parameter/warp_amount = 1.0
-shader_parameter/clip_warp = false
-shader_parameter/vignette_intensity = 0.4
-shader_parameter/vignette_opacity = 0.5
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.239
+shader_parameter/interference_amount = 0.2
+shader_parameter/grille_amount = 0.18
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 2.0
+shader_parameter/vignette_intensity = 0.153
+shader_parameter/aberation_amount = 1.0
+shader_parameter/roll_line_amount = 0.176
+shader_parameter/roll_speed = 3.056
+shader_parameter/scan_line_strength = -5.157
+shader_parameter/pixel_strength = -2.0
 
 [sub_resource type="Gradient" id="Gradient_ly4ta"]
 offsets = PackedFloat32Array(0, 0.994307)

@@ -165,21 +165,21 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(0, 1, 0.34902, 1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_sc5bw"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60mlk"]
 shader = ExtResource("11_t6j4c")
 shader_parameter/resolution = Vector2(1152, 648)
 shader_parameter/scan_line_amount = 1.0
-shader_parameter/warp_amount = 2.052
-shader_parameter/noise_amount = 0.14
-shader_parameter/interference_amount = 1.0
-shader_parameter/grille_amount = 0.997
-shader_parameter/grille_size = 1.238
+shader_parameter/warp_amount = 0.0
+shader_parameter/noise_amount = 0.178
+shader_parameter/interference_amount = 0.0
+shader_parameter/grille_amount = 0.0
+shader_parameter/grille_size = 1.0
 shader_parameter/vignette_amount = 2.0
 shader_parameter/vignette_intensity = 1.0
 shader_parameter/aberation_amount = 1.0
-shader_parameter/roll_line_amount = 1.0
-shader_parameter/roll_speed = 3.603
-shader_parameter/scan_line_strength = -4.508
+shader_parameter/roll_line_amount = 0.176
+shader_parameter/roll_speed = 3.056
+shader_parameter/scan_line_strength = -6.137
 shader_parameter/pixel_strength = -2.0
 
 [sub_resource type="Gradient" id="Gradient_gcpgy"]
@@ -469,7 +469,7 @@ script = ExtResource("10_cyrk5")
 
 [node name="crt" type="ColorRect" parent="hud/table"]
 z_index = 10
-material = SubResource("ShaderMaterial_sc5bw")
+material = SubResource("ShaderMaterial_60mlk")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -548,17 +548,17 @@ mix_target = 1
 [connection signal="body_entered" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]

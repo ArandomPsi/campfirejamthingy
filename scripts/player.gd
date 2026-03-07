@@ -11,8 +11,7 @@ var stats : Array[float] = [1,1,1,1,1,1,1]
 var specialshotcharge : float = 0
 var prev_def_stat : float = 1
 var prev_inv_stat : float = 1
-var prev_spec_stat : float = 1
-#attack, defense, firerate, speed, amount of bullets, iframes, special ability
+#attack, defense, firerate, speed, amount of bullets, iframes
 
 var base_hp : float = 5
 var hp : float = base_hp
@@ -71,18 +70,7 @@ func statsstuff():
 	if stats[1] > prev_def_stat:
 		maxhp = base_hp + stats[1]
 		prev_def_stat = stats[1]
-		
-	if stats[6] > prev_spec_stat:
-		match shottype:
-			0:
-				if int(stats[6] * 10) % 10 == 5:
-					shot_req -= 1
-					shot_num = 0
-				else:
-					shot_scale += 0.5
-			4:
-				saw_dmg += 1
-		prev_spec_stat = stats[6]
+
 	
 	maxiframes = 50 + stats[5] * 20
 	
@@ -171,13 +159,7 @@ func shoot():
 			for i in range(int(1 * stats[4])):
 				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
-				if shot_num == shot_req and stats[6] > 1:
-					b.scale = Vector2(shot_scale, shot_scale)
-					b.speed = 800 - 100 * shot_scale
-					b.damage = 9 * stats[0]
-					shot_num = 0
-				else:
-					b.damage = 3 + stats[0] * 2
+				b.damage = 3 + stats[0] * 2
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
 				b.damage = 3 + stats[0] * 2
