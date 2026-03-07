@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://rvqbbveegf37"]
 
-[ext_resource type="Script" path="res://scripts/bugs/bee.gd" id="1_aohbv"]
+[ext_resource type="Script" uid="uid://b811f86ujei88" path="res://scripts/bugs/bee.gd" id="1_aohbv"]
 [ext_resource type="Texture2D" uid="uid://dt7a66aruvikx" path="res://shaders/enemies/beenemy-2.svg" id="2_n7pgs"]
 [ext_resource type="Texture2D" uid="uid://b20qxidfoaxd0" path="res://shaders/enemies/beenemy wings-2.svg" id="3_e8wom"]
 
@@ -101,8 +101,8 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gv75p"]
 _data = {
-"diddle": SubResource("Animation_53sfo"),
-"speedthing": SubResource("Animation_eeb4f")
+&"diddle": SubResource("Animation_53sfo"),
+&"speedthing": SubResource("Animation_eeb4f")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_peqgm"]

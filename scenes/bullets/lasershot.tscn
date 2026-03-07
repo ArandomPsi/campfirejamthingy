@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://de27smgfasixp"]
 
-[ext_resource type="Script" path="res://scripts/lasershot.gd" id="1_wav70"]
+[ext_resource type="Script" uid="uid://dya0qtoccmpi4" path="res://scripts/lasershot.gd" id="1_wav70"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5p1xc"]
 size = Vector2(1962, 60)

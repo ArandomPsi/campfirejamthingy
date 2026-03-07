@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://5t70e2kekr70"]
 
-[ext_resource type="Script" path="res://scripts/bugs/combuster.gd" id="1_ywrdm"]
+[ext_resource type="Script" uid="uid://beji7342k80ai" path="res://scripts/bugs/combuster.gd" id="1_ywrdm"]
 [ext_resource type="Texture2D" uid="uid://bdsabgl5bv4q4" path="res://shaders/enemies/puker closed.svg" id="2_bwbys"]
 [ext_resource type="Texture2D" uid="uid://p04fbvdvouo5" path="res://shaders/enemies/puker open.svg" id="3_fsknj"]
 
@@ -56,7 +56,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gv75p"]
 _data = {
-"diddle": SubResource("Animation_53sfo")
+&"diddle": SubResource("Animation_53sfo")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_peqgm"]

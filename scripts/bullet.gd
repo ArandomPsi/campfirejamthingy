@@ -34,10 +34,7 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("damage"):
-		if flame:
-			body.burn(damage)
-		else:
-			body.damage(damage)
+		body.damage(damage)
 	spawnhit()
 	queue_free()
 
@@ -45,6 +42,3 @@ func spawnhit():
 	var b = preload("res://scenes/vfx/hitparticle.tscn").instantiate()
 	get_tree().root.add_child(b)
 	b.position = position
-
-
-

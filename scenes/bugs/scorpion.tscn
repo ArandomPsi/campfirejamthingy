@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://2jlxkk8ageqk"]
 
-[ext_resource type="Script" path="res://scripts/bugs/scorpion.gd" id="1_xs2cj"]
+[ext_resource type="Script" uid="uid://4ioljqmt6lke" path="res://scripts/bugs/scorpion.gd" id="1_xs2cj"]
 [ext_resource type="Texture2D" uid="uid://bdxcvjfr6mcdd" path="res://assets/scorpion1.svg" id="2_32rji"]
 [ext_resource type="Texture2D" uid="uid://vpbrglydhfms" path="res://assets/scorpion2.svg" id="3_ni4ak"]
 
@@ -74,8 +74,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gv75p"]
 _data = {
-"diddle": SubResource("Animation_53sfo"),
-"goon": SubResource("Animation_whvjp")
+&"diddle": SubResource("Animation_53sfo"),
+&"goon": SubResource("Animation_whvjp")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_peqgm"]
@@ -100,7 +100,7 @@ shape = SubResource("RectangleShape2D_ra0ba")
 
 [node name="attackplayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_gv75p")
+&"": SubResource("AnimationLibrary_gv75p")
 }
 
 [node name="Area2D" type="Area2D" parent="."]

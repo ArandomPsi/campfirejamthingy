@@ -6,7 +6,7 @@ var movedir : Vector2
 var shotcooldown : float = 0
 
 var shottype : int = 5
-var shotcooldowns : Array = [15,50,5,50,0,15]
+var shotcooldowns : Array = [15,50,5,50,0,5]
 var stats : Array[float] = [1,1,1,1,1,1,2]
 var specialshotcharge : float = 0
 var prev_def_stat : float = 1

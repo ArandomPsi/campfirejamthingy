@@ -1,12 +1,12 @@
-[gd_scene load_steps=26 format=3 uid="uid://cvo1d4ep37ry0"]
+[gd_scene load_steps=25 format=3 uid="uid://cvo1d4ep37ry0"]
 
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="1_a2uic"]
-[ext_resource type="Script" path="res://scripts/titlescreen.gd" id="1_n16rf"]
+[ext_resource type="Script" uid="uid://e3e8qwacgpqm" path="res://scripts/titlescreen.gd" id="1_n16rf"]
 [ext_resource type="Texture2D" uid="uid://hsn02fpm2pvc" path="res://assets/ps5.svg" id="2_4rnkh"]
 [ext_resource type="Texture2D" uid="uid://1eidqsrf4tpl" path="res://assets/pddiddy.png" id="2_b5ris"]
 [ext_resource type="Texture2D" uid="uid://diuir48milite" path="res://assets/poweronbase.svg" id="3_awlxf"]
 [ext_resource type="FontFile" uid="uid://boml265nvfxv0" path="res://assets/SourceCodePro-4alW.ttf" id="3_tpwu3"]
-[ext_resource type="Shader" path="res://shaders/crt.gdshader" id="4_mdnjm"]
+[ext_resource type="Shader" uid="uid://c3eccncoadpko" path="res://shaders/crt.gdshader" id="4_mdnjm"]
 [ext_resource type="Texture2D" uid="uid://dy7ktjuoebn6y" path="res://assets/changecdbutton.svg" id="5_og43h"]
 [ext_resource type="Texture2D" uid="uid://dbvsnqd2qbmct" path="res://assets/lightthing.svg" id="8_3d8u6"]
 [ext_resource type="AudioStream" uid="uid://dswse4taphj4t" path="res://sounds/titleambient.mp3" id="10_gq3v6"]
@@ -56,12 +56,6 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.2)
 metadata/_snap_enabled = true
-
-[sub_resource type="Environment" id="Environment_83cf6"]
-background_mode = 3
-glow_enabled = true
-glow_bloom = 0.59
-glow_blend_mode = 0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgmsf"]
 
@@ -234,7 +228,6 @@ texture_scale = 0.69
 color = Color(0.0627451, 0.0627451, 0.156863, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_83cf6")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -274,6 +267,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+color = Color(0, 0, 0, 1)
 
 [node name="Lamp2" type="Sprite2D" parent="."]
 position = Vector2(220, 240)
@@ -301,11 +295,11 @@ offset_left = -68.0
 offset_top = -130.0
 offset_right = 105.0
 offset_bottom = 29.0
-theme_override_styles/normal = SubResource("StyleBoxEmpty_u0nnp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_u0nnp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_u0nnp")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_u0nnp")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_u0nnp")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_u0nnp")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_u0nnp")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_u0nnp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(826, 257)

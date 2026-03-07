@@ -1,9 +1,9 @@
 [gd_scene load_steps=12 format=3 uid="uid://dpyqt80klbwew"]
 
-[ext_resource type="Script" path="res://scripts/bugs/millipede.gd" id="1_d7hac"]
+[ext_resource type="Script" uid="uid://b7lyjf1srb8vy" path="res://scripts/bugs/millipede.gd" id="1_d7hac"]
 [ext_resource type="Texture2D" uid="uid://cfg2s4iodtpjd" path="res://shaders/enemies/millipede head-2.svg" id="2_iwsly"]
 [ext_resource type="Texture2D" uid="uid://boo415168tmbg" path="res://shaders/enemies/millipede body part-2.svg" id="3_85gue"]
-[ext_resource type="Script" path="res://scripts/bugs/joints.gd" id="4_2tgy6"]
+[ext_resource type="Script" uid="uid://usbk4dqkdj4q" path="res://scripts/bugs/joints.gd" id="4_2tgy6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ra0ba"]
 size = Vector2(34.5, 36)
@@ -109,9 +109,9 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gv75p"]
 _data = {
-"diddle": SubResource("Animation_53sfo"),
-"spam": SubResource("Animation_4ivv3"),
-"speedthing": SubResource("Animation_eeb4f")
+&"diddle": SubResource("Animation_53sfo"),
+&"spam": SubResource("Animation_4ivv3"),
+&"speedthing": SubResource("Animation_eeb4f")
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_peqgm"]

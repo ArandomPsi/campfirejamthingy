@@ -29,5 +29,3 @@ func spawnstart():
 	var b = preload("res://scenes/vfx/hitparticle.tscn").instantiate()
 	get_tree().root.add_child(b)
 	b.position = position
-
-

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqmpv8fa55idi"]
 
 [ext_resource type="AudioStream" uid="uid://bjyhrlbvsevf8" path="res://sounds/switch.wav" id="1_kar0p"]
-[ext_resource type="Script" path="res://scripts/randomsounds.gd" id="2_tk4gx"]
+[ext_resource type="Script" uid="uid://btblvgc31cvhp" path="res://scripts/randomsounds.gd" id="2_tk4gx"]
 
 [node name="switch" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_kar0p")

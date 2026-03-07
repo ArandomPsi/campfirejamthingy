@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://i7o6e8q3pphf"]
 
 [ext_resource type="Texture2D" uid="uid://dp60qvwfg3djy" path="res://assets/bullet2.svg" id="1_klyri"]
-[ext_resource type="Script" path="res://scripts/bugs/slime.gd" id="1_ksaa4"]
+[ext_resource type="Script" uid="uid://d1h28qom6jlw5" path="res://scripts/bugs/slime.gd" id="1_ksaa4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_obdm0"]
 radius = 61.0328

@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=3 uid="uid://cjkqqtxxg7t7a"]
 
-[ext_resource type="Script" path="res://FirewallLine.gd" id="1_8j08h"]
+[ext_resource type="Script" uid="uid://cp1yqo1ni5510" path="res://FirewallLine.gd" id="1_8j08h"]
 [ext_resource type="Texture2D" uid="uid://c5rrkg2w5ppnv" path="res://assets/Flame.png" id="2_p12d3"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_vxbgi"]

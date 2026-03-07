@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dr0ebwbkaym21"]
 
 [ext_resource type="AudioStream" uid="uid://b7cv7ufykmx3w" path="res://sounds/osu-hit-sound.mp3" id="1_hise3"]
-[ext_resource type="Script" path="res://scripts/randomsounds.gd" id="2_tpram"]
+[ext_resource type="Script" uid="uid://btblvgc31cvhp" path="res://scripts/randomsounds.gd" id="2_tpram"]
 
 [node name="shoot" type="AudioStreamPlayer2D"]
 position = Vector2(-1, -1)

@@ -22,5 +22,3 @@ func finished():
 func _on_pressed():
 	get_parent().get_parent().get_parent().stats[upgrade] += 0.5
 	finished()
-
-

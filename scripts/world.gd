@@ -92,8 +92,3 @@ func _on_area_2d_body_entered(body):
 
 func upgradething(trick): #for signal
 	$player.showupgrades()
-
-
-
-
-

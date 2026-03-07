@@ -1,24 +1,24 @@
 [gd_scene load_steps=52 format=3 uid="uid://cbha305rydvd2"]
 
-[ext_resource type="Script" path="res://scripts/player.gd" id="1_1b47p"]
+[ext_resource type="Script" uid="uid://lkamp4kcsb6d" path="res://scripts/player.gd" id="1_1b47p"]
 [ext_resource type="Texture2D" uid="uid://bbn8umujge3ki" path="res://assets/baseplayer.svg" id="1_o0pgg"]
 [ext_resource type="Texture2D" uid="uid://bi5mes7qa2r3e" path="res://assets/arrow-2.svg" id="3_pc355"]
-[ext_resource type="Script" path="res://scripts/vfx/flash.gd" id="4_1jcgd"]
+[ext_resource type="Script" uid="uid://cshwfgwj255eb" path="res://scripts/vfx/flash.gd" id="4_1jcgd"]
 [ext_resource type="Texture2D" uid="uid://8sgyqfqvi4i6" path="res://assets/deltashot.svg" id="4_md74g"]
 [ext_resource type="Texture2D" uid="uid://c5rrkg2w5ppnv" path="res://assets/Flame.png" id="5_8apg7"]
 [ext_resource type="FontFile" uid="uid://buftca15lxprx" path="res://assets/HelloKetta-d99oX.ttf" id="5_c645l"]
-[ext_resource type="Shader" path="res://shaders/fog.gdshader" id="5_dbeld"]
-[ext_resource type="Shader" path="res://shaders/blur.gdshader" id="5_l0h6p"]
-[ext_resource type="Shader" path="res://shaders/perspective.gdshader" id="6_qc81r"]
+[ext_resource type="Shader" uid="uid://co3aq3gcn2ev5" path="res://shaders/fog.gdshader" id="5_dbeld"]
+[ext_resource type="Shader" uid="uid://cev5lnbyira87" path="res://shaders/blur.gdshader" id="5_l0h6p"]
+[ext_resource type="Shader" uid="uid://4a4b38ewhlri" path="res://shaders/perspective.gdshader" id="6_qc81r"]
 [ext_resource type="Texture2D" uid="uid://bb58quqfhacg8" path="res://assets/thepc.svg" id="6_s66kg"]
 [ext_resource type="Texture2D" uid="uid://dstj1kqdocfjy" path="res://assets/crosshair-2.png" id="7_mjio1"]
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="7_qyt88"]
 [ext_resource type="FontFile" uid="uid://jnx17qh117ex" path="res://assets/CaviarDreamsBold-a5og.ttf" id="9_xp4tx"]
-[ext_resource type="Script" path="res://scripts/upgrade.gd" id="10_cyrk5"]
-[ext_resource type="Shader" path="res://shaders/crt.gdshader" id="11_t6j4c"]
-[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="13_0vbpy"]
+[ext_resource type="Script" uid="uid://ccp623q3q3qis" path="res://scripts/upgrade.gd" id="10_cyrk5"]
+[ext_resource type="Shader" uid="uid://c3eccncoadpko" path="res://shaders/crt.gdshader" id="11_t6j4c"]
+[ext_resource type="Shader" uid="uid://bv7n7ohv0mnyg" path="res://shaders/circle.gdshader" id="13_0vbpy"]
 [ext_resource type="AudioStream" uid="uid://3dkd6802moiq" path="res://sounds/Hinkik - Time Leaper.mp3" id="14_1008y"]
-[ext_resource type="Shader" path="res://shaders/glitch.gdshader" id="14_nnfyx"]
+[ext_resource type="Shader" uid="uid://br8ymfkscw5wo" path="res://shaders/glitch.gdshader" id="14_nnfyx"]
 [ext_resource type="AudioStream" uid="uid://dgxkppc7oa7iq" path="res://sounds/Glitch Sound Effect (Speaker).mp3" id="17_bgffu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4tyv"]
@@ -26,6 +26,16 @@ radius = 16.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_yhhq2"]
 blend_mode = 1
+
+[sub_resource type="Gradient" id="Gradient_la3x0"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rg8wm"]
+gradient = SubResource("Gradient_la3x0")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.7, 0.2)
+metadata/_snap_enabled = true
 
 [sub_resource type="Gradient" id="Gradient_x5t61"]
 offsets = PackedFloat32Array(0, 0.165953, 0.62848, 0.997859)
@@ -41,6 +51,7 @@ emission_ring_axis = Vector3(0, 0, 1)
 emission_ring_height = 1.0
 emission_ring_radius = 50.0
 emission_ring_inner_radius = 50.0
+emission_ring_cone_angle = 90.0
 angle_min = -720.0
 angle_max = 720.0
 orbit_velocity_min = 0.735
@@ -52,16 +63,6 @@ scale_min = 0.2
 scale_max = 0.5
 color = Color(0, 0.890196, 1, 1)
 color_ramp = SubResource("GradientTexture1D_aa32j")
-
-[sub_resource type="Gradient" id="Gradient_la3x0"]
-colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_rg8wm"]
-gradient = SubResource("Gradient_la3x0")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.7, 0.2)
-metadata/_snap_enabled = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4cax6"]
 radius = 61.1242
@@ -122,10 +123,10 @@ noise = SubResource("FastNoiseLite_7h34q")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7gqaq"]
 shader = ExtResource("5_dbeld")
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_214pi")
 shader_parameter/smoke_color = Color(1, 0.380392, 0.505882, 1)
 shader_parameter/distortion_speed = 0.2
 shader_parameter/density = 0.165
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_214pi")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iheuj"]
 bg_color = Color(0.6, 0.337255, 0.121569, 1)
@@ -148,14 +149,6 @@ shader_parameter/y_rot = 0.0
 shader_parameter/x_rot = 24.0
 shader_parameter/inset = 0.0
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ug3o"]
-bg_color = Color(0, 0, 0, 0.611765)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(0, 1, 0.34902, 1)
-
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk2u5"]
 bg_color = Color(0, 0, 0, 0.611765)
 border_width_left = 8
@@ -163,6 +156,14 @@ border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
 border_color = Color(0.329412, 1, 0.564706, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1ug3o"]
+bg_color = Color(0, 0, 0, 0.611765)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 1, 0.34902, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_sc5bw"]
 shader = ExtResource("11_t6j4c")
@@ -216,7 +217,7 @@ shader = ExtResource("13_0vbpy")
 shader_parameter/_CirclePosition = Vector2(0.5, 0.5)
 shader_parameter/progress = 1.0
 shader_parameter/_Smoothness = 0.05
-shader_parameter/_Background = null
+shader_parameter/_Background = Color(0, 0, 0, 1)
 
 [node name="player" type="CharacterBody2D"]
 position = Vector2(-1, 0)
@@ -241,11 +242,11 @@ material = SubResource("CanvasItemMaterial_yhhq2")
 position = Vector2(50, 2.08165e-12)
 emitting = false
 amount = 10
-process_material = SubResource("ParticleProcessMaterial_8ooo6")
 texture = SubResource("GradientTexture2D_rg8wm")
 lifetime = 0.25
 fixed_fps = 60
 local_coords = true
+process_material = SubResource("ParticleProcessMaterial_8ooo6")
 
 [node name="deltashot" type="Sprite2D" parent="arrow"]
 modulate = Color(0, 0.686275, 1, 0)
@@ -266,10 +267,10 @@ disabled = true
 material = SubResource("CanvasItemMaterial_flae1")
 position = Vector2(50, 0)
 amount = 85
-process_material = SubResource("ParticleProcessMaterial_llhdc")
 texture = ExtResource("5_8apg7")
 lifetime = 0.5
 fixed_fps = 60
+process_material = SubResource("ParticleProcessMaterial_llhdc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
@@ -425,14 +426,14 @@ offset_top = -330.0
 offset_right = 674.0
 offset_bottom = -280.0
 pivot_offset = Vector2(138, 25)
+theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
-theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_fonts/font = ExtResource("9_xp4tx")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_1ug3o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hk2u5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1ug3o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ug3o")
 text = "+atk"
 script = ExtResource("10_cyrk5")
 
@@ -443,14 +444,14 @@ offset_top = -248.0
 offset_right = 674.0
 offset_bottom = -198.0
 pivot_offset = Vector2(138, 25)
+theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
-theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_fonts/font = ExtResource("9_xp4tx")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_1ug3o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hk2u5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1ug3o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ug3o")
 text = "+firerate"
 script = ExtResource("10_cyrk5")
 
@@ -461,14 +462,14 @@ offset_top = -169.0
 offset_right = 674.0
 offset_bottom = -119.0
 pivot_offset = Vector2(138, 25)
+theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
-theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_fonts/font = ExtResource("9_xp4tx")
 theme_override_font_sizes/font_size = 25
-theme_override_styles/normal = SubResource("StyleBoxFlat_1ug3o")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hk2u5")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_1ug3o")
+theme_override_styles/normal = SubResource("StyleBoxFlat_1ug3o")
 text = "+hp"
 script = ExtResource("10_cyrk5")
 
@@ -553,17 +554,17 @@ mix_target = 1
 [connection signal="body_entered" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]

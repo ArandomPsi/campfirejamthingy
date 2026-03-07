@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://cystl4siqvo5a"]
 
 [ext_resource type="Texture2D" uid="uid://c5rrkg2w5ppnv" path="res://assets/Flame.png" id="1_2hgn4"]
-[ext_resource type="Script" path="res://scripts/thefirewall.gd" id="1_uxnqx"]
+[ext_resource type="Script" uid="uid://bu0pdn8f4f8bt" path="res://scripts/thefirewall.gd" id="1_uxnqx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xcr55"]
 blend_mode = 1
@@ -100,9 +100,9 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_4s3ac"]
 _data = {
-"enemy": SubResource("Animation_xkddc"),
-"fireball": SubResource("Animation_j7ue0"),
-"flashfire": SubResource("Animation_l7lsk")
+&"enemy": SubResource("Animation_xkddc"),
+&"fireball": SubResource("Animation_j7ue0"),
+&"flashfire": SubResource("Animation_l7lsk")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gbdeb"]
