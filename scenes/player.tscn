@@ -17,9 +17,9 @@
 [ext_resource type="Script" uid="uid://ccp623q3q3qis" path="res://scripts/upgrade.gd" id="10_cyrk5"]
 [ext_resource type="Shader" uid="uid://c3eccncoadpko" path="res://shaders/crt.gdshader" id="11_t6j4c"]
 [ext_resource type="Shader" uid="uid://bv7n7ohv0mnyg" path="res://shaders/circle.gdshader" id="13_0vbpy"]
-[ext_resource type="AudioStream" uid="uid://3dkd6802moiq" path="res://sounds/Hinkik - Time Leaper.mp3" id="14_1008y"]
 [ext_resource type="Shader" uid="uid://br8ymfkscw5wo" path="res://shaders/glitch.gdshader" id="14_nnfyx"]
 [ext_resource type="AudioStream" uid="uid://dgxkppc7oa7iq" path="res://sounds/Glitch Sound Effect (Speaker).mp3" id="17_bgffu"]
+[ext_resource type="AudioStream" uid="uid://cf0rgos3bd4r" path="res://sounds/482872_KzX---Stalemate.mp3" id="19_60mlk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4tyv"]
 radius = 16.0
@@ -266,10 +266,11 @@ disabled = true
 [node name="flamethrower" type="GPUParticles2D" parent="arrow"]
 material = SubResource("CanvasItemMaterial_flae1")
 position = Vector2(50, 0)
+emitting = false
 amount = 85
 texture = ExtResource("5_8apg7")
 lifetime = 0.5
-fixed_fps = 60
+fixed_fps = 90
 process_material = SubResource("ParticleProcessMaterial_llhdc")
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -541,8 +542,8 @@ mouse_filter = 2
 [node name="sounds" type="Node" parent="."]
 
 [node name="song" type="AudioStreamPlayer" parent="sounds"]
-stream = ExtResource("14_1008y")
-volume_db = -15.0
+stream = ExtResource("19_60mlk")
+volume_db = -10.0
 autoplay = true
 mix_target = 2
 
@@ -554,17 +555,17 @@ mix_target = 1
 [connection signal="body_entered" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]

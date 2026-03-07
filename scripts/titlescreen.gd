@@ -24,7 +24,7 @@ func _process(delta):
 	#constant changes
 	$monitor/PointLight2D.energy = randf_range(0.45,0.5)
 	$Lamp2/PointLight2D.energy = randf_range(0.1,0.14)
-	$Lamp2/PointLight2D2.energy = randf_range(3,3.2)
+	$Lamp2/PointLight2D2.energy = randf_range(3,3.2) * 1.5
 	currentweaponthingy = clampi(currentweaponthingy,0,5)
 	$Ps5/down/PointLight2D3.visible = true
 	$Ps5/up/PointLight2D2.visible = true
@@ -82,6 +82,7 @@ func updateepsteinfiles():
 	var tween2 = create_tween()
 	tween2.tween_property($Panel/thefiles,"visible_ratio",1.0,0.8)
 	
+
 
 
 func _on_offswitch_pressed():
