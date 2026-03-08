@@ -214,12 +214,12 @@ func shoot():
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.flame = true
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
-				b.maxdistance = 15
+				b.maxdistance = 20
 				b.speed *= 1.5
 				b.accuracy = 1
 				b.damage = 1 + stats[0] * 0.5
 				b.get_child(0).visible = false
-				b.get_child(1).scale *= 6
+				b.get_child(1).scale *= 3
 				b.look_at(get_global_mouse_position())
 				get_tree().root.add_child(b)
 				

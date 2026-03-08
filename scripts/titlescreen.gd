@@ -32,7 +32,7 @@ func _process(delta):
 	#if statments
 	if currentweaponthingy == 0:
 		$Ps5/down/PointLight2D3.visible = false
-	if currentweaponthingy == 4:
+	if currentweaponthingy == len(currentweaponthingytext) - 1:
 		$Ps5/up/PointLight2D2.visible = false
 	t += delta
 	if not $Ps5/Button.is_hovered():

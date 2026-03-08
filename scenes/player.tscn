@@ -77,7 +77,8 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 gradient = SubResource("Gradient_1dol6")
 
 [sub_resource type="Curve" id="Curve_fm603"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.672476), 0.0, 0.0, 0, 0]
+_limits = [0.0, 2.5, 0.0, 1.0]
+_data = [Vector2(0, 0.303371), 0.0, 0.0, 0, 0, Vector2(1, 1.23596), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="CurveTexture" id="CurveTexture_pwytp"]
@@ -87,7 +88,7 @@ curve = SubResource("Curve_fm603")
 particle_flag_disable_z = true
 angle_min = -720.0
 angle_max = 720.0
-spread = 0.0
+spread = 5.0
 initial_velocity_min = 778.62
 initial_velocity_max = 1000.0
 angular_velocity_min = -720.0
@@ -259,8 +260,7 @@ disabled = true
 [node name="flamethrower" type="GPUParticles2D" parent="arrow"]
 material = SubResource("CanvasItemMaterial_flae1")
 position = Vector2(50, 0)
-emitting = false
-amount = 85
+amount = 125
 texture = ExtResource("5_8apg7")
 lifetime = 0.5
 fixed_fps = 90

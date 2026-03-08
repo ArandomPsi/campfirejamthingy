@@ -17,6 +17,10 @@ func _ready():
 	if dagger:
 		$Sprite2D.texture = preload("res://assets/Dagger.svg")
 		$Sprite2D.scale = Vector2(1, 1)
+	if flame:
+		scale = Vector2(0.5, 0.5)
+		var tween = create_tween()
+		tween.tween_property(self, "scale", Vector2(2.5,2.5), 0.5)
 
 func _process(delta):
 	if dagger:
@@ -27,7 +31,6 @@ func _process(delta):
 		position += transform.x * delta * speed
 		maxdistance -= 1
 		if maxdistance < 0:
-			
 			queue_free()
 		
 
