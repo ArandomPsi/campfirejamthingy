@@ -120,11 +120,12 @@ func chaindash():
 
 func bombthing():
 	for i in range(10):
-		for e in range(5):
+		for e in range(10):
 			var b = preload("res://scenes/vfx/aoe.tscn").instantiate()
 			get_tree().root.add_child(b)
 			b.rotation = rotation
-			b.rotation_degrees += -90 + (36 * e)
+			b.scale = Vector2(0.75,0.75)
+			b.rotation_degrees += -180 + (36 * e)
 			b.position = position + b.transform.x * (75 * i)
 			b.rotation = 0
 		var timer = get_tree().create_timer(0.05)
