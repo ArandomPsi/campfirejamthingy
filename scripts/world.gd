@@ -2,8 +2,8 @@ extends Node2D
 
 var portalopened : bool = false
 
-var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn"),preload("res://scenes/bugs/bee.tscn"),preload("res://scenes/bugs/millipede.tscn"), preload("res://scenes/bugs/scorpion.tscn")]
-var sizes : Array = [1,2,3,5,6]
+var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn"),preload("res://scenes/bugs/bee.tscn"),preload("res://scenes/bugs/millipede.tscn"), preload("res://scenes/bugs/scorpion.tscn"), preload("res://scenes/bugs/spooder.tscn")]
+var sizes : Array = [1,2,3,5,6,8]
 var max_size : int = 1
 var cur_size : int = max_size
 
@@ -19,7 +19,6 @@ func tutorialthing():
 	
 	while not getsit:
 		await get_tree().process_frame 
-	print("yes")
 	var b = preload("res://scenes/bugs/basicbug.tscn").instantiate()
 	add_child(b)
 	b.position.x = 1352/2

@@ -7,6 +7,7 @@ var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounde
 ">Bannana Man OS \n --Gifted by the bannana man",
 ">Ripper OS \n --3,2,1 let it rip! hold for damage",
 ">Arsonist OS \n --I watched the world burn"]
+var costtext : Array = []
 
 var pressed : bool = false
 

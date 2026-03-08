@@ -41,7 +41,6 @@ func _ready():
 	transitionin()
 
 func _physics_process(delta):
-	print(saw_timer)
 	global.playerpos = position
 	iframes -= 1
 	statsstuff()
@@ -85,7 +84,7 @@ func controls(delta):
 	match shottype:
 		4:
 			if Input.is_action_pressed("shoot") and iframes < 1:
-				specialshotcharge += delta * 10 * stats[2]
+				specialshotcharge += 1 + (specialshotcharge * delta * 0.01 * stats[2])
 				$arrow/charge.emitting = true
 				if stats[6] > 1:
 					$arrow/deltashot.modulate.a = specialshotcharge / 20
