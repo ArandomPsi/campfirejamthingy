@@ -80,8 +80,10 @@ func _on_area_2d_body_entered(body):
 	else:
 		while cur_size > 0:
 			var r = randi_range(0, len(bugs) - 1)
+			while sizes[r] > cur_size:
+				r = randi_range(0, len(bugs) - 1)
 			var b = bugs[r].instantiate()
-			cur_size -= sizes[r] + 1
+			cur_size -= sizes[r]
 			b.position.x = randi_range(100,1320)
 			b.position.y = randi_range(20,648)
 			add_child(b)

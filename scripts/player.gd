@@ -216,7 +216,7 @@ func shoot():
 				b.maxdistance = 20
 				b.speed *= 1.5
 				b.accuracy = 1
-				b.damage = 1 + stats[0] * 0.5
+				b.damage = 2 + stats[0] * 0.5
 				b.get_child(0).visible = false
 				b.get_child(1).scale *= 3
 				b.look_at(get_global_mouse_position())
