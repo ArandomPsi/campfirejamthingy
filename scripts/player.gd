@@ -65,7 +65,7 @@ func _physics_process(delta):
 			saw_timer = saw_spd
 
 func statsstuff():
-	shotcooldown -= (1 + stats[2]) * (60/Engine.get_frames_per_second())
+	shotcooldown -= (1 + float(stats[2] / 3)) * (60/Engine.get_frames_per_second())
 	if stats[1] > prev_def_stat:
 		maxhp = base_hp + stats[1]
 		prev_def_stat = stats[1]

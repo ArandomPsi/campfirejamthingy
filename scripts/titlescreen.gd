@@ -7,12 +7,12 @@ var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounde
 ">Bannana Man OS \n --Gifted by the bannana man",
 ">Ripper OS \n --3,2,1 let it rip! hold for damage",
 ">Arsonist OS \n --I watched the world burn"]
-var costtext : Array = []
 
 var pressed : bool = false
 var totalroomthingy : int = 10
 
 func _ready():
+	currentweaponthingy = global.playerweapon
 	global.trueroom = 0
 	global.room = 0
 	$Camera2D.zoom = Vector2(20,20)
@@ -58,6 +58,7 @@ func _process(delta):
 
 func _on_button_pressed():
 	global.playerweapon = currentweaponthingy
+	global.save(false)
 	if global.totalrooms >= currentweaponthingy * totalroomthingy:
 		pressed = true
 		var tween = create_tween()
@@ -83,11 +84,11 @@ func updateepsteinfiles():
 	tween.tween_property($Panel/thefiles,"visible_ratio",0.0,0.8)
 	await tween.finished
 	
-	
+	var bestroomtxt : String = "\n>Highest Room: " + str(global.bestroom)
 	if global.totalrooms >= currentweaponthingy * totalroomthingy: #check the total rooms
-		$Panel/thefiles.text = currentweaponthingytext[currentweaponthingy]
+		$Panel/thefiles.text = currentweaponthingytext[currentweaponthingy] + bestroomtxt
 	else:
-		$Panel/thefiles.text = ">DATA CORRUPTED - EXTERMINATE " + str(currentweaponthingy * totalroomthingy) + " WAVES TO DECORRUPT"
+		$Panel/thefiles.text = ">DATA CORRUPTED - EXTERMINATE " + str(currentweaponthingy * totalroomthingy) + " WAVES TO DECORRUPT" + bestroomtxt
 	var tween2 = create_tween()
 	tween2.tween_property($Panel/thefiles,"visible_ratio",1.0,0.8)
 	
