@@ -99,3 +99,5 @@ func _on_offswitch_pressed():
 	$Lamp2/PointLight2D.visible = not $Lamp2/PointLight2D.visible
 	$Lamp2/PointLight2D2.visible =  $Lamp2/PointLight2D.visible
 	$Pddiddy.visible = not $Lamp2/PointLight2D.visible
+	var b = preload("res://scenes/vfx/jumpscare.tscn").instantiate()
+	get_tree().root.add_child(b)
