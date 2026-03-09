@@ -66,6 +66,7 @@ func openportal():
 
 func _on_area_2d_body_entered(body):
 	triggered = false
+	global.totalrooms += 1
 	$player.transition()
 	$player.hp = $player.maxhp
 	var timer = get_tree().create_timer(0.3)

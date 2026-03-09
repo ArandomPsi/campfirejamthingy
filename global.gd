@@ -7,6 +7,7 @@ var shake : float = 0
 var playerweapon : int = 5
 var trueroom : int = 0
 var playerdead : bool = false
+var totalrooms : int = 0
 
 func _process(delta):
 	shake -= delta * 120

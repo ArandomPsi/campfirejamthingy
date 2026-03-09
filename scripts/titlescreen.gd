@@ -10,6 +10,7 @@ var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounde
 var costtext : Array = []
 
 var pressed : bool = false
+var totalroomthingy : int = 10
 
 func _ready():
 	global.trueroom = 0
@@ -57,13 +58,15 @@ func _process(delta):
 
 func _on_button_pressed():
 	global.playerweapon = currentweaponthingy
-	pressed = true
-	var tween = create_tween()
-	tween.tween_property($Camera2D,"position",Vector2(826,257),0.5).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property($Camera2D,"zoom",Vector2(15,15),0.8).set_trans(Tween.TRANS_CUBIC)
-	await tween.finished
-	get_tree().change_scene_to_file("res://scenes/testmap.tscn")
-	
+	if global.totalrooms >= currentweaponthingy * totalroomthingy:
+		pressed = true
+		var tween = create_tween()
+		tween.tween_property($Camera2D,"position",Vector2(826,257),0.5).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_property($Camera2D,"zoom",Vector2(15,15),0.8).set_trans(Tween.TRANS_CUBIC)
+		await tween.finished
+		get_tree().change_scene_to_file("res://scenes/testmap.tscn")
+	else:
+		$error.play()
 
 
 func _on_up_pressed():
@@ -79,7 +82,12 @@ func updateepsteinfiles():
 	var tween = create_tween()
 	tween.tween_property($Panel/thefiles,"visible_ratio",0.0,0.8)
 	await tween.finished
-	$Panel/thefiles.text = currentweaponthingytext[currentweaponthingy]
+	
+	
+	if global.totalrooms >= currentweaponthingy * totalroomthingy: #check the total rooms
+		$Panel/thefiles.text = currentweaponthingytext[currentweaponthingy]
+	else:
+		$Panel/thefiles.text = ">DATA CORRUPTED - EXTERMINATE " + str(currentweaponthingy * totalroomthingy) + " WAVES TO DECORRUPT"
 	var tween2 = create_tween()
 	tween2.tween_property($Panel/thefiles,"visible_ratio",1.0,0.8)
 	

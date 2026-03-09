@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://cvo1d4ep37ry0"]
+[gd_scene load_steps=27 format=3 uid="uid://cvo1d4ep37ry0"]
 
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="1_a2uic"]
 [ext_resource type="Script" uid="uid://e3e8qwacgpqm" path="res://scripts/titlescreen.gd" id="1_n16rf"]
@@ -12,6 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://dswse4taphj4t" path="res://sounds/titleambient.mp3" id="10_gq3v6"]
 [ext_resource type="Texture2D" uid="uid://d0l0vr21fquv2" path="res://assets/IMPROVED LAMPv2.svg" id="10_w8vkl"]
 [ext_resource type="FontFile" uid="uid://jnx17qh117ex" path="res://assets/CaviarDreamsBold-a5og.ttf" id="11_2f5so"]
+[ext_resource type="AudioStream" uid="uid://cxju6w7k1evk4" path="res://sounds/error.wav" id="13_hcbn3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vmp6c"]
 bg_color = Color(0.6, 0.423529, 0.270588, 1)
@@ -56,6 +57,11 @@ fill = 1
 fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.2)
 metadata/_snap_enabled = true
+
+[sub_resource type="Environment" id="Environment_8or72"]
+background_mode = 3
+glow_intensity = 5.72
+glow_bloom = 0.09
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sgmsf"]
 
@@ -222,6 +228,7 @@ texture_scale = 0.69
 color = Color(0.0627451, 0.0627451, 0.156863, 1)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_8or72")
 
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 0
@@ -258,6 +265,7 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -325,6 +333,12 @@ theme_override_font_sizes/font_size = 30
 text = "Breached CRT"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="error" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(534, 578)
+stream = ExtResource("13_hcbn3")
+volume_db = 10.0
+bus = &"reverb"
 
 [connection signal="pressed" from="Ps5/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="Ps5/up" to="." method="_on_up_pressed"]

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bs1vfkdliq6an" path="res://assets/computer chip_chest (1).svg" id="6_hbqqa"]
 [ext_resource type="Texture2D" uid="uid://dwy3k0loy8dj3" path="res://assets/matrix.png" id="6_s4dqw"]
 [ext_resource type="FontFile" uid="uid://c80u6qswig48x" path="res://assets/TrenchThin-16R0.otf" id="7_syahy"]
-[ext_resource type="PackedScene" path="res://scenes/bugs/spooder.tscn" id="10_6m7oc"]
+[ext_resource type="PackedScene" uid="uid://bhnf0yjyb80v3" path="res://scenes/bugs/spooder.tscn" id="10_6m7oc"]
 [ext_resource type="PackedScene" uid="uid://dpyqt80klbwew" path="res://scenes/bugs/millipede.tscn" id="11_wj07n"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a5xd7"]
