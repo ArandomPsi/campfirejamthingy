@@ -13,7 +13,7 @@ var autosave_time : float = 10.0
 var save_timer : float = autosave_time
 
 func _ready():
-	pass
+	safeload()
 
 func _process(delta):
 	if trueroom - 2 > bestroom:

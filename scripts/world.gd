@@ -100,7 +100,7 @@ func _on_area_2d_body_entered(body):
 			
 		
 	
-	#global.save(true)
+	global.save(true)
 	global.trueroom += 1
 	global.room += randi_range(0,1.5) #5- percent chance of scaling up
 
