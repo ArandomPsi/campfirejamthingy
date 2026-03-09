@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=5 format=3 uid="uid://b27128gou8ghm"]
+[gd_resource type="AudioBusLayout" load_steps=8 format=3 uid="uid://b27128gou8ghm"]
 
 [sub_resource type="AudioEffectAmplify" id="AudioEffectAmplify_wq08x"]
 resource_name = "Amplify"
@@ -17,6 +17,16 @@ resource_name = "Distortion"
 mode = 3
 pre_gain = 27.87
 drive = 0.14
+
+[sub_resource type="AudioEffectDistortion" id="AudioEffectDistortion_j3pel"]
+resource_name = "Distortion"
+drive = 1.0
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_j3pel"]
+resource_name = "Reverb"
+
+[sub_resource type="AudioEffectCompressor" id="AudioEffectCompressor_j3pel"]
+resource_name = "Compressor"
 
 [resource]
 bus/0/effect/0/effect = SubResource("AudioEffectAmplify_wq08x")
@@ -39,3 +49,15 @@ bus/2/volume_db = 0.0
 bus/2/send = &"Master"
 bus/2/effect/0/effect = SubResource("AudioEffectDistortion_esmrs")
 bus/2/effect/0/enabled = true
+bus/3/name = &"Jumpscare"
+bus/3/solo = false
+bus/3/mute = false
+bus/3/bypass_fx = false
+bus/3/volume_db = 0.0
+bus/3/send = &"Master"
+bus/3/effect/0/effect = SubResource("AudioEffectDistortion_j3pel")
+bus/3/effect/0/enabled = true
+bus/3/effect/1/effect = SubResource("AudioEffectReverb_j3pel")
+bus/3/effect/1/enabled = true
+bus/3/effect/2/effect = SubResource("AudioEffectCompressor_j3pel")
+bus/3/effect/2/enabled = false

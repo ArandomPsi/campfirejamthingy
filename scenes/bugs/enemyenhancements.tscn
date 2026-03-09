@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://qmyov8a7iur5"]
+
+[ext_resource type="Script" uid="uid://dksv66s8kge4l" path="res://scripts/bugs/enemyenhancements.gd" id="1_88wfl"]
+[ext_resource type="Texture2D" uid="uid://skook5wc4vu5" path="res://assets/player aura.svg" id="1_wesyy"]
+
+[node name="enemyenhancements" type="Node2D"]
+script = ExtResource("1_88wfl")
+
+[node name="spinthingy" type="Sprite2D" parent="."]
+texture = ExtResource("1_wesyy")
+
+[node name="offset1" type="Node2D" parent="spinthingy"]
+position = Vector2(0, -51)
+
+[node name="offset2" type="Node2D" parent="spinthingy"]
+position = Vector2(0, 51)

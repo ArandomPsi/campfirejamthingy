@@ -4,7 +4,7 @@ var playerpos : Vector2
 var flash : float = 0
 var room : int = 0
 var shake : float = 0
-var playerweapon : int = 5
+var playerweapon : int = 0
 var trueroom : int = 0
 var bestroom : int = 0
 var playerdead : bool = false
@@ -13,7 +13,7 @@ var autosave_time : float = 10.0
 var save_timer : float = autosave_time
 
 func _ready():
-	safeload()
+	pass
 
 func _process(delta):
 	if trueroom - 2 > bestroom:

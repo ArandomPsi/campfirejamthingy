@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed : int = 270 + global.room * 2
 var attackchargeup : int = 120
 var shaking : int = 0
-var hp : int = 64 + global.room * 2
+var hp : int = 25 + global.room * 2
 var spawnedin : bool = false
 var coins_dropped : int = randi_range(3,5)
 

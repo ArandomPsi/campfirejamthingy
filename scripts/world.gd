@@ -75,7 +75,7 @@ func _on_area_2d_body_entered(body):
 	global.room = clampi(global.room,1,10)
 	await timer.timeout
 	cur_size = max_size
-	if global.trueroom == 11:
+	if global.trueroom == 31:
 		var b = preload("res://scenes/thefirewall.tscn").instantiate()
 		add_child(b)
 	else:
@@ -88,9 +88,19 @@ func _on_area_2d_body_entered(body):
 			b.position.x = randi_range(100,1320)
 			b.position.y = randi_range(20,648)
 			add_child(b)
+			
+			var enhancementchance : int = 25 - global.trueroom
+			enhancementchance = clamp(enhancementchance,0,25)
+			
+			if randi_range(0,5) == 0:
+				var e = preload("res://scenes/bugs/enemyenhancements.tscn").instantiate()
+				b.add_child(e)
+			
+			
+			
 		
 	
-	global.save(true)
+	#global.save(true)
 	global.trueroom += 1
 	global.room += randi_range(0,1.5) #5- percent chance of scaling up
 

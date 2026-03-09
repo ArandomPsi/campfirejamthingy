@@ -12,7 +12,7 @@ var pressed : bool = false
 var totalroomthingy : int = 10
 
 func _ready():
-	currentweaponthingy = global.playerweapon
+	currentweaponthingy = 0
 	global.trueroom = 0
 	global.room = 0
 	$Camera2D.zoom = Vector2(20,20)
@@ -20,9 +20,12 @@ func _ready():
 	await timer.timeout
 	updateepsteinfiles()
 	
+	
+	
 
 func _process(delta):
 	
+	print(str(currentweaponthingy))
 	#constant changes
 	$monitor/PointLight2D.energy = randf_range(0.45,0.5)
 	$Lamp2/PointLight2D.energy = randf_range(0.1,0.14)
@@ -99,5 +102,6 @@ func _on_offswitch_pressed():
 	$Lamp2/PointLight2D.visible = not $Lamp2/PointLight2D.visible
 	$Lamp2/PointLight2D2.visible =  $Lamp2/PointLight2D.visible
 	$Pddiddy.visible = not $Lamp2/PointLight2D.visible
-	var b = preload("res://scenes/vfx/jumpscare.tscn").instantiate()
-	get_tree().root.add_child(b)
+	if $Pddiddy.visible:
+		var b = preload("res://scenes/vfx/jumpscare.tscn").instantiate()
+		get_tree().root.add_child(b)

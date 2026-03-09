@@ -20,14 +20,14 @@ func _ready():
 func _physics_process(delta):
 	if not $attackplayer.is_playing() and spawnedin:
 		var v = (global.playerpos + - position).angle()
-		rotation = lerp_angle(rotation,v,0.05)
+		rotation = lerp_angle(rotation,v,0.08)
 		
 		velocity += speed * delta * transform.x * 10
 		
 		
 		if attackchargeup < 1:
 			$attackplayer.play("goon")
-			attackchargeup = randi_range(150,180)
+			attackchargeup = randi_range(90,150)
 		
 		attackchargeup -= 1
 		
