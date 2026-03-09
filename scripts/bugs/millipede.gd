@@ -30,7 +30,7 @@ func _physics_process(delta):
 	if not $attackplayer.is_playing() and spawnedin:
 		var v = ((global.playerpos + Vector2(randi_range(-80,80),randi_range(-80,80))) - position).angle()
 		rotation = lerp_angle(rotation,v,0.05)
-		if attackchargeup < 1:
+		if attackchargeup < 1 and not global.playerdead:
 			$attackplayer.speed_scale = randf_range(0.8,1.2)
 			$attackplayer.play("spam")
 			rotathing = randi_range(-300,300)

@@ -18,7 +18,7 @@ func _process(delta: float) -> void:
 	
 	nextshottime += 1
 	
-	if nextshottime > 90:
+	if nextshottime > 90 and not global.playerdead:
 		spawnshot()
 		nextshottime = 0
 	

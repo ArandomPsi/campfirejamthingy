@@ -25,7 +25,7 @@ func _physics_process(delta):
 		velocity += speed * delta * transform.x * 10
 		
 		attackchargeup -= 1
-		if attackchargeup < 1:
+		if attackchargeup < 1 and not global.playerdead:
 			$attackplayer.speed_scale = randf_range(0.8,1.2)
 			$attackplayer.play("diddle")
 			attackchargeup = randi_range(180,280)

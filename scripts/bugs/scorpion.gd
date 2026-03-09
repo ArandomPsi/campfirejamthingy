@@ -25,7 +25,7 @@ func _physics_process(delta):
 		velocity += speed * delta * transform.x * 10
 		
 		
-		if attackchargeup < 1:
+		if attackchargeup < 1 and not global.playerdead:
 			$attackplayer.play("goon")
 			attackchargeup = randi_range(90,150)
 		
