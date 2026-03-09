@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://p4rsmsmiqgtq"]
+[gd_scene load_steps=36 format=3 uid="uid://p4rsmsmiqgtq"]
 
 [ext_resource type="Script" uid="uid://b6bvwfafkohmv" path="res://scripts/world.gd" id="1_gchwr"]
 [ext_resource type="Texture2D" uid="uid://cr7op0rlj2b6g" path="res://assets/themap.png" id="1_v5oeh"]
@@ -9,8 +9,6 @@
 [ext_resource type="Texture2D" uid="uid://bs1vfkdliq6an" path="res://assets/computer chip_chest (1).svg" id="6_hbqqa"]
 [ext_resource type="Texture2D" uid="uid://dwy3k0loy8dj3" path="res://assets/matrix.png" id="6_s4dqw"]
 [ext_resource type="FontFile" uid="uid://c80u6qswig48x" path="res://assets/TrenchThin-16R0.otf" id="7_syahy"]
-[ext_resource type="PackedScene" uid="uid://bhnf0yjyb80v3" path="res://scenes/bugs/spooder.tscn" id="10_6m7oc"]
-[ext_resource type="PackedScene" uid="uid://dpyqt80klbwew" path="res://scenes/bugs/millipede.tscn" id="11_wj07n"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a5xd7"]
 blend_mode = 1
@@ -343,12 +341,6 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="buffer"]
 position = Vector2(73, 61)
 shape = SubResource("CircleShape2D_iufsh")
-
-[node name="scorpion" parent="." instance=ExtResource("10_6m7oc")]
-position = Vector2(391, 391)
-
-[node name="millipede" parent="." instance=ExtResource("11_wj07n")]
-position = Vector2(242, 270)
 
 [connection signal="body_entered" from="upgradeportal/portalchecker" to="." method="upgradething"]
 [connection signal="body_entered" from="upgradeportal/portalchecker" to="upgradeportal" method="_on_portalchecker_body_entered"]
