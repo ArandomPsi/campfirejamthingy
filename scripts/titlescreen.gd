@@ -12,9 +12,11 @@ var pressed : bool = false
 var totalroomthingy : int = 10
 
 func _ready():
-	currentweaponthingy = 0
+	currentweaponthingy = global.playerweapon
 	global.trueroom = 0
 	global.room = 0
+	global.lifesteal = false
+	global.ability = false
 	$Camera2D.zoom = Vector2(20,20)
 	var timer = get_tree().create_timer(3)
 	await timer.timeout

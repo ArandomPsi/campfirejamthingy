@@ -3,7 +3,7 @@ extends CharacterBody2D
 var speed : int = 150
 var attackchargeup : int = 120
 var shaking : int = 0
-var hp : int = 54 + global.room * 2
+var hp : int = 54 + global.trueroom * randi_range(5,10)
 var spawnedin : bool = false
 
 var t : float = 0
@@ -84,7 +84,7 @@ func chaindash():
 		var timer = get_tree().create_timer(1/120)
 		await timer.timeout
 	
-	velocity = transform.x * (1500 + (global.room * 25))
+	velocity = transform.x * (1500 + (global.trueroom * 25))
 
 func burn(amount):
 	for i in range(5):

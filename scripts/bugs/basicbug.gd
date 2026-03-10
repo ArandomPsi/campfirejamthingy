@@ -1,11 +1,10 @@
 extends CharacterBody2D
 
-var speed : int = 270 + global.room * 2
+var speed : int = 270 + global.trueroom * randi_range(5,10)
 var attackchargeup : int = 120
 var shaking : int = 0
-var hp : int = 25 + global.room * 2
+var hp : int = 25 + global.trueroom * randi_range(2,5)
 var spawnedin : bool = false
-var coins_dropped : int = randi_range(3,5)
 
 func _ready():
 	var tween = create_tween()

@@ -1,5 +1,15 @@
 extends Button
-var upgrades : Array = ["+attack","+defense","+firerate","+speed","+amount","+iframes"]
+var upgrades : Array = [
+"+attack",
+"+defense",
+"+firerate",
+"+speed",
+"+amount",
+"+iframes",
+"lifesteal",
+"special ability"
+]
+var ability_names : Array = ["Peas in a Pod", "Firecracker", "Buttered Up", "Bannana Curves", "Ripsaw Man", "Feel the Burn"]
 var upgrade : int = 0
 
 func _ready():
@@ -7,7 +17,12 @@ func _ready():
 
 func chooseupgrade():
 	scale = Vector2.ZERO
-	upgrade = randi_range(0,upgrades.size() - 1)
+	if randf() < 0.05:
+		upgrade = randi_range(6, 7)
+		if upgrade == 7:
+			upgrades[7] = ability_names[global.playerweapon]
+	else:
+		upgrade = randi_range(0,5)
 	text = upgrades[upgrade]
 	var tween = create_tween()
 	tween.tween_property(self,"scale",Vector2(1,0.1),0.3).set_trans(Tween.TRANS_CUBIC)

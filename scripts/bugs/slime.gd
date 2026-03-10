@@ -12,4 +12,4 @@ func _process(delta):
 
 
 func _on_area_2d_body_entered(body):
-	body.damage(1 + int(global.room * 0.33))
+	body.damage(1 + int(global.trueroom * 0.2))

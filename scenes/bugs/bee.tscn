@@ -140,7 +140,7 @@ shape = SubResource("RectangleShape2D_ra0ba")
 
 [node name="attackplayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_gv75p")
+&"": SubResource("AnimationLibrary_gv75p")
 }
 
 [node name="Area2D" type="Area2D" parent="."]

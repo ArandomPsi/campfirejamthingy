@@ -7,6 +7,7 @@ extends Node2D
 var back : bool = false
 @export var flame : bool = false
 
+signal target_hit(dmg)
 
 func _ready():
 	if not flame:
@@ -38,6 +39,8 @@ func _process(delta):
 func _on_area_2d_body_entered(body):
 	if body.has_method("damage"):
 		body.damage(damage)
+		target_hit.emit(damage)
+			
 	spawnhit()
 	queue_free()
 

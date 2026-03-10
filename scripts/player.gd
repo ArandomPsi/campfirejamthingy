@@ -7,6 +7,7 @@ var shotcooldown : float = 0
 
 var shottype : int = 5
 var shotcooldowns : Array = [15,50,5,50,0,5]
+var shotamounts : Array = [4, 9.6, 12, 1.2, 0.2, 12]
 var stats : Array[float] = [1,1,1,1,1,1,1]
 var specialshotcharge : float = 0
 var prev_def_stat : float = 1
@@ -16,6 +17,7 @@ var prev_inv_stat : float = 1
 var base_hp : float = 5
 var hp : float = base_hp
 var maxhp : float = base_hp
+var lifesteal_buffer : float = 0
 
 var iframes : int = 60
 var maxiframes : int = 50
@@ -50,7 +52,7 @@ func _physics_process(delta):
 		movedir = Vector2.ZERO
 	updateposition(delta)
 	$sprite.rotation_degrees += 300 * delta
-	hp = clampi(hp,0,maxhp)
+	hp = clampf(hp,0,maxhp)
 	t += delta
 	$crosshair.global_position = get_global_mouse_position()
 	
@@ -66,6 +68,7 @@ func _physics_process(delta):
 
 func statsstuff():
 	shotcooldown -= (1 + float(stats[2] / 3)) * (60/Engine.get_frames_per_second())
+	$arrow/flamethrower.speed_scale = max(1, stats[2] / 1.5)
 	if stats[1] > prev_def_stat:
 		maxhp = base_hp + stats[1]
 		prev_def_stat = stats[1]
@@ -151,8 +154,12 @@ func updateposition(delta):
 	
 	
 
+func _on_hit(dmg):
+	if global.lifesteal:
+		if randf() <= 0.1 / (shotamounts[global.playerweapon] / 5):
+			hp = min(hp + (dmg / (dmg * 1.7)), maxhp)
+
 func shoot():
-	
 	match shottype:
 		0:
 			for i in range(int(1 * stats[4])):
@@ -162,6 +169,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
 				b.damage = 3 + stats[0] * 2
+				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
 			shot_num += 1
 		1:
@@ -174,6 +182,7 @@ func shoot():
 				b.damage = 5 + stats[0] * 2
 				b.accuracy = 20
 				b.speed *= randf_range(0.9,0.6) * 2
+				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
 		2:
 			for i in range(int(1 + (stats[4] * 0.285714286))):
@@ -184,6 +193,7 @@ func shoot():
 				b.accuracy = 10
 				b.damage = 2 + stats[0] * 2
 				b.look_at(get_global_mouse_position())
+				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
 		3:
 			for i in range(1 + int(1 * stats[4])):
@@ -195,6 +205,7 @@ func shoot():
 				b.accuracy = 15
 				b.damage = 15 + stats[0] * 2
 				b.look_at(get_global_mouse_position())
+				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
 		4:
 			for i in range(int(1 * (stats[4] * 2))):
@@ -205,6 +216,7 @@ func shoot():
 				b.rotation_degrees += randi_range(-5,5)
 				b.damage = specialshotcharge + stats[0] * 4
 				b.look_at(get_global_mouse_position())
+				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
 				print(str(b.damage))
 		5:
@@ -213,13 +225,14 @@ func shoot():
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.flame = true
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
-				b.maxdistance = 30
+				b.maxdistance = 20
 				b.speed *= 1.5
 				b.accuracy = 1
 				b.damage = 2 + stats[0] * 0.5
 				b.get_child(0).visible = false
 				b.get_child(1).scale *= 3
 				b.look_at(get_global_mouse_position())
+				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
 				
 				

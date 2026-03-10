@@ -11,6 +11,8 @@ var playerdead : bool = false
 var totalrooms : int = 0
 var autosave_time : float = 5.0
 var save_timer : float = autosave_time
+var lifesteal : bool = true
+var ability : bool = false
 
 func _ready():
 	safeload()

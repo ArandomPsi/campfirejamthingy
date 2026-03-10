@@ -1,9 +1,9 @@
 extends CharacterBody2D
 
-var speed : int = 100 + global.room * 2
+var speed : int = 100 + global.trueroom * randi_range(4,8)
 var attackchargeup : int = 120
 var shaking : int = 0
-var hp : int = 72
+var hp : int = 72 + global.trueroom * randi_range(2,4)
 var spawnedin : bool = false
 
 
