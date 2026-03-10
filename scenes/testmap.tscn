@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://p4rsmsmiqgtq"]
+[gd_scene load_steps=38 format=3 uid="uid://p4rsmsmiqgtq"]
 
 [ext_resource type="Script" uid="uid://b6bvwfafkohmv" path="res://scripts/world.gd" id="1_gchwr"]
 [ext_resource type="Texture2D" uid="uid://cr7op0rlj2b6g" path="res://assets/themap.png" id="1_v5oeh"]
@@ -82,7 +82,7 @@ particles_anim_loop = false
 offsets = PackedFloat32Array(0, 0.2119, 0.601253, 1)
 colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_7hcq6"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mxay4"]
 gradient = SubResource("Gradient_7bosu")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a3cv4"]
@@ -97,8 +97,15 @@ initial_velocity_max = 10.0
 gravity = Vector3(2.08165e-12, 2.08165e-12, 2.08165e-12)
 scale_min = 3.0
 scale_max = 3.0
-color_ramp = SubResource("GradientTexture1D_7hcq6")
+color_ramp = SubResource("GradientTexture1D_mxay4")
 anim_offset_max = 1.0
+
+[sub_resource type="Gradient" id="Gradient_6m7oc"]
+offsets = PackedFloat32Array(0, 0.2119, 0.601253, 1)
+colors = PackedColorArray(1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7hcq6"]
+gradient = SubResource("Gradient_6m7oc")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ri6w5"]
 particle_flag_disable_z = true

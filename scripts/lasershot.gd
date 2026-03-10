@@ -2,6 +2,8 @@ extends Node2D
 
 @export var damage : int = 20
 
+signal target_hit(dmg)
+
 
 func _ready():
 	var b = preload("res://scenes/sounds/shoot.tscn").instantiate()
@@ -23,9 +25,17 @@ func _on_area_2d_body_entered(body):
 		var b = preload("res://scenes/vfx/hitparticle.tscn").instantiate()
 		get_tree().root.add_child(b)
 		b.position = body.position
+		createdamagenumber(damage,body)
 	
 
 func spawnstart():
 	var b = preload("res://scenes/vfx/hitparticle.tscn").instantiate()
 	get_tree().root.add_child(b)
 	b.position = position
+
+
+func createdamagenumber(amount,body : Node2D):
+	var b = preload("res://scenes/vfx/damagelabel.tscn").instantiate()
+	b.position = body.global_position
+	b.damage = amount
+	get_tree().root.add_child(b)

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://b1267ce3y7hwf"]
+
+[ext_resource type="Script" uid="uid://f2ulxcy5ys44" path="res://scripts/vfx/damagelabel.gd" id="1_2163l"]
+[ext_resource type="FontFile" uid="uid://boml265nvfxv0" path="res://assets/SourceCodePro-4alW.ttf" id="2_kye2s"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_u7m3g"]
+light_mode = 1
+
+[node name="damagelabel" type="Node2D"]
+z_index = 50
+script = ExtResource("1_2163l")
+
+[node name="bypass" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="bypass"]
+material = SubResource("CanvasItemMaterial_u7m3g")
+offset_left = -38.0
+offset_top = -26.0
+offset_right = 40.0
+offset_bottom = 27.0
+theme_override_colors/font_color = Color(1, 0.478431, 0.678431, 1)
+theme_override_fonts/font = ExtResource("2_kye2s")
+theme_override_font_sizes/font_size = 30
+text = "67"
+horizontal_alignment = 1
+vertical_alignment = 1

@@ -179,7 +179,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
 				b.maxdistance = randi_range(30,40)
-				b.damage = 5 + stats[0] * 2
+				b.damage = 1 + stats[0] * 2
 				b.accuracy = 20
 				b.speed *= randf_range(0.9,0.6) * 2
 				b.target_hit.connect(_on_hit)
@@ -191,7 +191,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.maxdistance = 80
 				b.accuracy = 10
-				b.damage = 2 + stats[0] * 2
+				b.damage = 1 + stats[0] * 2
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
@@ -203,7 +203,7 @@ func shoot():
 				b.speed = 1800
 				b.dagger = true
 				b.accuracy = 15
-				b.damage = 15 + stats[0] * 2
+				b.damage = 10 + stats[0] * 2
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
@@ -225,7 +225,7 @@ func shoot():
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.flame = true
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
-				b.maxdistance = 20
+				b.maxdistance = 40
 				b.speed *= 1.5
 				b.accuracy = 1
 				b.damage = 2 + stats[0] * 0.5
