@@ -38,7 +38,10 @@ func _process(delta):
 
 func _on_area_2d_body_entered(body):
 	if body.has_method("damage"):
-		body.damage(damage)
+		if flame and body.has_method("burn") and global.ability:
+			body.burn(damage)
+		else:
+			body.damage(damage)
 		target_hit.emit(damage)
 		if not body.has_method("shoot"):
 			createdamagenumber(damage,body)

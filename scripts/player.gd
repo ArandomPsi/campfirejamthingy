@@ -6,9 +6,10 @@ var movedir : Vector2
 var shotcooldown : float = 0
 
 var shottype : int = 5
-var shotcooldowns : Array = [15,50,5,50,0,5]
-var shotamounts : Array = [4, 9.6, 12, 1.2, 0.2, 12]
-var stats : Array[float] = [1,1,1,1,1,1,1]
+var shotcooldowns : Array = [15,50,5,50,0,10]
+var shotamounts : Array = [4, 9.6, 12, 1.2, 0.2, 18]
+var lschance : float = 0.1
+var stats : Array[float] = [1,1,1,1,1,1,1,1]
 var specialshotcharge : float = 0
 var prev_def_stat : float = 1
 var prev_inv_stat : float = 1
@@ -17,7 +18,6 @@ var prev_inv_stat : float = 1
 var base_hp : float = 5
 var hp : float = base_hp
 var maxhp : float = base_hp
-var lifesteal_buffer : float = 0
 
 var iframes : int = 60
 var maxiframes : int = 50
@@ -27,13 +27,15 @@ var shot_num : int = 0
 var shot_scale : int = 3
 var shot_req : int = 15
 var saw_dmg : int = 1
-var saw_spd : float = 0.5
+var saw_spd : float = 1.0
 var saw_timer : float = 0.0
 var cur_targs : Array = [] 
 
 var t : float
 
 var roomalpha : float = 0
+
+var lores : Array = ["Gotta get these bugs out of the system", "At least I can upgrade my antivirus", "I just wanna use my CRT"]
 
 func _ready():
 	global.trueroom = 0
@@ -72,8 +74,11 @@ func statsstuff():
 	if stats[1] > prev_def_stat:
 		maxhp = base_hp + stats[1]
 		prev_def_stat = stats[1]
-
 	
+	if stats[6] > 1:
+		global.lifesteal = true
+	
+	lschance = stats[6] / 10
 	maxiframes = 50 + stats[5] * 20
 	
 
@@ -87,12 +92,12 @@ func controls(delta):
 	match shottype:
 		4:
 			if Input.is_action_pressed("shoot") and iframes < 1:
-				specialshotcharge += 1 + (specialshotcharge * delta * 0.01 * stats[2])
+				specialshotcharge += 0.1 + (specialshotcharge * delta * 1.25 * stats[2])
 				$arrow/charge.emitting = true
-				if stats[6] > 1:
-					$arrow/deltashot.modulate.a = specialshotcharge / 20
-					$arrow/deltashot.rotation_degrees += specialshotcharge / 1.5
-					saw_spd -= specialshotcharge / 20
+				if stats[7] > 1:
+					$arrow/deltashot.modulate.a = min(specialshotcharge / 20, 1)
+					$arrow/deltashot.rotation_degrees += min(specialshotcharge, 359) / 1.5
+					saw_spd -= 0.01
 					saw_spd = clamp(saw_spd, 0.01, 0.5)
 					$arrow/deltashot/hitbox/dscoll.disabled = false
 			if Input.is_action_just_released("shoot"):
@@ -156,7 +161,7 @@ func updateposition(delta):
 
 func _on_hit(dmg):
 	if global.lifesteal:
-		if randf() <= 0.1 / (shotamounts[global.playerweapon] / 5):
+		if randf() <= lschance / (shotamounts[global.playerweapon] / 5):
 			hp = min(hp + (dmg / (dmg * 1.7)), maxhp)
 
 func shoot():
@@ -179,7 +184,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
 				b.maxdistance = randi_range(30,40)
-				b.damage = 1 + stats[0] * 2
+				b.damage = 1 + int(stats[0] - 1)
 				b.accuracy = 20
 				b.speed *= randf_range(0.9,0.6) * 2
 				b.target_hit.connect(_on_hit)
@@ -191,7 +196,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.maxdistance = 80
 				b.accuracy = 10
-				b.damage = 1 + stats[0] * 2
+				b.damage = 1 + int(stats[0] - 1)
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
@@ -208,13 +213,13 @@ func shoot():
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
 		4:
-			for i in range(int(1 * (stats[4] * 2))):
+			for i in range(int(1 * (stats[4]))):
 				global.shake += specialshotcharge
 				global.shake = clamp(global.shake, 0, 35)
 				var b = preload("res://scenes/bullets/lasershot.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.rotation_degrees += randi_range(-5,5)
-				b.damage = specialshotcharge + stats[0] * 4
+				b.damage = min(specialshotcharge, 1000) + stats[0] * 4
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
@@ -225,7 +230,7 @@ func shoot():
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.flame = true
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
-				b.maxdistance = 40
+				b.maxdistance = 20
 				b.speed *= 1.5
 				b.accuracy = 1
 				b.damage = 2 + stats[0] * 0.5
@@ -279,6 +284,10 @@ func finished():
 	transitionin()
 
 func showupgrades():
+	if randf() <= 0.25:
+		$hud/table/ColorRect/Label2.text = lores[randi_range(0, lores.size() - 1)]
+	else:
+		$hud/table/ColorRect/Label2.text = ""
 	$hud/hudtransition.visible = true
 	transitionout()
 	

@@ -432,14 +432,9 @@ offset_bottom = 394.0
 rotation = 0.137881
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_c645l")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 50
 theme_override_styles/normal = SubResource("StyleBoxFlat_1cxgb")
-text = "Tips:
- - Get 2 to 5 Amount upgrades
- for an extra bullet
- - Iframes is when you become
- invincible for a little bit after getting hit
- "
+autowrap_mode = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="hud/table"]
 material = SubResource("ShaderMaterial_nlrtj")
@@ -598,17 +593,17 @@ mix_target = 1
 [connection signal="body_entered" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
