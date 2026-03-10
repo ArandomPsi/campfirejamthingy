@@ -77,6 +77,8 @@ func statsstuff():
 	
 	if stats[6] > 1:
 		global.lifesteal = true
+	if stats[7] > 1:
+		global.ability = true
 	
 	lschance = stats[6] / 10
 	maxiframes = 50 + stats[5] * 20
