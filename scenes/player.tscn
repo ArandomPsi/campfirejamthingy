@@ -411,17 +411,31 @@ color = Color(0.466667, 0.466667, 0.466667, 1)
 layout_mode = 0
 offset_left = 85.0
 offset_top = 122.0
-offset_right = 287.0
-offset_bottom = 285.0
+offset_right = 305.0
+offset_bottom = 332.0
 rotation = -0.203679
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_c645l")
-theme_override_font_sizes/font_size = 30
+theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxFlat_1cxgb")
 text = "Objectives:
 -Fix the console
 -Upgrade the antivirus
 -Get rid of the virus"
+
+[node name="Label3" type="Label" parent="hud/table/ColorRect"]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 76.0
+offset_right = 1050.0
+offset_bottom = 286.0
+rotation = -0.203679
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_c645l")
+theme_override_font_sizes/font_size = 51
+theme_override_styles/normal = SubResource("StyleBoxFlat_1cxgb")
+text = "-Hover over upgrades to see data"
+autowrap_mode = 3
 
 [node name="Label2" type="Label" parent="hud/table/ColorRect"]
 layout_mode = 0
