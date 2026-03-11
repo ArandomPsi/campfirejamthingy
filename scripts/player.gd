@@ -13,7 +13,7 @@ var stats : Array[float] = [1,1,1,1,1,1,1,1]
 var specialshotcharge : float = 0
 var prev_def_stat : float = 1
 var prev_inv_stat : float = 1
-#attack, defense, firerate, speed, amount of bullets, iframes
+#attack, defense, firerate, speed, amount of bullets, iframes, lifesteal, ability
 
 var base_hp : float = 5
 var hp : float = base_hp
@@ -37,7 +37,10 @@ var roomalpha : float = 0
 
 var lores : Array = ["Gotta get these bugs out of the system", "At least I can upgrade my antivirus", "I just wanna use my CRT"]
 
+signal upgrade_selected
+
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	global.trueroom = 0
 	shottype = global.playerweapon
 	$hud/hudtransition.visible = true
@@ -110,7 +113,7 @@ func controls(delta):
 				$arrow/deltashot.modulate.a = 0
 				$arrow/deltashot/hitbox/dscoll.disabled = true
 		_:
-			if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < (maxiframes / 4):
+			if Input.is_action_pressed("shoot") and shotcooldown < 1 and iframes < int(maxiframes / 3):
 				shoot()
 				shotcooldown = shotcooldowns[shottype]
 				if shottype == 5:
@@ -286,6 +289,7 @@ func finished():
 	transitionin()
 
 func showupgrades():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if randf() <= 0.25:
 		$hud/table/ColorRect/Label2.text = lores[randi_range(0, lores.size() - 1)]
 	else:
@@ -314,7 +318,7 @@ func transitionin():
 	var tween = create_tween()
 	tween.tween_method(circtrans,1.0,0.0,0.5).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
-	
+	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 
 func transitionout():
 	$hud/hudtransition.visible = true

@@ -50,6 +50,7 @@ func spawnshot():
 					b.scale *= 0.75
 					b.position = targetthingies[nextguy] + b.transform.x * (75 * i)
 					b.rotation = 0
+					b.dmg = 1
 				var timer = get_tree().create_timer(0.05)
 				await timer.timeout
 	

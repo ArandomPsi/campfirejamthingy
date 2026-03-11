@@ -6,6 +6,8 @@ var shaking : int = 0
 var hp : int = 25 + global.trueroom * randi_range(2,5)
 var spawnedin : bool = false
 
+signal killed 
+
 func _ready():
 	var tween = create_tween()
 	
@@ -54,6 +56,7 @@ func damage(amount):
 		b.modulate = $sprite.modulate
 		b.position = position
 		b.scale *= 2
+		killed.emit()
 		queue_free()
 
 func burn(amount):

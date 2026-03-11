@@ -92,13 +92,15 @@ func _on_area_2d_body_entered(body):
 			var enhancementchance : int = 25 - global.trueroom
 			enhancementchance = clamp(enhancementchance,0,25)
 			
-			if randi_range(0,5) == 0:
+			if randi_range(0,9) == 0:
 				var e = preload("res://scenes/bugs/enemyenhancements.tscn").instantiate()
 				b.add_child(e)
 			
 			
 			
 		
+	
+	$player.iframes = $player.maxiframes
 	
 	global.save(true)
 	global.trueroom += 1

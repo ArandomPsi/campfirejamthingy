@@ -45,12 +45,12 @@ fill_from = Vector2(0.5, 0)
 fill_to = Vector2(0.5, 1)
 metadata/_snap_enabled = true
 
-[sub_resource type="Gradient" id="Gradient_p3l32"]
+[sub_resource type="Gradient" id="Gradient_hcbn3"]
 offsets = PackedFloat32Array(0, 0.998099)
 colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_yluxj"]
-gradient = SubResource("Gradient_p3l32")
+gradient = SubResource("Gradient_hcbn3")
 width = 128
 height = 128
 fill = 1

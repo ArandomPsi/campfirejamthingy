@@ -1,17 +1,20 @@
 extends Control
 var t : float
-var currentweaponthingy : int = 0
-var currentweaponthingytext : Array = [">Peashooter OS \n --the basic all rounder os",
-">Noob OS \n --Low Range, High Damage; 'Caesoh' -The average gen alpha kid",
-">Rayul OS \n --I NEED MOOER BOULETSS!!! HASTA LA VISTA BABY! Now DATS a biga weapon! BRRRRRRRRRRRRRRRRRRR",
-">Bannana Man OS \n --Gifted by the bannana man",
-">Ripper OS \n --3,2,1 let it rip! hold for damage",
-">Arsonist OS \n --I watched the world burn"]
+var currentweaponthingy : int = -1
+var currentweaponthingytext : Array = [
+">Installation Program \n --Press power button to install antivirus",
+">Peashooter OS \n --the basic all rounder os",
+">Noob OS \n --Low Range, High Damage; Shotgun",
+">Rayul OS \n --I NEED MOOER BOULETSS!!! Machine",
+">Bannana Man OS \n --Gifted by the bannana man; Daggers",
+">Ripper OS \n --3,2,1 let it rip! hold for damage; Laser",
+">Arsonist OS \n --I watched the world burn; Flamethrower"]
 
 var pressed : bool = false
 var totalroomthingy : int = 10
 
 func _ready():
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	currentweaponthingy = global.playerweapon
 	global.trueroom = 0
 	global.room = 0
@@ -64,7 +67,7 @@ func _process(delta):
 func _on_button_pressed():
 	global.playerweapon = currentweaponthingy
 	global.save(false)
-	if global.totalrooms >= currentweaponthingy * totalroomthingy:
+	if global.totalrooms >= currentweaponthingy * totalroomthingy and global.tutorialed:
 		pressed = true
 		var tween = create_tween()
 		tween.tween_property($Camera2D,"position",Vector2(826,257),0.5).set_trans(Tween.TRANS_CUBIC)

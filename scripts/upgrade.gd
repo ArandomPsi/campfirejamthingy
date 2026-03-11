@@ -37,5 +37,7 @@ func finished():
 
 
 func _on_pressed():
-	get_parent().get_parent().get_parent().stats[upgrade] += 0.5
+	var p = get_parent().get_parent().get_parent()
+	p.stats[upgrade] += 0.5
+	p.upgrade_selected.emit()
 	finished()

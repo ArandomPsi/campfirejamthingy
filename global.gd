@@ -13,6 +13,7 @@ var autosave_time : float = 5.0
 var save_timer : float = autosave_time
 var lifesteal : bool = false
 var ability : bool = false
+var tutorialed : bool = false
 
 func _ready():
 	safeload()
@@ -35,6 +36,7 @@ func save(msg : bool):
 		"playerweapon": playerweapon,
 		"bestroom": bestroom,
 		"totalrooms": totalrooms,
+		"tutorialed": tutorialed,
 	})
 
 func save_msg():
@@ -51,3 +53,5 @@ func safeload():
 		bestroom = data.get("bestroom", 0)
 	if data.has("totalrooms"):
 		totalrooms = data.get("totalrooms", 0)
+	if data.has("tutorialed"):
+		tutorialed = data.get("tutorialed", true)

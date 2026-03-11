@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var dmg : int = 2
 #keep aoe scale at 0
 
 #log can you balance TS
@@ -16,4 +16,4 @@ func _ready():
 
 
 func _on_area_2d_body_entered(body):
-	body.damage(2)
+	body.damage(dmg)
