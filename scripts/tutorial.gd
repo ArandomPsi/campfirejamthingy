@@ -27,14 +27,13 @@ var texts : Array[String] = [
 	"Some enemies don't damage on contact, but instead shoot.",
 	"Shoot the enemy until it's defeated",
 	"Below is a warning symbol: ",
-	"It doesn't do damage but an explosion appears shortly after.",
-	"There is a rare chance for enemies to have enhancements, which give them extra abilities.",
+	"It doesn't do damage but an explosion appears shortly after. \n [Click to Continue]",
+	"There is a rare chance for enemies to have enhancements, which give them extra abilities. \n [Click to Continue]",
 	"Defeat this enhanced enemy",
-	"This is an upgrade chip. Go on it, then select an upgrade.",
-	"There are very rare special upgrades you can obtain too.",
-	"Here is a collection of all enemies and upgrades: ",
-	"Enemies: \n Beetle - Melee, Basic \n Puker - Ranged, Spread \n Bee - Melee, Dash \n Centipede - Ranged, Assault \n Scorpion - Ranged, Linear \n Spider - Ranged, Spiral \n [Click to Continue]",
-	"Upgrades: Attack(damage), Defense(health), Firerate(shooting speed), Amount(of shots), Speed(Movement), Iframes(time of invinciblity upon getting damaged), Lifesteal(Rare), Ability(Rare with Unique Name), Explode(Rare) \n [Click to Continue]",
+	"This is an upgrade chip. Go on it, then select an upgrade. (Make sure to look at the sticky notes!)",
+	"There are very rare special upgrades you can obtain too. \n [Click to Continue]",
+	"Here is a collection of all enemies: ",
+	"Enemies: \n Beetle - Melee, Basic \n Puker - Ranged, Spread \n Bee - Melee, Dash \n Centipede - Ranged, Assault \n Scorpion - Ranged, Linear \n Spider - Ranged, Spiral \n Firewall - Boss \n [Click to Continue]",
 	"Above and below are portals. Go on them to enter a new room. Different portals have different rooms.",
 	"Here's a practice room. Good Luck!",
 	""
@@ -63,13 +62,13 @@ func _ready():
 	await fade_tween(0, I.M)
 	await fade_tween(0, I.L)
 	await fade_tween(2.0, I.N)
-	await fade_tween(1.5, I.N)
+	await fade_tween(2.0, I.N)
 	await fade_tween(0, I.N)
 	var b = bugs[0].instantiate()
 	b.global_position = $TutorialText.global_position + Vector2(100, 0)
 	add_child(b)
 	await b.killed
-	await fade_tween(2.0, I.N)
+	await fade_tween(2.25, I.N)
 	await fade_tween(0, I.N)
 	var c = bugs[1].instantiate()
 	c.global_position = $TutorialText.global_position + Vector2(100, 0)
@@ -77,9 +76,9 @@ func _ready():
 	await c.killed
 	$"GUI/Warning Symbol".visible = true
 	await fade_tween(1.5, I.N)
-	await fade_tween(2.5, I.N)
+	await fade_tween(0.0, I.L)
 	$"GUI/Warning Symbol".visible = false
-	await fade_tween(2.5, I.N)
+	await fade_tween(0.0, I.L)
 	await fade_tween(0.0, I.N)
 	var d = bugs[0].instantiate()
 	d.global_position = $TutorialText.global_position + Vector2(100, 0)
@@ -91,9 +90,8 @@ func _ready():
 	$upgradeportal.appear()
 	await p.upgrade_selected
 	await get_tree().create_timer(0.5).timeout
-	await fade_tween(2.0, I.N)
-	await fade_tween(1.5, I.N)
 	await fade_tween(0.0, I.L)
+	await fade_tween(1.5, I.N)
 	await fade_tween(0.0, I.L)
 	await fade_tween(0.0, I.N)
 	$buffer.queue_free()
@@ -101,7 +99,6 @@ func _ready():
 	$upgradeportal.visible = false
 	await pp
 	await fade_tween(1.5, I.N)
-	
 	$portal1.modulate = Color(1,1,1,0)
 
 func buttonable(b : bool):
@@ -150,6 +147,7 @@ func openportal():
 func _on_area_2d_body_entered(body):
 	portalsentered += 1
 	if portalsentered == 2:
+		global.tutorialed = true
 		get_tree().change_scene_to_packed(preload("res://scenes/titlescreen.tscn"))
 		return
 	pp.emit()

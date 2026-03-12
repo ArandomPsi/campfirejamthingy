@@ -7,7 +7,7 @@ var shotcooldown : float = 0
 
 var shottype : int = 5
 var shotcooldowns : Array = [15,50,5,50,0,10]
-var shotamounts : Array = [4, 9.6, 12, 1.2, 0.2, 18]
+var shotamounts : Array = [12, 20, 18, 1.2, 0.2, 18]
 var lschance : float = 0.1
 var stats : Array[float] = [1,1,1,1,1,1,1,1]
 var specialshotcharge : float = 0
@@ -175,10 +175,9 @@ func shoot():
 			for i in range(int(1 * stats[4])):
 				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
-				b.damage = 3 + stats[0] * 2
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
-				b.damage = 3 + stats[0] * 2
+				b.damage = 2 + stats[0] * 2
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
 			shot_num += 1
@@ -189,7 +188,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
 				b.maxdistance = randi_range(30,40)
-				b.damage = 1 + int(stats[0] - 1)
+				b.damage = 2 + int(stats[0] - 1)
 				b.accuracy = 20
 				b.speed *= randf_range(0.9,0.6) * 2
 				b.target_hit.connect(_on_hit)
@@ -201,7 +200,7 @@ func shoot():
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.maxdistance = 80
 				b.accuracy = 10
-				b.damage = 1 + int(stats[0] - 1)
+				b.damage = 3 + int(stats[0] - 1)
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
@@ -238,7 +237,7 @@ func shoot():
 				b.maxdistance = 20
 				b.speed *= 1.5
 				b.accuracy = 1
-				b.damage = 2 + stats[0] * 0.5
+				b.damage = 4 + stats[0] * 0.5
 				b.get_child(0).visible = false
 				b.get_child(1).scale *= 3
 				b.look_at(get_global_mouse_position())

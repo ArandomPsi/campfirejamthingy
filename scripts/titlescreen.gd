@@ -1,6 +1,6 @@
 extends Control
 var t : float
-var currentweaponthingy : int = -1
+var currentweaponthingy : int = 0
 var currentweaponthingytext : Array = [
 ">Installation Program \n --Press power button to install antivirus",
 ">Peashooter OS \n --the basic all rounder os",
@@ -65,9 +65,19 @@ func _process(delta):
 		$Ps5/down/PointLight2D3.energy = 2.65
 
 func _on_button_pressed():
-	global.playerweapon = currentweaponthingy
+	if not currentweaponthingy == 0:
+		global.playerweapon = currentweaponthingy - 1
+	elif not global.tutorialed:
+		global.playerweapon = 0
 	global.save(false)
-	if global.totalrooms >= currentweaponthingy * totalroomthingy and global.tutorialed:
+	if currentweaponthingy == 0:
+		pressed = true
+		var tween = create_tween()
+		tween.tween_property($Camera2D,"position",Vector2(826,257),0.5).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_property($Camera2D,"zoom",Vector2(15,15),0.8).set_trans(Tween.TRANS_CUBIC)
+		await tween.finished
+		get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
+	elif global.totalrooms >= (currentweaponthingy - 1) * totalroomthingy:
 		pressed = true
 		var tween = create_tween()
 		tween.tween_property($Camera2D,"position",Vector2(826,257),0.5).set_trans(Tween.TRANS_CUBIC)
@@ -93,10 +103,13 @@ func updateepsteinfiles():
 	await tween.finished
 	
 	var bestroomtxt : String = "\n>Highest Room: " + str(global.bestroom)
-	if global.totalrooms >= currentweaponthingy * totalroomthingy: #check the total rooms
+	if global.totalrooms >= (currentweaponthingy - 1) * totalroomthingy: #check the total rooms
 		$Panel/thefiles.text = currentweaponthingytext[currentweaponthingy] + bestroomtxt
 	else:
-		$Panel/thefiles.text = ">DATA CORRUPTED - EXTERMINATE " + str(currentweaponthingy * totalroomthingy) + " WAVES TO DECORRUPT" + bestroomtxt
+		if currentweaponthingy == 0 and not global.tutorialed:
+			$Panel/thefiles.text = ">ERROR \n --Antivirus Must be Installed!"
+		else:
+			$Panel/thefiles.text = ">DATA CORRUPTED - EXTERMINATE " + str((currentweaponthingy - 1) * totalroomthingy) + " WAVES TO DECORRUPT" + bestroomtxt
 	var tween2 = create_tween()
 	tween2.tween_property($Panel/thefiles,"visible_ratio",1.0,0.8)
 	
