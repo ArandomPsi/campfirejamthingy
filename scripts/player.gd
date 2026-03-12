@@ -61,6 +61,8 @@ func _physics_process(delta):
 	t += delta
 	$crosshair.global_position = get_global_mouse_position()
 	
+	specialshotcharge = clampf(specialshotcharge,0,1000)
+	
 	saw_timer -= delta
 	if iframes > 1:
 		saw_spd = 0.5

@@ -37,7 +37,7 @@ func spawnshot():
 				var b = preload("res://scenes/bugs/slime.tscn").instantiate()
 				get_tree().root.add_child(b)
 				b.position = targetthingies[nextguy]
-				b.speed *= randi_range(0.5,1.5)
+				b.speed *= randf_range(0.5,1.5)
 				b.look_at(global.playerpos)
 				b.rotation_degrees += randi_range(-30,30)
 		2:

@@ -17,7 +17,7 @@ var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://sc
 var texts : Array[String] = [
 	"--Antivirus Installation Complete--",
 	"You are controlling an antivirus beneath the surface to wipe out all of the bugs that breached your CRT Monitor",
-	"To switch Operating Systems(weapons), press the glowing red arrows on your console. \n [Must Satisfy OS Requirements]",
+	"To switch Operating Systems (WEAPONS), press the glowing red arrows on your console. \n [Must Satisfy OS Requirements]",
 	"To enter the antivirus program into your corrupted CRT monitor, press the power button with a selected OS.",
 	"This is the antivirus. \n Press the WASD keys to move it",
 	"Left Click/Hold to Shoot. \n Aim with the crosshair",
@@ -32,7 +32,7 @@ var texts : Array[String] = [
 	"Defeat this enhanced enemy",
 	"This is an upgrade chip. Go on it, then select an upgrade. (Make sure to look at the sticky notes!)",
 	"There are very rare special upgrades you can obtain too. \n [Click to Continue]",
-	"Here is a collection of all enemies: ",
+	"Here is a collection of all enemies without enhancements: ",
 	"Enemies: \n Beetle - Melee, Basic \n Puker - Ranged, Spread \n Bee - Melee, Dash \n Centipede - Ranged, Assault \n Scorpion - Ranged, Linear \n Spider - Ranged, Spiral \n Firewall - Boss \n [Click to Continue]",
 	"Above and below are portals. Go on them to enter a new room. Different portals have different rooms.",
 	"Here's a practice room. Good Luck!",
@@ -148,6 +148,9 @@ func _on_area_2d_body_entered(body):
 	portalsentered += 1
 	if portalsentered == 2:
 		global.tutorialed = true
+		$player.transitionout()
+		var timer = get_tree().create_timer(0.5)
+		await timer.timeout
 		get_tree().change_scene_to_packed(preload("res://scenes/titlescreen.tscn"))
 		return
 	pp.emit()
@@ -184,16 +187,28 @@ func fade_tween(wait : float, sig : I):
 	tween.parallel().tween_property($TutorialText, "visible_ratio", 0, 0.49)
 	await tween.finished
 	$TutorialText.text = texts[cur_text]
+	soundsthingy(len($TutorialText.text),0.65)
 	cur_text += 1
 	var tween2 = create_tween()
 	tween2.tween_property($TutorialText, "modulate:a", 1, 0.5)
-	tween2.parallel().tween_property($TutorialText, "visible_ratio", 1, 0.49)
+	tween2.parallel().tween_property($TutorialText, "visible_ratio", 1, 0.8)
+	
 	await tween2.finished
 	if wait > 0:
 		await get_tree().create_timer(wait).timeout
 	elif sig != I.N:
 		await match_signal(sig)
 			
+
+#sounds like in undertale :D
+func soundsthingy(amount : int, time : float):
+	for i in range(amount):
+		var b = preload("res://scenes/sounds/infothingy.tscn").instantiate()
+		add_child(b)
+		var timer = get_tree().create_timer(time/amount)
+		await timer.timeout
+		
+	
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("up"):

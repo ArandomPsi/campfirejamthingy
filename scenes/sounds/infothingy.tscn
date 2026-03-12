@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://by72dopvhoayd"]
+
+[ext_resource type="AudioStream" uid="uid://cpwllk3gsal4g" path="res://assets/info2.wav" id="1_nmhnn"]
+[ext_resource type="Script" uid="uid://btblvgc31cvhp" path="res://scripts/randomsounds.gd" id="2_nmhnn"]
+
+[node name="infothingy" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_nmhnn")
+bus = &"music"
+script = ExtResource("2_nmhnn")
+min = 0.9
+max = 1.1

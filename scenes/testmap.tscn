@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://p4rsmsmiqgtq"]
+[gd_scene load_steps=40 format=3 uid="uid://p4rsmsmiqgtq"]
 
 [ext_resource type="Script" uid="uid://b6bvwfafkohmv" path="res://scripts/world.gd" id="1_gchwr"]
 [ext_resource type="Texture2D" uid="uid://cr7op0rlj2b6g" path="res://assets/themap.png" id="1_v5oeh"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bs1vfkdliq6an" path="res://assets/computer chip_chest (1).svg" id="6_hbqqa"]
 [ext_resource type="Texture2D" uid="uid://dwy3k0loy8dj3" path="res://assets/matrix.png" id="6_s4dqw"]
 [ext_resource type="FontFile" uid="uid://c80u6qswig48x" path="res://assets/TrenchThin-16R0.otf" id="7_syahy"]
+[ext_resource type="Shader" uid="uid://b8ko0c3mnb2rp" path="res://shaders/noise.gdshader" id="10_6m7oc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a5xd7"]
 blend_mode = 1
@@ -188,6 +189,10 @@ size = Vector2(1399, 828)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_iufsh"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wj07n"]
+shader = ExtResource("10_6m7oc")
+shader_parameter/noise_intensity = 0.034
+
 [node name="world" type="Node2D"]
 script = ExtResource("1_gchwr")
 metadata/_edit_horizontal_guides_ = [18.0]
@@ -348,6 +353,17 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="buffer"]
 position = Vector2(73, 61)
 shape = SubResource("CircleShape2D_iufsh")
+
+[node name="noise" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_wj07n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1352.0
+offset_bottom = 813.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="body_entered" from="upgradeportal/portalchecker" to="." method="upgradething"]
 [connection signal="body_entered" from="upgradeportal/portalchecker" to="upgradeportal" method="_on_portalchecker_body_entered"]

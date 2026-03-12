@@ -11,7 +11,7 @@ var upgrades : Array = [
 "lifesteal",
 "special ability"
 ]
-var ability_names : Array = ["Peas in a Pod", "Target Locked", "Buttered Up", "Bannana Curves", "Ripsaw Man", "Feel the Burn"]
+var ability_names : Array = ["Peas in a Pod", "Target Locked", "Oiled Up", "Bannana Curves", "MAMA MIA", "Feel the Burn"]
 var ability_desc : Array = [
 	"Shoot 2 mega projectiles every now and then.",
 	"All projectiles go towards the nearest target at the time of shooting for the entire lifetime of the projectile.",

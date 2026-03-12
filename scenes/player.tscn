@@ -252,7 +252,6 @@ shader_parameter/_Smoothness = 0.05
 shader_parameter/_Background = Color(0, 0, 0, 1)
 
 [node name="player" type="CharacterBody2D"]
-position = Vector2(-1, 0)
 collision_layer = 2
 script = ExtResource("1_1b47p")
 
@@ -479,6 +478,7 @@ offset_top = -330.0
 offset_right = 674.0
 offset_bottom = -280.0
 pivot_offset = Vector2(138, 25)
+focus_mode = 0
 theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
@@ -497,6 +497,7 @@ offset_top = -248.0
 offset_right = 674.0
 offset_bottom = -198.0
 pivot_offset = Vector2(138, 25)
+focus_mode = 0
 theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
@@ -515,6 +516,7 @@ offset_top = -169.0
 offset_right = 674.0
 offset_bottom = -119.0
 pivot_offset = Vector2(138, 25)
+focus_mode = 0
 theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
@@ -580,6 +582,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="hudtransition" type="ColorRect" parent="hud"]
 visible = false
@@ -607,17 +610,17 @@ mix_target = 1
 [connection signal="body_entered" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]

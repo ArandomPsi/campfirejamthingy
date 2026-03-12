@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://1q7od5q5riwe"]
+[gd_scene load_steps=46 format=3 uid="uid://1q7od5q5riwe"]
 
 [ext_resource type="Texture2D" uid="uid://bs1vfkdliq6an" path="res://assets/computer chip_chest (1).svg" id="1_ckvwl"]
 [ext_resource type="Script" uid="uid://drwr2mn5kqjdh" path="res://scripts/tutorial.gd" id="1_nlqja"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dy7ktjuoebn6y" path="res://assets/changecdbutton.svg" id="10_0epgs"]
 [ext_resource type="Texture2D" uid="uid://diuir48milite" path="res://assets/poweronbase.svg" id="10_g2equ"]
 [ext_resource type="Texture2D" uid="uid://d36dhrn5qxcrp" path="res://assets/aoe-2.svg" id="11_g2equ"]
+[ext_resource type="Shader" uid="uid://b8ko0c3mnb2rp" path="res://shaders/noise.gdshader" id="12_tbcdj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a5xd7"]
 blend_mode = 1
@@ -216,6 +217,10 @@ fill_from = Vector2(0.5, 0.5)
 fill_to = Vector2(0.8, 0.2)
 metadata/_snap_enabled = true
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ej4tf"]
+shader = ExtResource("12_tbcdj")
+shader_parameter/noise_intensity = 0.034
+
 [node name="tutorial" type="Node2D"]
 script = ExtResource("1_nlqja")
 metadata/_edit_horizontal_guides_ = [18.0]
@@ -370,12 +375,11 @@ shape = SubResource("CircleShape2D_iufsh")
 offset_left = 88.0
 offset_top = 102.0
 offset_right = 1233.0
-offset_bottom = 330.0
+offset_bottom = 615.0
 theme_override_colors/font_color = Color(0, 0.662745, 1, 1)
 theme_override_fonts/font = ExtResource("8_wr8iv")
 theme_override_font_sizes/font_size = 50
 horizontal_alignment = 1
-vertical_alignment = 1
 autowrap_mode = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -433,6 +437,7 @@ texture_scale = 0.69
 
 [node name="Button" type="TextureButton" parent="GUI"]
 visible = false
+layout_mode = 0
 offset_left = 586.0
 offset_top = 451.0
 offset_right = 606.0
@@ -456,6 +461,17 @@ visible = false
 modulate = Color(1, 0.478431, 0.678431, 1)
 position = Vector2(628, 371)
 texture = ExtResource("11_g2equ")
+
+[node name="noise" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_ej4tf")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1352.0
+offset_bottom = 813.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [connection signal="body_entered" from="upgradeportal/portalchecker" to="." method="upgradething"]
 [connection signal="body_entered" from="upgradeportal/portalchecker" to="upgradeportal" method="_on_portalchecker_body_entered"]
