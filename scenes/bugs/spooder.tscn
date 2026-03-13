@@ -192,9 +192,9 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_re8vx")
 
 [node name="leg3" type="Node2D" parent="offset"]
-position = Vector2(-66, -63)
+position = Vector2(-27, -63)
 script = ExtResource("3_rjprr")
-legreturnpos = Vector2(-66, -63)
+legreturnpos = Vector2(-27, -63)
 maxdistance = 69
 
 [node name="markthing" type="Sprite2D" parent="offset/leg3"]
@@ -202,9 +202,9 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_re8vx")
 
 [node name="leg4" type="Node2D" parent="offset"]
-position = Vector2(-66, 63)
+position = Vector2(-27, 63)
 script = ExtResource("3_rjprr")
-legreturnpos = Vector2(-66, 63)
+legreturnpos = Vector2(-27, 63)
 maxdistance = 69
 
 [node name="markthing" type="Sprite2D" parent="offset/leg4"]
@@ -232,9 +232,9 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_re8vx")
 
 [node name="leg7" type="Node2D" parent="offset"]
-position = Vector2(-23, -63)
+position = Vector2(17, -63)
 script = ExtResource("3_rjprr")
-legreturnpos = Vector2(-23, -75.6)
+legreturnpos = Vector2(17, -75.6)
 maxdistance = 70
 
 [node name="markthing" type="Sprite2D" parent="offset/leg7"]
@@ -242,9 +242,9 @@ scale = Vector2(0.2, 0.2)
 texture = ExtResource("4_re8vx")
 
 [node name="leg8" type="Node2D" parent="offset"]
-position = Vector2(-23, 63)
+position = Vector2(17, 63)
 script = ExtResource("3_rjprr")
-legreturnpos = Vector2(-23, 75.6)
+legreturnpos = Vector2(17, 75.6)
 maxdistance = 70
 
 [node name="markthing" type="Sprite2D" parent="offset/leg8"]
