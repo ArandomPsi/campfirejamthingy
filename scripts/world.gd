@@ -11,27 +11,11 @@ var getsit : bool = false
 var triggered : bool = false
 
 func _ready():
-	tutorialthing()
 	$portal1.modulate = Color(1,1,1,0)
-
-func tutorialthing():
-	
-	
-	while not getsit:
-		await get_tree().process_frame 
-	var b = preload("res://scenes/bugs/basicbug.tscn").instantiate()
-	add_child(b)
-	b.position.x = 1352/2
-	b.position.y = 648/2
-	$portal1.modulate = Color(1,1,1,0)
-	var timer = get_tree().create_timer(0.4)
-	await timer.timeout
-	var tween = create_tween()
-	tween.tween_property($Label,"modulate",Color(1,1,1,0),1.5)
 	$buffer.queue_free()
 
 func _process(delta):
-	if not portalopened and not $enemychecker.has_overlapping_bodies() and getsit and not triggered:
+	if not portalopened and not $enemychecker.has_overlapping_bodies() and not triggered:
 		portal_delay()
 		triggered = true
 	
@@ -60,7 +44,8 @@ func portal_delay():
 func openportal():
 	var tween = create_tween()
 	tween.tween_property($portal1,"modulate",Color(1,1,1,1),0.5)
-	$upgradeportal.appear()
+	if global.trueroom != 0:
+		$upgradeportal.appear()
 	
 
 
@@ -92,7 +77,7 @@ func _on_area_2d_body_entered(body):
 			var enhancementchance : int = 25 - global.trueroom
 			enhancementchance = clamp(enhancementchance,0,25)
 			
-			if randi_range(0,9) == 0:
+			if randi_range(0,0) == 0:
 				var e = preload("res://scenes/bugs/enemyenhancements.tscn").instantiate()
 				b.add_child(e)
 			

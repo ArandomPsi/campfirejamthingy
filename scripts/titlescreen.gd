@@ -2,7 +2,7 @@ extends Control
 var t : float
 var currentweaponthingy : int = 0
 var currentweaponthingytext : Array = [
-">Installation Program \n --Press power button to install antivirus",
+">Installation Program \n --Press power button to install antivirus; Tutorial",
 ">Peashooter OS \n --the basic all rounder os",
 ">Noob OS \n --Low Range, High Damage; Shotgun",
 ">Rayul OS \n --I NEED MOOER BOULETSS!!! Machine",

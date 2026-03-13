@@ -1,6 +1,6 @@
 extends Node2D
 
-var boulettype : int = randi_range(0,2)
+var boulettype : int = 2# randi_range(0,2)
 
 var nextguy : int = 0
 
@@ -41,13 +41,13 @@ func spawnshot():
 				b.look_at(global.playerpos)
 				b.rotation_degrees += randi_range(-30,30)
 		2:
-			for i in range(10):
+			for i in range(4):
 				for e in range(3):
 					var b = preload("res://scenes/vfx/aoe.tscn").instantiate()
 					get_tree().root.add_child(b)
 					b.rotation = $spinthingy.rotation
 					b.rotation_degrees += -120 + (120 * e)
-					b.scale *= 0.75
+					b.scale *= 0.65
 					b.position = targetthingies[nextguy] + b.transform.x * (75 * i)
 					b.rotation = 0
 					b.dmg = 1
