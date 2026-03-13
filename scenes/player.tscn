@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://cbha305rydvd2"]
+[gd_scene load_steps=57 format=3 uid="uid://cbha305rydvd2"]
 
 [ext_resource type="Script" uid="uid://lkamp4kcsb6d" path="res://scripts/player.gd" id="1_1b47p"]
 [ext_resource type="Texture2D" uid="uid://bbn8umujge3ki" path="res://assets/baseplayer.svg" id="1_o0pgg"]
@@ -7,12 +7,12 @@
 [ext_resource type="Texture2D" uid="uid://8sgyqfqvi4i6" path="res://assets/deltashot.svg" id="4_md74g"]
 [ext_resource type="Texture2D" uid="uid://c5rrkg2w5ppnv" path="res://assets/Flame.png" id="5_8apg7"]
 [ext_resource type="FontFile" uid="uid://buftca15lxprx" path="res://assets/HelloKetta-d99oX.ttf" id="5_c645l"]
-[ext_resource type="Shader" uid="uid://co3aq3gcn2ev5" path="res://shaders/fog.gdshader" id="5_dbeld"]
 [ext_resource type="Shader" uid="uid://cev5lnbyira87" path="res://shaders/blur.gdshader" id="5_l0h6p"]
 [ext_resource type="Shader" uid="uid://4a4b38ewhlri" path="res://shaders/perspective.gdshader" id="6_qc81r"]
 [ext_resource type="Texture2D" uid="uid://bb58quqfhacg8" path="res://assets/thepc.svg" id="6_s66kg"]
 [ext_resource type="Texture2D" uid="uid://dstj1kqdocfjy" path="res://assets/crosshair-2.png" id="7_mjio1"]
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="7_qyt88"]
+[ext_resource type="Shader" uid="uid://c3olfmxp6ssa2" path="res://shaders/glassbreak.gdshader" id="8_a38lo"]
 [ext_resource type="FontFile" uid="uid://jnx17qh117ex" path="res://assets/CaviarDreamsBold-a5og.ttf" id="9_xp4tx"]
 [ext_resource type="Script" uid="uid://ccp623q3q3qis" path="res://scripts/upgrade.gd" id="10_cyrk5"]
 [ext_resource type="Shader" uid="uid://c3eccncoadpko" path="res://shaders/crt.gdshader" id="11_t6j4c"]
@@ -115,21 +115,6 @@ border_color = Color(0, 0.662745, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_arbkn"]
 bg_color = Color(0, 0.662745, 1, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_7h34q"]
-noise_type = 2
-frequency = 0.0163
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_214pi"]
-seamless = true
-noise = SubResource("FastNoiseLite_7h34q")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7gqaq"]
-shader = ExtResource("5_dbeld")
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_214pi")
-shader_parameter/smoke_color = Color(1, 0.380392, 0.505882, 1)
-shader_parameter/distortion_speed = 0.2
-shader_parameter/density = 0.165
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iheuj"]
 bg_color = Color(0.6, 0.337255, 0.121569, 1)
@@ -267,6 +252,20 @@ shader_parameter/progress = 1.0
 shader_parameter/_Smoothness = 0.05
 shader_parameter/_Background = Color(0, 0, 0, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4ni07"]
+shader = ExtResource("8_a38lo")
+shader_parameter/fall_progress = 0.0
+shader_parameter/pieces_x = 3
+shader_parameter/pieces_y = 2
+shader_parameter/gravity = 0.955
+shader_parameter/scatter = 1.0
+shader_parameter/rotation_amount = 4.0
+shader_parameter/point_jitter = 0.48
+shader_parameter/delay_variation = 0.8
+shader_parameter/edge_thickness = 0.0065
+shader_parameter/edge_brightness = 0.336
+shader_parameter/alpha_fade = 1.0
+
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
 script = ExtResource("1_1b47p")
@@ -355,6 +354,16 @@ show_percentage = false
 
 [node name="gameover" type="ColorRect" parent="glowhud"]
 visible = false
+modulate = Color(0.491583, 0.491583, 0.491583, 1)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="texturerect" type="ColorRect" parent="glowhud/gameover"]
+layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -381,12 +390,6 @@ theme_override_font_sizes/font_size = 70
 text = "Antivirus Terminated"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="ColorRect" type="ColorRect" parent="glowhud/gameover"]
-material = SubResource("ShaderMaterial_7gqaq")
-layout_mode = 0
-offset_right = 1345.0
-offset_bottom = 809.0
 
 [node name="hud" type="CanvasLayer" parent="."]
 layer = 5
@@ -612,6 +615,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="glassshatter" type="ColorRect" parent="hud"]
+visible = false
+material = SubResource("ShaderMaterial_4ni07")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="sounds" type="Node" parent="."]
 

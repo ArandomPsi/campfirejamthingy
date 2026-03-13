@@ -130,6 +130,10 @@ func controls(delta):
 	if $hud/table.visible:
 		movedir = Vector2.ZERO
 	
+	if Input.is_action_just_pressed("die"):
+		die()
+	
+	
 	
 	
 
@@ -257,7 +261,7 @@ func shoot():
 				b.maxdistance = 28
 				b.speed *= 1.5
 				b.accuracy = 1
-				b.damage = 1 + stats[0] * 0.5
+				b.damage = 2 + stats[0] * 0.5
 				b.get_child(0).visible = false
 				b.get_child(1).scale *= 3
 				b.look_at(get_global_mouse_position())
@@ -351,12 +355,23 @@ func circtrans(value:float):
 
 func die():
 	$sounds/glitch.play(1)
+	
+	#deaththingy for glass break
+	var viewport: Viewport = get_tree().root.get_viewport()
+	var image: Image = viewport.get_texture().get_image()
+	var texture: ImageTexture = ImageTexture.create_from_image(image)
+	$hud/glassshatter.material.set_shader_parameter("screen_tex",texture)
+	
 	$glowhud/gameover.visible = true
+	$hud/glassshatter.visible = true
 	$hud/glitches.visible = true
-	$glowhud/gameover.modulate.a = 0
+	$glowhud/gameover/Label.modulate.a = 0
+	
 	var tween = create_tween()
 	$sounds/song.stop()
-	tween.tween_property($glowhud/gameover,"modulate",Color(1,1,1,1),0.5).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_method(glassproperty,0.0,0.05,0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_method(glassproperty,0.05,1.0,0.8).set_trans(Tween.TRANS_SINE).set_delay(1)
+	tween.tween_property($glowhud/gameover/Label,"modulate",Color(1,1,1,1),0.5).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_method(glitchesproperty,0.067,-0.004,0.5)
 	tween.tween_interval(3)
 	await tween.finished
@@ -365,6 +380,9 @@ func die():
 	await timer.timeout
 	get_tree().change_scene_to_file("res://scenes/titlescreen.tscn")
 
+
+func glassproperty(value : float):
+	$hud/glassshatter.material.set_shader_parameter("fall_progress", value)
 
 func glitchesproperty(value:float):
 	$hud/glitches.material.set_shader_parameter("noiseIntensity",value)

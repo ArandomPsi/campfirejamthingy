@@ -57,10 +57,11 @@ func spawnhit():
 		spawnexplosion()
 
 func spawnexplosion():
-	var b = preload("res://scenes/vfx/playeraoe.tscn").instantiate()
-	get_tree().root.add_child(b)
-	b.dmg = global.explodedmg
-	b.position = position
+	if $Area2D.get_collision_mask_value(3): #only if its a player bullet
+		var b = preload("res://scenes/vfx/playeraoe.tscn").instantiate()
+		get_tree().root.add_child(b)
+		b.dmg = global.explodedmg
+		b.position = position
 	
 
 func createdamagenumber(amount,body : Node2D):

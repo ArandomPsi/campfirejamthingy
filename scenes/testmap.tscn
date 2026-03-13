@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bs1vfkdliq6an" path="res://assets/computer chip_chest (1).svg" id="6_hbqqa"]
 [ext_resource type="Texture2D" uid="uid://dwy3k0loy8dj3" path="res://assets/matrix.png" id="6_s4dqw"]
 [ext_resource type="FontFile" uid="uid://c80u6qswig48x" path="res://assets/TrenchThin-16R0.otf" id="7_syahy"]
-[ext_resource type="Shader" path="res://shaders/noise.gdshader" id="10_6m7oc"]
+[ext_resource type="Shader" uid="uid://b8ko0c3mnb2rp" path="res://shaders/noise.gdshader" id="10_6m7oc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a5xd7"]
 blend_mode = 1
@@ -334,15 +334,15 @@ position = Vector2(689.5, 404)
 shape = SubResource("RectangleShape2D_smjvi")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 394.0
-offset_top = 171.0
-offset_right = 940.0
-offset_bottom = 330.0
+offset_left = 360.0
+offset_top = 210.0
+offset_right = 974.0
+offset_bottom = 369.0
 theme_override_colors/font_color = Color(0, 0.662745, 1, 1)
 theme_override_fonts/font = ExtResource("7_syahy")
 theme_override_font_sizes/font_size = 50
-text = "Enter portal to begin the extermination process.
-Have Fun!"
+text = "Enter a portal to begin the extermination process.
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
