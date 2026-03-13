@@ -35,7 +35,7 @@ func _process(delta):
 	$monitor/PointLight2D.energy = randf_range(0.45,0.5)
 	$Lamp2/PointLight2D.energy = randf_range(0.1,0.14)
 	$Lamp2/PointLight2D2.energy = randf_range(3,3.2) * 1.5
-	currentweaponthingy = clampi(currentweaponthingy,0,5)
+	currentweaponthingy = clampi(currentweaponthingy,0,6)
 	$Ps5/down/PointLight2D3.visible = true
 	$Ps5/up/PointLight2D2.visible = true
 	

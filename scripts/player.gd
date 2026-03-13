@@ -6,7 +6,7 @@ var movedir : Vector2
 var shotcooldown : float = 0
 
 var shottype : int = 5
-var shotcooldowns : Array = [15,50,5,50,0,10]
+var shotcooldowns : Array = [15,50,5,50,0,3]
 var shotamounts : Array = [12, 20, 18, 1.2, 0.2, 18]
 var lschance : float = 0.1
 var stats : Array[float] = [1,1,1,1,1,1,1,1]
@@ -35,7 +35,9 @@ var t : float
 
 var roomalpha : float = 0
 
-var lores : Array = ["Gotta get these bugs out of the system", "At least I can upgrade my antivirus", "I just wanna use my CRT"]
+var lores : Array = ["Gotta get these bugs out of the system", "At least I can upgrade my antivirus", "I just wanna use my CRT", "Please SPEED I NEED THIS", "6 different weapons... \n cool IG",
+"Gurney gurney gurney \n -Alex Sherman Hunter", "What is this diddy blud doing on the calculator", "Hard work beats talent \n -The Greatest AC","Death = Noob \n -The Greatest AC",
+"Life is like a dig, sometimes its up sometimes its dowv \n -Spectral Ocelot", "idk \n -Spectral Ocelot", "Join you gooner \n -Alex", "im outside ur house rn \n -Spectral Ocelot", "Phew \n -Kosm0-O"]
 
 signal upgrade_selected
 
@@ -236,10 +238,10 @@ func shoot():
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.flame = true
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
-				b.maxdistance = 20
+				b.maxdistance = 28
 				b.speed *= 1.5
 				b.accuracy = 1
-				b.damage = 4 + stats[0] * 0.5
+				b.damage = 1 + stats[0] * 0.5
 				b.get_child(0).visible = false
 				b.get_child(1).scale *= 3
 				b.look_at(get_global_mouse_position())

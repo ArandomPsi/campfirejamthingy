@@ -202,10 +202,10 @@ func fade_tween(wait : float, sig : I):
 
 #sounds like in undertale :D
 func soundsthingy(amount : int, time : float):
-	for i in range(amount):
+	for i in range(amount / 4):
 		var b = preload("res://scenes/sounds/infothingy.tscn").instantiate()
 		add_child(b)
-		var timer = get_tree().create_timer(time/amount)
+		var timer = get_tree().create_timer(time/amount * 4)
 		await timer.timeout
 		
 	

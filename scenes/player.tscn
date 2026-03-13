@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cbha305rydvd2"]
+[gd_scene load_steps=59 format=3 uid="uid://cbha305rydvd2"]
 
 [ext_resource type="Script" uid="uid://lkamp4kcsb6d" path="res://scripts/player.gd" id="1_1b47p"]
 [ext_resource type="Texture2D" uid="uid://bbn8umujge3ki" path="res://assets/baseplayer.svg" id="1_o0pgg"]
@@ -19,6 +19,7 @@
 [ext_resource type="Shader" uid="uid://bv7n7ohv0mnyg" path="res://shaders/circle.gdshader" id="13_0vbpy"]
 [ext_resource type="Texture2D" uid="uid://dscx4csmakpka" path="res://assets/fan.svg" id="13_i4ail"]
 [ext_resource type="Shader" uid="uid://br8ymfkscw5wo" path="res://shaders/glitch.gdshader" id="14_nnfyx"]
+[ext_resource type="FontFile" uid="uid://boml265nvfxv0" path="res://assets/SourceCodePro-4alW.ttf" id="15_a38lo"]
 [ext_resource type="AudioStream" uid="uid://dgxkppc7oa7iq" path="res://sounds/Glitch Sound Effect (Speaker).mp3" id="17_bgffu"]
 [ext_resource type="AudioStream" uid="uid://cf0rgos3bd4r" path="res://sounds/482872_KzX---Stalemate.mp3" id="19_60mlk"]
 
@@ -187,6 +188,21 @@ _data = {
 &"RESET": SubResource("Animation_4ni07"),
 &"fanspin": SubResource("Animation_a38lo")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ni07"]
+bg_color = Color(0, 0, 0, 0.705882)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0, 0.65, 0.2275, 1)
+
+[sub_resource type="Theme" id="Theme_l71n6"]
+TooltipLabel/colors/font_color = Color(0, 1, 0.34902, 1)
+TooltipLabel/fonts/font = ExtResource("15_a38lo")
+TooltipPanel/colors/title_color = Color(0.4, 1, 0, 1)
+TooltipPanel/fonts/title_font = ExtResource("15_a38lo")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_4ni07")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hk2u5"]
 bg_color = Color(0, 0, 0, 0.611765)
@@ -479,6 +495,7 @@ offset_right = 674.0
 offset_bottom = -280.0
 pivot_offset = Vector2(138, 25)
 focus_mode = 0
+theme = SubResource("Theme_l71n6")
 theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
@@ -498,6 +515,7 @@ offset_right = 674.0
 offset_bottom = -198.0
 pivot_offset = Vector2(138, 25)
 focus_mode = 0
+theme = SubResource("Theme_l71n6")
 theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
@@ -517,6 +535,7 @@ offset_right = 674.0
 offset_bottom = -119.0
 pivot_offset = Vector2(138, 25)
 focus_mode = 0
+theme = SubResource("Theme_l71n6")
 theme_override_colors/font_hover_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_color = Color(0, 1, 0.34902, 1)
 theme_override_colors/font_pressed_color = Color(0.341176, 1, 0.572549, 1)
