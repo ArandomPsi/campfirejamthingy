@@ -27,7 +27,7 @@ func _ready():
 
 func chooseupgrade():
 	scale = Vector2.ZERO
-	if randf() < 0.85:
+	if randf() < 0.92:
 		upgrade = randi_range(6, 7)
 		if upgrade == 7 and not global.ability:
 			upgrades[7] = ability_names[global.playerweapon]
