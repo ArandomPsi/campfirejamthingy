@@ -52,6 +52,7 @@ func openportal():
 func _on_area_2d_body_entered(body):
 	triggered = false
 	global.totalrooms += 1
+	$Label.visible = false
 	$player.transition()
 	$player.hp = $player.maxhp
 	var timer = get_tree().create_timer(0.3)
@@ -77,7 +78,7 @@ func _on_area_2d_body_entered(body):
 			var enhancementchance : int = 25 - global.trueroom
 			enhancementchance = clamp(enhancementchance,0,25)
 			
-			if randi_range(0,0) == 0:
+			if randi_range(0,enhancementchance) == 0:
 				var e = preload("res://scenes/bugs/enemyenhancements.tscn").instantiate()
 				b.add_child(e)
 			

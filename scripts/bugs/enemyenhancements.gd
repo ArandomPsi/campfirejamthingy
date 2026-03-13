@@ -1,6 +1,6 @@
 extends Node2D
 
-var boulettype : int = 2# randi_range(0,2)
+var boulettype : int = randi_range(0,2)
 
 var nextguy : int = 0
 
