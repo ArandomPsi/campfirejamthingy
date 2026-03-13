@@ -9,7 +9,7 @@ var shottype : int = 5
 var shotcooldowns : Array = [15,50,5,50,0,3]
 var shotamounts : Array = [12, 20, 18, 1.2, 0.2, 18]
 var lschance : float = 0.1
-var stats : Array[float] = [1,1,1,1,1,1,1,1]
+var stats : Array[float] = [1,1,1,1,1,1,1,1,1]
 var specialshotcharge : float = 0
 var prev_def_stat : float = 1
 var prev_inv_stat : float = 1
@@ -24,8 +24,6 @@ var maxiframes : int = 50
 
 # special ability variables
 var shot_num : int = 0
-var shot_scale : int = 3
-var shot_req : int = 15
 var saw_dmg : int = 1
 var saw_spd : float = 1.0
 var saw_timer : float = 0.0
@@ -86,6 +84,9 @@ func statsstuff():
 		global.lifesteal = true
 	if stats[7] > 1:
 		global.ability = true
+	if stats[8] > 1:
+		global.explosion = true
+		global.explodedmg = stats[8] * 2
 	
 	lschance = stats[6] / 10
 	maxiframes = 50 + stats[5] * 20
@@ -184,7 +185,22 @@ func shoot():
 				b.damage = 2 + stats[0] * 2
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
-			shot_num += 1
+			if global.ability:
+				shot_num += 1
+			if shot_num == 15:
+				for i in range(2):
+					global.shake += 2
+					var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
+					b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
+					b.look_at(get_global_mouse_position())
+					b.scale *= 4.0
+					b.speed = 300
+					b.accuracy = randf_range(0, 35)
+					b.damage = (2 + stats[0] * 2) * 5
+					b.target_hit.connect(_on_hit)
+					get_tree().root.add_child(b)
+					await get_tree().create_timer(0.25).timeout
+				shot_num = 0
 		1:
 			for i in range(int(8 * stats[4])):
 				global.shake += 2

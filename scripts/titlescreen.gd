@@ -2,7 +2,7 @@ extends Control
 var t : float
 var currentweaponthingy : int = 0
 var currentweaponthingytext : Array = [
-">Installation Program \n --Press power button to install antivirus; Tutorial",
+">Installation Program \n --Tutorial",
 ">Peashooter OS \n --the basic all rounder os",
 ">Noob OS \n --Low Range, High Damage; Shotgun",
 ">Rayul OS \n --I NEED MOOER BOULETSS!!! Machine",
@@ -20,6 +20,7 @@ func _ready():
 	global.room = 0
 	global.lifesteal = false
 	global.ability = false
+	global.explosion = false
 	$Camera2D.zoom = Vector2(20,20)
 	var timer = get_tree().create_timer(3)
 	await timer.timeout
@@ -103,13 +104,14 @@ func updateepsteinfiles():
 	await tween.finished
 	
 	var bestroomtxt : String = "\n>Highest Room: " + str(global.bestroom)
+	var totroomtxt : String = "\n >Total Rooms Cleared: " + str(global.totalrooms)
 	if global.totalrooms >= (currentweaponthingy - 1) * totalroomthingy: #check the total rooms
-		$Panel/thefiles.text = currentweaponthingytext[currentweaponthingy] + bestroomtxt
+		$Panel/thefiles.text = currentweaponthingytext[currentweaponthingy] + totroomtxt + bestroomtxt
 	else:
 		if currentweaponthingy == 0 and not global.tutorialed:
 			$Panel/thefiles.text = ">ERROR \n --Antivirus Must be Installed!"
 		else:
-			$Panel/thefiles.text = ">DATA CORRUPTED - EXTERMINATE " + str((currentweaponthingy - 1) * totalroomthingy) + " WAVES TO DECORRUPT" + bestroomtxt
+			$Panel/thefiles.text = ">DATA CORRUPTED - EXTERMINATE " + str((currentweaponthingy - 1) * totalroomthingy) + " WAVES TO DECORRUPT" + totroomtxt + bestroomtxt
 	var tween2 = create_tween()
 	tween2.tween_property($Panel/thefiles,"visible_ratio",1.0,0.8)
 	

@@ -43,7 +43,7 @@ func _on_area_2d_body_entered(body):
 		else:
 			body.damage(damage)
 		target_hit.emit(damage)
-		if not body.has_method("shoot"):
+		if not body.name == "player":
 			createdamagenumber(damage,body)
 			
 	spawnhit()
@@ -53,6 +53,15 @@ func spawnhit():
 	var b = preload("res://scenes/vfx/hitparticle.tscn").instantiate()
 	get_tree().root.add_child(b)
 	b.position = position
+	if global.explosion:
+		spawnexplosion()
+
+func spawnexplosion():
+	var b = preload("res://scenes/vfx/playeraoe.tscn").instantiate()
+	get_tree().root.add_child(b)
+	b.dmg = global.explodedmg
+	b.position = position
+	
 
 func createdamagenumber(amount,body : Node2D):
 	var b = preload("res://scenes/vfx/damagelabel.tscn").instantiate()

@@ -79,6 +79,8 @@ func chaindash():
 	var v = ((global.playerpos + Vector2(randi_range(-80,80),randi_range(-80,80))) - position).angle()
 	var tween = create_tween()
 	for i in range(30):
+		if global.playerdead:
+			return
 		v = ((global.playerpos + Vector2(randi_range(-80,80),randi_range(-80,80))) - position).angle()
 		rotation = lerp_angle(rotation,v,0.15)
 		var timer = get_tree().create_timer(1/120)

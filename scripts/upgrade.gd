@@ -8,8 +8,9 @@ var upgrades : Array = [
 "+speed",
 "+amount",
 "+iframes",
-"lifesteal",
-"special ability"
+"+lifesteal",
+"special ability",
+"+explode"
 ]
 var ability_names : Array = ["Peas in a Pod", "Target Locked", "Oiled Up", "Bannana Curves", "MAMA MIA", "Feel the Burn"]
 var ability_desc : Array = [
@@ -28,11 +29,11 @@ func _ready():
 func chooseupgrade():
 	scale = Vector2.ZERO
 	if randf() < 0.02:
-		upgrade = randi_range(6, 7)
+		upgrade = randi_range(6, 8)
 		if upgrade == 7 and not global.ability:
 			upgrades[7] = ability_names[global.playerweapon]
 		else:
-			upgrade = 6
+			upgrade = [6, 8].pick_random()
 	else:
 		upgrade = randi_range(0,5)
 	text = upgrades[upgrade]
@@ -71,6 +72,7 @@ func set_tooltip_txt():
 			s = "Lifesteal is a rare upgrade that grants/improves the ability of having a chance to gain health upon dealing damage. \n Current Lifesteal Stat: "
 		7:
 			s = "This is a special [one-time] ability unique to the current OS(weapon)! \n " + upgrades[7] + ": " + ability_desc[global.playerweapon]
-			
-	var ss : String = str(p.stats[upgrade]) if upgrade != 7 else ""
+		8: 
+			s = "Explode is a rare upgrade that grants/improves the ability of all bullets having an explosion upon impact. \n Current Explode Stat: "
+	var ss : String = str(p.stats[upgrade]) + " (stat doesn't represent actual in-game values!)" if upgrade != 7 else ""
 	tooltip_text = s + ss

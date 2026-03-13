@@ -4,7 +4,7 @@ var portalopened : bool = false
 
 var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn"),preload("res://scenes/bugs/bee.tscn"),preload("res://scenes/bugs/millipede.tscn"), preload("res://scenes/bugs/scorpion.tscn"), preload("res://scenes/bugs/spooder.tscn")]
 var sizes : Array = [1,2,3,5,6,8]
-var max_size : int = 1
+var max_size : int = randi_range(1,2)
 var cur_size : int = max_size
 
 var getsit : bool = false
@@ -35,7 +35,8 @@ func _process(delta):
 	
 
 func portal_delay():
-	max_size += randi_range(1, 2)
+	if global.trueroom > 0:
+		max_size += randi_range(1, 2)
 	openportal()
 	await get_tree().create_timer(1.5).timeout
 	portalopened = true
@@ -51,7 +52,8 @@ func openportal():
 
 func _on_area_2d_body_entered(body):
 	triggered = false
-	global.totalrooms += 1
+	if global.trueroom > 0:
+		global.totalrooms += 1
 	$Label.visible = false
 	$player.transition()
 	$player.hp = $player.maxhp
@@ -76,7 +78,7 @@ func _on_area_2d_body_entered(body):
 			add_child(b)
 			
 			var enhancementchance : int = 25 - global.trueroom
-			enhancementchance = clamp(enhancementchance,0,25)
+			enhancementchance = clamp(enhancementchance,1,25)
 			
 			if randi_range(0,enhancementchance) == 0:
 				var e = preload("res://scenes/bugs/enemyenhancements.tscn").instantiate()

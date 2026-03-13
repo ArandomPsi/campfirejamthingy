@@ -14,6 +14,8 @@ var save_timer : float = autosave_time
 var lifesteal : bool = false
 var ability : bool = false
 var tutorialed : bool = false
+var explosion : bool = false
+var explodedmg : float = 1.0
 
 func _ready():
 	safeload()

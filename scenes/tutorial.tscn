@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dy7ktjuoebn6y" path="res://assets/changecdbutton.svg" id="10_0epgs"]
 [ext_resource type="Texture2D" uid="uid://diuir48milite" path="res://assets/poweronbase.svg" id="10_g2equ"]
 [ext_resource type="Texture2D" uid="uid://d36dhrn5qxcrp" path="res://assets/aoe-2.svg" id="11_g2equ"]
-[ext_resource type="Shader" uid="uid://b8ko0c3mnb2rp" path="res://shaders/noise.gdshader" id="12_tbcdj"]
+[ext_resource type="Shader" path="res://shaders/noise.gdshader" id="12_tbcdj"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a5xd7"]
 blend_mode = 1
