@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bb58quqfhacg8" path="res://assets/thepc.svg" id="6_s66kg"]
 [ext_resource type="Texture2D" uid="uid://dstj1kqdocfjy" path="res://assets/crosshair-2.png" id="7_mjio1"]
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="7_qyt88"]
-[ext_resource type="Shader" path="res://shaders/glassbreak.gdshader" id="8_a38lo"]
+[ext_resource type="Shader" uid="uid://c3olfmxp6ssa2" path="res://shaders/glassbreak.gdshader" id="8_a38lo"]
 [ext_resource type="FontFile" uid="uid://jnx17qh117ex" path="res://assets/CaviarDreamsBold-a5og.ttf" id="9_xp4tx"]
 [ext_resource type="Script" uid="uid://ccp623q3q3qis" path="res://scripts/upgrade.gd" id="10_cyrk5"]
 [ext_resource type="Shader" uid="uid://c3eccncoadpko" path="res://shaders/crt.gdshader" id="11_t6j4c"]
@@ -632,7 +632,6 @@ color = Color(0, 0, 0, 1)
 [node name="song" type="AudioStreamPlayer" parent="sounds"]
 stream = ExtResource("19_60mlk")
 volume_db = -10.0
-autoplay = true
 mix_target = 2
 
 [node name="glitch" type="AudioStreamPlayer" parent="sounds"]

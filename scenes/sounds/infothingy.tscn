@@ -6,6 +6,7 @@
 [node name="infothingy" type="AudioStreamPlayer2D"]
 stream = ExtResource("1_nmhnn")
 volume_db = 10.0
+stream_paused = true
 bus = &"reverb"
 script = ExtResource("2_nmhnn")
 min = 1.0

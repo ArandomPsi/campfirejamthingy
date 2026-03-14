@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://dwy3k0loy8dj3" path="res://assets/matrix.png" id="1_8ckdi"]
 [ext_resource type="Script" uid="uid://bn6imyqipmur4" path="res://scripts/compilingscreen.gd" id="1_q1ye3"]
-[ext_resource type="Shader" uid="uid://lbxajfhj3mel" path="res://shaders/motionblur.gdshader" id="2_uleku"]
-[ext_resource type="Script" path="res://shaders/motionblur.gd" id="3_q1ye3"]
+[ext_resource type="Shader" uid="uid://lbxajfhj3mel" path="res://shaders/blurthingy.gdshader" id="2_uleku"]
+[ext_resource type="Script" uid="uid://chmlgi0tdleux" path="res://shaders/motionblur.gd" id="3_q1ye3"]
 [ext_resource type="FontFile" uid="uid://boml265nvfxv0" path="res://assets/SourceCodePro-4alW.ttf" id="5_7n7f1"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_5geii"]
@@ -42,8 +42,8 @@ glow_bloom = 1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7n7f1"]
 shader = ExtResource("2_uleku")
-shader_parameter/alpha = 0.5
-shader_parameter/blur = 0.0
+shader_parameter/dir = Vector2(0, 0)
+shader_parameter/quality = 4
 
 [node name="hud" type="Control"]
 layout_mode = 3

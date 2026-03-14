@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 	amountcompiled += 0.0335
 	print(str(amountcompiled))
 	#compilething
-	if amountcompiled > 32:
+	if amountcompiled > 60:
 		if not global.tutorialed:
 			get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 		else:

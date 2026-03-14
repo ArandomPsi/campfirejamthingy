@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://1q7od5q5riwe"]
+[gd_scene load_steps=47 format=3 uid="uid://1q7od5q5riwe"]
 
 [ext_resource type="Texture2D" uid="uid://bs1vfkdliq6an" path="res://assets/computer chip_chest (1).svg" id="1_ckvwl"]
 [ext_resource type="Script" uid="uid://drwr2mn5kqjdh" path="res://scripts/tutorial.gd" id="1_nlqja"]
@@ -11,7 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://dy7ktjuoebn6y" path="res://assets/changecdbutton.svg" id="10_0epgs"]
 [ext_resource type="Texture2D" uid="uid://diuir48milite" path="res://assets/poweronbase.svg" id="10_g2equ"]
 [ext_resource type="Texture2D" uid="uid://d36dhrn5qxcrp" path="res://assets/aoe-2.svg" id="11_g2equ"]
-[ext_resource type="Shader" path="res://shaders/noise.gdshader" id="12_tbcdj"]
+[ext_resource type="Shader" uid="uid://b8ko0c3mnb2rp" path="res://shaders/noise.gdshader" id="12_tbcdj"]
+[ext_resource type="PackedScene" uid="uid://cbha305rydvd2" path="res://scenes/player.tscn" id="13_ej4tf"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a5xd7"]
 blend_mode = 1
@@ -268,6 +269,7 @@ scale = Vector2(5.80357, 3.61607)
 texture = SubResource("GradientTexture2D_a13kp")
 
 [node name="matrixparticle" type="GPUParticles2D" parent="TileMap"]
+visible = false
 material = SubResource("CanvasItemMaterial_5jpmn")
 position = Vector2(113.75, 3.21429)
 amount = 50
@@ -276,6 +278,7 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_a3cv4")
 
 [node name="matrixparticle2" type="GPUParticles2D" parent="TileMap"]
+visible = false
 material = SubResource("CanvasItemMaterial_5jpmn")
 position = Vector2(113.75, 143.393)
 amount = 50
@@ -284,6 +287,7 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_a3cv4")
 
 [node name="matrixparticle3" type="GPUParticles2D" parent="TileMap"]
+visible = false
 material = SubResource("CanvasItemMaterial_5jpmn")
 position = Vector2(238.571, 74.1071)
 rotation = -1.5708
@@ -293,6 +297,7 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_ri6w5")
 
 [node name="matrixparticle4" type="GPUParticles2D" parent="TileMap"]
+visible = false
 material = SubResource("CanvasItemMaterial_5jpmn")
 position = Vector2(1.60715, 74.1071)
 rotation = -1.5708
@@ -302,6 +307,7 @@ lifetime = 0.5
 process_material = SubResource("ParticleProcessMaterial_ri6w5")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 position = Vector2(661, 426)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -462,7 +468,11 @@ modulate = Color(1, 0.478431, 0.678431, 1)
 position = Vector2(628, 371)
 texture = ExtResource("11_g2equ")
 
+[node name="player" parent="." instance=ExtResource("13_ej4tf")]
+position = Vector2(654, 619)
+
 [node name="noise" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_ej4tf")
 anchors_preset = 15
 anchor_right = 1.0

@@ -12,7 +12,7 @@ signal pp
 var portalopened : bool = false
 var portalsentered : int = 0
 
-var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn"),preload("res://scenes/bugs/bee.tscn"),preload("res://scenes/bugs/millipede.tscn"), preload("res://scenes/bugs/scorpion.tscn"), preload("res://scenes/bugs/spooder.tscn")]
+var bugs : Array = [preload("res://scenes/bugs/basicbug.tscn"),preload("res://scenes/bugs/combuster.tscn")]
 
 var texts : Array[String] = [
 	"--Antivirus Installation Complete--",
@@ -45,6 +45,7 @@ var getsit : bool = false
 var triggered : bool = false
 
 func _ready():
+	$player.playmusic = false
 	await fade_tween(1.5, I.N)
 	await fade_tween(4.5, I.N)
 	await fade_tween(0, I.N)
@@ -55,10 +56,8 @@ func _ready():
 	power_pear(true)
 	await $GUI/Button.pressed
 	power_pear(false)
-	var p = preload("res://scenes/player.tscn").instantiate()
-	p.global_position = Vector2(663.0, 531.0)
 	$Camera2D.queue_free()
-	add_child(p)
+	
 	await fade_tween(0, I.M)
 	await fade_tween(0, I.L)
 	await fade_tween(2.0, I.N)
@@ -88,7 +87,7 @@ func _ready():
 	await d.killed
 	await fade_tween(0.0, I.N)
 	$upgradeportal.appear()
-	await p.upgrade_selected
+	await $player.upgrade_selected
 	await get_tree().create_timer(0.5).timeout
 	await fade_tween(0.0, I.L)
 	await fade_tween(1.5, I.N)

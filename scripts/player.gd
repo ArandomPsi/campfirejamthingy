@@ -22,6 +22,8 @@ var maxhp : float = base_hp
 var iframes : int = 60
 var maxiframes : int = 50
 
+var playmusic : bool = true
+
 # special ability variables
 var shot_num : int = 0
 var saw_dmg : int = 1
@@ -35,6 +37,7 @@ var t : float
 
 var roomalpha : float = 0
 
+
 var lores : Array = ["Gotta get these bugs out of the system", "At least I can upgrade my antivirus", "I just wanna use my CRT", "Please SPEED I NEED THIS", "6 different weapons... \n cool IG",
 "Gurney gurney gurney \n -Alex Sherman Hunter", "What is this ditty blud doing on the calculator", "Hard work beats talent \n -The Greatest AC","Death = Noob = Me \n -The Greatest AC",
 "Sometimes life's up, sometimes life's down \n -Spectral Ocelot", "idk \n -Spectral Ocelot", "Join you boomer \n -Alex V", "im outside ur house rn \n -Spectral Ocelot", "Phew \n -Kosm0-o"]
@@ -45,9 +48,15 @@ func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
 	global.trueroom = 0
 	shottype = global.playerweapon
+	
 	$hud/hudtransition.visible = true
 	global.playerdead = false
 	transitionin()
+	
+	await get_tree().process_frame
+	if playmusic:
+		$sounds/song.play()
+	
 
 func _physics_process(delta):
 	if global.boss_battle:
