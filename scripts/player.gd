@@ -191,7 +191,7 @@ func shoot():
 				get_tree().root.add_child(b)
 			if global.ability:
 				shot_num += 1
-			if shot_num == 15:
+			if shot_num == 3:
 				for i in range(2):
 					global.shake += 2
 					var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
@@ -209,13 +209,18 @@ func shoot():
 			for i in range(int(8 * stats[4])):
 				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
+				b.damage = 3 + int(stats[0] - 1)
+				b.maxdistance = randi_range(30,40)
+				if global.ability:
+					b.homing = true
+					b.maxdistance *= 2
+					b.damage *= 1.2
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
 				b.look_at(get_global_mouse_position())
-				b.maxdistance = randi_range(30,40)
-				b.damage = 2 + int(stats[0] - 1)
-				b.accuracy = 20
+				b.accuracy = 25
 				b.speed *= randf_range(0.9,0.6) * 2
 				b.target_hit.connect(_on_hit)
+				
 				get_tree().root.add_child(b)
 		2:
 			for i in range(int(1 + (stats[4] * 0.285714286))):
@@ -227,8 +232,7 @@ func shoot():
 				b.damage = 3 + int(stats[0] - 1)
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)
-				if global.ability:
-					b.homing = true
+				
 				get_tree().root.add_child(b)
 		3:
 			for i in range(1 + int(1 * stats[4])):
