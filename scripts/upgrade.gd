@@ -15,8 +15,8 @@ var upgrades : Array = [
 var ability_names : Array = ["Peas in a Pod", "Target Locked", "Oiled Up", "Bannana Curves", "MAMA MIA", "Feel the Burn"]
 var ability_desc : Array = [
 	"Shoot 2 mega projectiles every now and then.",
-	"All projectiles go towards the nearest target at the time of shooting for the entire lifetime of the projectile.",
-	"Every once in a while, shoot double the bullets with extreme spread.",
+	"All projectiles go towards the nearest target for the entire lifetime of the projectile.",
+	"Every once in a while, shoot octuple the bullets with extreme spread.",
 	"All projectiles release 5 mini daggers [upon collision] that curve.",
 	"When charging up the laser, gain a melee saw that charges up.",
 	"Enemies take burning damage upon being hit."
@@ -28,7 +28,7 @@ func _ready():
 
 func chooseupgrade():
 	scale = Vector2.ZERO
-	if randf() < 0.02:
+	if randf() < 0.015:
 		upgrade = randi_range(6, 8)
 		if upgrade == 7 and not global.ability:
 			upgrades[7] = ability_names[global.playerweapon]

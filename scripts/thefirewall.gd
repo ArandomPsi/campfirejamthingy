@@ -1,11 +1,13 @@
 extends Node2D
 
+
 var attacks : Array = ["flashfire", "enemy", "fireball"]
 var hp : int = 7500
 
 
 func _ready():
 	randomize()
+	dialogue_scene()
 
 
 func _process(delta):
@@ -53,3 +55,25 @@ func damage(amount):
 		b.modulate = Color("#ff0095")
 		b.scale *= 2
 		queue_free()
+
+func dialogue_scene():
+	get_tree().paused = true
+	await txtween("Antivirus: NO WHAT R U DOING VROO ", true)
+	await txtween("FFirewall: I AM UR FATHER", false)
+	await txtween("Antivirus: NO WHAT R U DOING VROO ", true)
+	await txtween("FFirewall: I AM UR FATHER", false)
+
+func txtween(t : String, anti : bool):
+	var tween = create_tween()
+	tween.tween_property($Dialogue/Label, "visible_ratio", 0.0, 0.8)
+	await tween.finished
+	$Dialogue/Label.text = t
+	var c = "#ff95be" if not anti else "#42b1ff"
+	$Dialogue/PlayerPanel.visible = anti
+	$Dialogue/FirewallPanel.visible = not anti
+	$Dialogue/Label.modulate = Color(c)
+	var tween2 = create_tween()
+	tween2.tween_property($Dialogue/Label, "visible_ratio", 1.0, 0.8)
+	tween2.tween_interval(t.length() / 12.5)
+	await tween2.finished
+	

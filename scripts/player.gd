@@ -28,6 +28,8 @@ var saw_dmg : int = 1
 var saw_spd : float = 1.0
 var saw_timer : float = 0.0
 var cur_targs : Array = [] 
+var machine_timer : float = 7.5
+var oiled : bool = false
 
 var t : float
 
@@ -72,6 +74,16 @@ func _physics_process(delta):
 				saw(targ)
 				print("sawing " + str(targ.name))
 			saw_timer = saw_spd
+	if Input.is_action_pressed("shoot"):
+		machine_timer -= delta
+	if machine_timer <= 0.0:
+		if oiled:
+			oiled = false
+			machine_timer = 7.5
+		elif not oiled:
+			oiled = true
+			machine_timer = 5.0
+			
 
 func statsstuff():
 	shotcooldown -= (1 + float(stats[2] / 3)) * (60/Engine.get_frames_per_second())
@@ -104,7 +116,7 @@ func controls(delta):
 			if Input.is_action_pressed("shoot") and iframes < 1:
 				specialshotcharge += 0.1 + (specialshotcharge * delta * 1.25 * stats[2])
 				$arrow/charge.emitting = true
-				if stats[7] > 1:
+				if global.ability:
 					$arrow/deltashot.modulate.a = min(specialshotcharge / 20, 1)
 					$arrow/deltashot.rotation_degrees += min(specialshotcharge, 359) / 1.5
 					saw_spd -= 0.01
@@ -223,12 +235,18 @@ func shoot():
 				
 				get_tree().root.add_child(b)
 		2:
-			for i in range(int(1 + (stats[4] * 0.285714286))):
+			var m = 8 if oiled else 1
+			for i in range(int(1 + (stats[4] * 0.285714286)) * m):
 				global.shake += 2
 				var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
 				b.position = $arrow.global_position + $arrow.transform.x * $arrow.offset.x
-				b.maxdistance = 80
-				b.accuracy = 10
+				if global.ability and oiled:
+					b.maxdistance = 160
+					b.accuracy = 45
+					b.speed *= 3.0
+				else:
+					b.maxdistance = 80
+					b.accuracy = 10
 				b.damage = 3 + int(stats[0] - 1)
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)

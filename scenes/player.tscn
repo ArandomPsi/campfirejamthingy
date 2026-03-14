@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bb58quqfhacg8" path="res://assets/thepc.svg" id="6_s66kg"]
 [ext_resource type="Texture2D" uid="uid://dstj1kqdocfjy" path="res://assets/crosshair-2.png" id="7_mjio1"]
 [ext_resource type="Texture2D" uid="uid://dm4sf3rfmvch6" path="res://assets/computer.svg" id="7_qyt88"]
-[ext_resource type="Shader" uid="uid://c3olfmxp6ssa2" path="res://shaders/glassbreak.gdshader" id="8_a38lo"]
+[ext_resource type="Shader" path="res://shaders/glassbreak.gdshader" id="8_a38lo"]
 [ext_resource type="FontFile" uid="uid://jnx17qh117ex" path="res://assets/CaviarDreamsBold-a5og.ttf" id="9_xp4tx"]
 [ext_resource type="Script" uid="uid://ccp623q3q3qis" path="res://scripts/upgrade.gd" id="10_cyrk5"]
 [ext_resource type="Shader" uid="uid://c3eccncoadpko" path="res://shaders/crt.gdshader" id="11_t6j4c"]
@@ -22,7 +22,7 @@
 [ext_resource type="FontFile" uid="uid://boml265nvfxv0" path="res://assets/SourceCodePro-4alW.ttf" id="15_a38lo"]
 [ext_resource type="AudioStream" uid="uid://dgxkppc7oa7iq" path="res://sounds/Glitch Sound Effect (Speaker).mp3" id="17_bgffu"]
 [ext_resource type="AudioStream" uid="uid://cf0rgos3bd4r" path="res://sounds/482872_KzX---Stalemate.mp3" id="19_60mlk"]
-[ext_resource type="AudioStream" uid="uid://qrbh1mcuuan3" path="res://sounds/hit.mp3" id="23_4ni07"]
+[ext_resource type="AudioStream" uid="uid://7llpv843jq8x" path="res://assets/glass-breaks.mp3" id="23_4ni07"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4tyv"]
 radius = 16.0
@@ -68,7 +68,7 @@ color = Color(0, 0.890196, 1, 1)
 color_ramp = SubResource("GradientTexture1D_aa32j")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4cax6"]
-radius = 61.1242
+radius = 37.884
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_flae1"]
 blend_mode = 1
@@ -296,9 +296,9 @@ local_coords = true
 process_material = SubResource("ParticleProcessMaterial_8ooo6")
 
 [node name="deltashot" type="Sprite2D" parent="arrow"]
-modulate = Color(0, 0.686275, 1, 0)
-position = Vector2(55, 2.08165e-12)
-scale = Vector2(2, 2)
+modulate = Color(0, 0.65098, 1, 0)
+position = Vector2(130, 3)
+scale = Vector2(3.29412, 3.29412)
 texture = ExtResource("4_md74g")
 
 [node name="hitbox" type="Area2D" parent="arrow/deltashot"]
@@ -649,17 +649,17 @@ bus = &"music"
 [connection signal="body_entered" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_exited"]
 [connection signal="pressed" from="hud/table/upgrade1" to="." method="finished"]
-[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade1" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade2" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade1" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade1" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade2" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade2" to="hud/table/upgrade3" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="." method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade1" method="finished"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade2" method="finished"]
-[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]
 [connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="finished"]
+[connection signal="pressed" from="hud/table/upgrade3" to="hud/table/upgrade3" method="_on_pressed"]

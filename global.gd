@@ -19,12 +19,11 @@ var explodedmg : float = 1.0
 
 func _ready():
 	safeload()
-
 func _process(delta):
 	if trueroom - 2 > bestroom:
 		bestroom = trueroom - 2
 	shake -= delta * 120
-	shake = clampi(shake,0,35)
+	shake = clampi(shake,0,25)
 	flash = lerpf(flash,0.0,0.15)
 	save_timer -= delta
 	if save_timer <= 0.0:
