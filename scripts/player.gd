@@ -36,7 +36,7 @@ var t : float
 var roomalpha : float = 0
 
 var lores : Array = ["Gotta get these bugs out of the system", "At least I can upgrade my antivirus", "I just wanna use my CRT", "Please SPEED I NEED THIS", "6 different weapons... \n cool IG",
-"Gurney gurney gurney \n -Alex Sherman Hunter", "What is this ditty blud doing on the calculator", "Hard work beats talent \n -The Greatest AC","Death = Noob \n -The Greatest AC",
+"Gurney gurney gurney \n -Alex Sherman Hunter", "What is this ditty blud doing on the calculator", "Hard work beats talent \n -The Greatest AC","Death = Noob = Me \n -The Greatest AC",
 "Sometimes life's up, sometimes life's down \n -Spectral Ocelot", "idk \n -Spectral Ocelot", "Join you boomer \n -Alex V", "im outside ur house rn \n -Spectral Ocelot", "Phew \n -Kosm0-o"]
 
 signal upgrade_selected
@@ -50,6 +50,10 @@ func _ready():
 	transitionin()
 
 func _physics_process(delta):
+	if global.boss_battle:
+		music_fade(true)
+	else:
+		music_fade(false)
 	global.playerpos = position
 	iframes -= 1
 	statsstuff()
@@ -84,6 +88,7 @@ func _physics_process(delta):
 			oiled = true
 			machine_timer = 5.0
 			
+
 
 func statsstuff():
 	shotcooldown -= (1 + float(stats[2] / 3)) * (60/Engine.get_frames_per_second())
@@ -434,3 +439,10 @@ func spawn_hit_particles(body):
 
 func _on_hitbox_body_exited(body):
 	cur_targs.erase(body)
+
+func music_fade(out : bool):
+	var v = -80.0 if out else -10.0
+	var tween = create_tween()
+	tween.tween_property($sounds/song, "volume_db", v, 0.167).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	$sounds/song.stream_paused = out

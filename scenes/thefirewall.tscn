@@ -1,9 +1,11 @@
-[gd_scene load_steps=24 format=3 uid="uid://cystl4siqvo5a"]
+[gd_scene load_steps=26 format=3 uid="uid://cystl4siqvo5a"]
 
 [ext_resource type="Texture2D" uid="uid://c5rrkg2w5ppnv" path="res://assets/Flame.png" id="1_2hgn4"]
 [ext_resource type="Script" uid="uid://bu0pdn8f4f8bt" path="res://scripts/thefirewall.gd" id="1_uxnqx"]
 [ext_resource type="Texture2D" uid="uid://do81kmhu087wy" path="res://assets/playerhappy.svg" id="3_iws38"]
 [ext_resource type="FontFile" uid="uid://boml265nvfxv0" path="res://assets/SourceCodePro-4alW.ttf" id="4_awa14"]
+[ext_resource type="AudioStream" uid="uid://bf2ii3ophb5hc" path="res://assets/watchmen-rorschach-prison-scene-2009-youre-locked-in-here-with-me-movie-c-iirahn_1WgnaBrh.mp3" id="5_awa14"]
+[ext_resource type="AudioStream" uid="uid://kfn0i4kf08yh" path="res://assets/substitutebossfightmusic.mp3" id="6_2uodc"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xcr55"]
 blend_mode = 1
@@ -236,8 +238,10 @@ shape = SubResource("RectangleShape2D_gbdeb")
 position = Vector2(630, 696)
 
 [node name="Dialogue" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="PlayerPanel" type="Node2D" parent="Dialogue"]
+modulate = Color(1, 1, 1, 0)
 
 [node name="Panel" type="Panel" parent="Dialogue/PlayerPanel"]
 offset_left = 286.0
@@ -262,6 +266,7 @@ region_rect = Rect2(7.37263, 0, 59.6274, 59.9646)
 
 [node name="FirewallPanel" type="Node2D" parent="Dialogue"]
 visible = false
+modulate = Color(1, 1, 1, 0)
 
 [node name="Panel" type="Panel" parent="Dialogue/FirewallPanel"]
 offset_left = 286.0
@@ -320,4 +325,16 @@ label_settings = SubResource("LabelSettings_2d2r5")
 autowrap_mode = 3
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.147672, 0.147672, 0.147672, 1)
+
+[node name="Sounds" type="Node" parent="."]
+
+[node name="EasterEggSFX" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("5_awa14")
+volume_db = 15.847
+
+[node name="BossFightMusic" type="AudioStreamPlayer2D" parent="Sounds"]
+stream = ExtResource("6_2uodc")
+volume_db = -5.248
+autoplay = true

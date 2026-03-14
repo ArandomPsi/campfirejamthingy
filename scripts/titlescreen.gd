@@ -21,6 +21,7 @@ func _ready():
 	global.lifesteal = false
 	global.ability = false
 	global.explosion = false
+	global.boss_battle = false
 	$Camera2D.zoom = Vector2(20,20)
 	var timer = get_tree().create_timer(3)
 	await timer.timeout

@@ -16,8 +16,10 @@ var ability : bool = false
 var tutorialed : bool = false
 var explosion : bool = false
 var explodedmg : float = 1.0
+var boss_battle : bool = false
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	safeload()
 func _process(delta):
 	if trueroom - 2 > bestroom:
