@@ -3,7 +3,7 @@ extends Control
 var amountcompiled : float = 0
 
 func _ready() -> void:
-	var timer = get_tree().create_timer(25)
+	var timer = get_tree().create_timer(15)
 	await timer.timeout
 	if not global.tutorialed:
 		get_tree().change_scene_to_file("res://scenes/tutorial.tscn")

@@ -67,7 +67,7 @@ func set_tooltip_txt():
 		4:
 			s = "The amount stat improves the antivirus' projectiles per shot. \n Current Amount Stat: "
 		5:
-			s = "The iframes stat improves the antivirus' time of invincibility upon getting hit or entering a new room. \n Current Iframes Stat: "
+			s = "The iframes stat improves the antivirus' time of invincibility upon getting hit or entering a new room.\n (Iframes are represented by the blue character/player flashing) \n Current Iframes Stat: "
 		6:
 			s = "Lifesteal is a rare upgrade that grants/improves the ability of having a chance to gain health upon dealing damage. \n Current Lifesteal Stat: "
 		7:
