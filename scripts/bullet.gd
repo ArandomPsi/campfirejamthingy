@@ -4,6 +4,9 @@ extends Node2D
 @export var accuracy : int = 5
 @export var damage : int = 2
 @export var dagger : bool = false
+@export var homing : bool = false
+@export var curveballspawner : bool = false
+@export var curveball : bool = false
 var back : bool = false
 @export var flame : bool = false
 
@@ -18,10 +21,15 @@ func _ready():
 	if dagger:
 		$Sprite2D.texture = preload("res://assets/Dagger.svg")
 		$Sprite2D.scale = Vector2(1, 1)
+		
 	if flame:
 		scale = Vector2(0.5, 0.5)
 		var tween = create_tween()
 		tween.tween_property(self, "scale", Vector2(2.5,2.5), 0.5)
+	
+	if curveballspawner: #for modulatitry
+			maxdistance *= 0.3
+	
 
 func _process(delta):
 	if dagger:
@@ -32,8 +40,14 @@ func _process(delta):
 		position += transform.x * delta * speed
 		maxdistance -= 1
 		if maxdistance < 0:
+			if curveballspawner:
+				curvyball()
 			queue_free()
-		
+	
+	if curveball:
+		rotation_degrees += 300 * delta
+	
+	
 
 
 func _on_area_2d_body_entered(body):
@@ -46,6 +60,8 @@ func _on_area_2d_body_entered(body):
 		if not body.name == "player":
 			createdamagenumber(damage,body)
 			
+	if curveballspawner:
+		curvyball()
 	spawnhit()
 	queue_free()
 
@@ -64,9 +80,22 @@ func spawnexplosion():
 		b.position = position
 	
 
+func curvyball():
+	for i in range(8):
+		var b = preload("res://scenes/bullets/bullet.tscn").instantiate()
+		get_tree().root.add_child(b)
+		b.position = position
+		b.rotation_degrees = 45 * i
+		b.curveball = true
+
 func createdamagenumber(amount,body : Node2D):
 	var b = preload("res://scenes/vfx/damagelabel.tscn").instantiate()
 	b.position = body.global_position
 	b.damage = amount
 	get_tree().root.add_child(b)
 	
+
+
+func _on_enemychecker_body_entered(body: Node2D) -> void:
+	if homing:
+		look_at(body.position)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://cbha305rydvd2"]
+[gd_scene load_steps=58 format=3 uid="uid://cbha305rydvd2"]
 
 [ext_resource type="Script" uid="uid://lkamp4kcsb6d" path="res://scripts/player.gd" id="1_1b47p"]
 [ext_resource type="Texture2D" uid="uid://bbn8umujge3ki" path="res://assets/baseplayer.svg" id="1_o0pgg"]
@@ -22,6 +22,7 @@
 [ext_resource type="FontFile" uid="uid://boml265nvfxv0" path="res://assets/SourceCodePro-4alW.ttf" id="15_a38lo"]
 [ext_resource type="AudioStream" uid="uid://dgxkppc7oa7iq" path="res://sounds/Glitch Sound Effect (Speaker).mp3" id="17_bgffu"]
 [ext_resource type="AudioStream" uid="uid://cf0rgos3bd4r" path="res://sounds/482872_KzX---Stalemate.mp3" id="19_60mlk"]
+[ext_resource type="AudioStream" uid="uid://qrbh1mcuuan3" path="res://sounds/hit.mp3" id="23_4ni07"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m4tyv"]
 radius = 16.0
@@ -255,15 +256,15 @@ shader_parameter/_Background = Color(0, 0, 0, 1)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4ni07"]
 shader = ExtResource("8_a38lo")
 shader_parameter/fall_progress = 0.0
-shader_parameter/pieces_x = 3
+shader_parameter/pieces_x = 2
 shader_parameter/pieces_y = 2
-shader_parameter/gravity = 0.955
-shader_parameter/scatter = 1.0
-shader_parameter/rotation_amount = 4.0
+shader_parameter/gravity = 0.154
+shader_parameter/scatter = 0.513
+shader_parameter/rotation_amount = 3.428
 shader_parameter/point_jitter = 0.48
-shader_parameter/delay_variation = 0.8
+shader_parameter/delay_variation = 0.28
 shader_parameter/edge_thickness = 0.0065
-shader_parameter/edge_brightness = 0.336
+shader_parameter/edge_brightness = 0.0
 shader_parameter/alpha_fade = 1.0
 
 [node name="player" type="CharacterBody2D"]
@@ -638,6 +639,12 @@ mix_target = 2
 stream = ExtResource("17_bgffu")
 volume_db = 24.0
 mix_target = 1
+
+[node name="glass" type="AudioStreamPlayer" parent="sounds"]
+stream = ExtResource("23_4ni07")
+volume_db = -15.0
+mix_target = 1
+bus = &"music"
 
 [connection signal="body_entered" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_entered"]
 [connection signal="body_exited" from="arrow/deltashot/hitbox" to="." method="_on_hitbox_body_exited"]

@@ -227,6 +227,8 @@ func shoot():
 				b.damage = 3 + int(stats[0] - 1)
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)
+				if global.ability:
+					b.homing = true
 				get_tree().root.add_child(b)
 		3:
 			for i in range(1 + int(1 * stats[4])):
@@ -237,6 +239,8 @@ func shoot():
 				b.dagger = true
 				b.accuracy = 15
 				b.damage = 10 + stats[0] * 2
+				if global.ability:
+					b.curveballspawner = true
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
@@ -354,7 +358,7 @@ func circtrans(value:float):
 	$hud/hudtransition.material.set_shader_parameter("progress",value)
 
 func die():
-	$sounds/glitch.play(1)
+	
 	
 	#deaththingy for glass break
 	var viewport: Viewport = get_tree().root.get_viewport()
@@ -369,8 +373,11 @@ func die():
 	
 	var tween = create_tween()
 	$sounds/song.stop()
-	tween.tween_method(glassproperty,0.0,0.05,0.5).set_trans(Tween.TRANS_SINE)
-	tween.tween_method(glassproperty,0.05,1.0,0.8).set_trans(Tween.TRANS_SINE).set_delay(1)
+	tween.tween_method(glassproperty,0.0,1.0,0.3).set_trans(Tween.TRANS_CUBIC).set_delay(1)
+	tween.parallel().tween_property($sounds/glass,"playing",true,0.000001).set_delay(1)
+	
+	tween.tween_property($sounds/glitch,"playing",true,0.001)
+	tween.tween_interval(0.7)
 	tween.tween_property($glowhud/gameover/Label,"modulate",Color(1,1,1,1),0.5).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_method(glitchesproperty,0.067,-0.004,0.5)
 	tween.tween_interval(3)
