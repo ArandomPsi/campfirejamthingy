@@ -11,7 +11,7 @@ var currentweaponthingytext : Array = [
 ">Arsonist OS \n --I watched the world burn; Flamethrower"]
 
 var pressed : bool = false
-var totalroomthingy : int = 5
+var totalroomthingy : int = 3
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
