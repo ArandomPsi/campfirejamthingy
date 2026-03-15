@@ -21,6 +21,7 @@ config/icon="res://icon.svg"
 
 global="*res://global.gd"
 SaveFile="*res://scripts/save_file.gd"
+SceneLoader="*res://scripts/SceneLoader.gd"
 
 [display]
 
