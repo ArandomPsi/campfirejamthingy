@@ -240,37 +240,41 @@ scale = Vector2(5.80357, 3.61607)
 texture = SubResource("GradientTexture2D_a13kp")
 
 [node name="matrixparticle" type="GPUParticles2D" parent="TileMap"]
+visible = false
 material = SubResource("CanvasItemMaterial_5jpmn")
 position = Vector2(113.75, 3.21429)
-amount = 50
+amount = 20
 texture = ExtResource("6_s4dqw")
-lifetime = 0.5
+lifetime = 0.25
 process_material = SubResource("ParticleProcessMaterial_a3cv4")
 
 [node name="matrixparticle2" type="GPUParticles2D" parent="TileMap"]
+visible = false
 material = SubResource("CanvasItemMaterial_5jpmn")
 position = Vector2(113.75, 143.393)
-amount = 50
+amount = 20
 texture = ExtResource("6_s4dqw")
-lifetime = 0.5
+lifetime = 0.25
 process_material = SubResource("ParticleProcessMaterial_a3cv4")
 
 [node name="matrixparticle3" type="GPUParticles2D" parent="TileMap"]
+visible = false
 material = SubResource("CanvasItemMaterial_5jpmn")
 position = Vector2(238.571, 74.1071)
 rotation = -1.5708
-amount = 50
+amount = 20
 texture = ExtResource("6_s4dqw")
-lifetime = 0.5
+lifetime = 0.25
 process_material = SubResource("ParticleProcessMaterial_ri6w5")
 
 [node name="matrixparticle4" type="GPUParticles2D" parent="TileMap"]
+visible = false
 material = SubResource("CanvasItemMaterial_5jpmn")
 position = Vector2(1.60715, 74.1071)
 rotation = -1.5708
-amount = 50
+amount = 20
 texture = ExtResource("6_s4dqw")
-lifetime = 0.5
+lifetime = 0.25
 process_material = SubResource("ParticleProcessMaterial_ri6w5")
 
 [node name="player" parent="." instance=ExtResource("2_j0t77")]
@@ -356,6 +360,7 @@ position = Vector2(73, 61)
 shape = SubResource("CircleShape2D_iufsh")
 
 [node name="noise" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_wj07n")
 anchors_preset = 15
 anchor_right = 1.0

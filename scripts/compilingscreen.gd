@@ -9,6 +9,7 @@ func _ready() -> void:
 		get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 	else:
 		get_tree().change_scene_to_file("res://scenes/titlescreen.tscn")
+	
 
 func _process(delta: float) -> void:
 	amountcompiled += 0.0335

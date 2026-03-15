@@ -30,8 +30,7 @@ func _process(delta):
 	$portal1/Area2D/CollisionShape2D.disabled = not portalopened
 	$portal1/Area2D/CollisionShape2D2.disabled = $portal1/Area2D/CollisionShape2D.disabled
 	
-	if Input.is_action_just_released("shoot"):
-		getsit = true
+	
 	
 
 func portal_delay():

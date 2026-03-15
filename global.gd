@@ -20,7 +20,8 @@ var boss_battle : bool = false
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	safeload()
+	
+
 func _process(delta):
 	if trueroom - 2 > bestroom:
 		bestroom = trueroom - 2
@@ -28,9 +29,9 @@ func _process(delta):
 	shake = clampi(shake,0,25)
 	flash = lerpf(flash,0.0,0.15)
 	save_timer -= delta
-	if save_timer <= 0.0:
-		save(false)
-		save_timer = autosave_time
+	#if save_timer <= 0.0:
+		#save(false)
+		#save_timer = autosave_time
 		
 func save(msg : bool):
 	if msg:
