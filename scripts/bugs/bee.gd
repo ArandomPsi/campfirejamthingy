@@ -98,6 +98,5 @@ func burn(amount):
 		await get_tree().create_timer(1.0).timeout
 
 func _on_area_2d_2_body_entered(body):
-	print("yes")
 	$bouncelook.look_at(body.position)
 	velocity += -$bouncelook.transform.x * randi_range(400,800)

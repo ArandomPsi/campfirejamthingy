@@ -78,14 +78,14 @@ func _on_button_pressed():
 		tween.tween_property($Camera2D,"position",Vector2(826,257),0.5).set_trans(Tween.TRANS_CUBIC)
 		tween.parallel().tween_property($Camera2D,"zoom",Vector2(15,15),0.8).set_trans(Tween.TRANS_CUBIC)
 		await tween.finished
-		get_tree().change_scene_to_packed(preload("res://scenes/tutorial.tscn"))
+		get_tree().change_scene_to_file("res://scenes/tutorial.tscn") #idk its fine
 	elif global.totalrooms >= (currentweaponthingy - 1) * totalroomthingy:
 		pressed = true
 		var tween = create_tween()
 		tween.tween_property($Camera2D,"position",Vector2(826,257),0.5).set_trans(Tween.TRANS_CUBIC)
 		tween.parallel().tween_property($Camera2D,"zoom",Vector2(15,15),0.8).set_trans(Tween.TRANS_CUBIC)
 		await tween.finished
-		get_tree().change_scene_to_packed(preload("res://scenes/testmap.tscn"))
+		get_tree().change_scene_to_file("res://scenes/transitionscene.tscn") #reduce lag
 	else:
 		$error.play()
 

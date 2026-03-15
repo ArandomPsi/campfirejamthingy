@@ -79,6 +79,5 @@ func _on_area_2d_body_entered(body):
 
 
 func _on_area_2d_2_body_entered(body):
-	print("yes")
 	$bouncelook.look_at(body.position)
 	velocity += -$bouncelook.transform.x * randi_range(400,800)

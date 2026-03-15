@@ -90,6 +90,5 @@ func goonstuff():
 		b.speed *= randf_range(0.8,1.2)
 
 func _on_area_2d_2_body_entered(body):
-	print("yes")
 	$bouncelook.look_at(body.position)
 	velocity += -$bouncelook.transform.x * randi_range(400,800)

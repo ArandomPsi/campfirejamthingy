@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://jvigkltmhdpw"]
+
+[ext_resource type="Script" uid="uid://dqpybqe5q2b80" path="res://scripts/transitionscene.gd" id="1_sw81i"]
+
+[node name="transitionscene1" type="Node2D"]
+script = ExtResource("1_sw81i")

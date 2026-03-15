@@ -59,10 +59,6 @@ func _ready():
 	
 
 func _physics_process(delta):
-	if global.boss_battle:
-		music_fade(true)
-	else:
-		music_fade(false)
 	global.playerpos = position
 	iframes -= 1
 	statsstuff()
@@ -85,7 +81,6 @@ func _physics_process(delta):
 		if cur_targs.size() > 0:
 			for targ in cur_targs:
 				saw(targ)
-				print("sawing " + str(targ.name))
 			saw_timer = saw_spd
 	if Input.is_action_pressed("shoot"):
 		machine_timer -= delta
@@ -291,7 +286,6 @@ func shoot():
 				b.look_at(get_global_mouse_position())
 				b.target_hit.connect(_on_hit)
 				get_tree().root.add_child(b)
-				print(str(b.damage))
 		5:
 			global.shake += 1
 			for i in range(int(1 + (stats[4] * 0.5))):
@@ -421,7 +415,7 @@ func die():
 	transitionout()
 	var timer = get_tree().create_timer(1.5)
 	await timer.timeout
-	get_tree().change_scene_to_file("res://scenes/titlescreen.tscn")
+	get_tree().change_scene_to_file("res://scenes/transitionscene2.tscn")
 
 
 func glassproperty(value : float):
